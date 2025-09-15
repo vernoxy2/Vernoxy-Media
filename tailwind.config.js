@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'vernoxy': '#0C0C0C',
+        'vernoxy': '#000000',
         'primary': '#4ED5E2'
       },
       fontFamily: {

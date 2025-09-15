@@ -17,6 +17,6 @@
     @apply text-white text-lg;
   }
   section {
-    @apply py-24
+    @apply py-24 space-y-16
   }
 }
