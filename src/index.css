@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('./assets/fonts/MyCustomFont.woff2') format('woff2'),
+       url('./assets/fonts/MyCustomFont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Tailwind imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Example base styles */
+@layer base {
+  p {
+    @apply text-white text-lg;
+  }
+  section {
+    @apply py-24
+  }
+}
