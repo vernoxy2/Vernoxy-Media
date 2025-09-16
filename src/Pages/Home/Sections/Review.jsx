@@ -10,8 +10,13 @@ const Review = () => {
             <p className="text-xl text-start">Our Clients Review</p>
             {/* <BottomLine /> */}
           </div>
-          <h1 className="text-start text-5xl"><span className="font-bold">What Our </span>Clients Are Saying</h1>
-          <p className="text-start 2xl:pe-8">We build intelligent Al agents that automate tasks, streamline workflows, and think like your best employee - only faster.</p>
+          <h1 className="text-start text-5xl">
+            <span className="font-bold">What Our </span>Clients Are Saying
+          </h1>
+          <p className="text-start 2xl:pe-8">
+            We build intelligent Al agents that automate tasks, streamline
+            workflows, and think like your best employee - only faster.
+          </p>
         </div>
         <div className="w-full border py-10"></div>
       </div>

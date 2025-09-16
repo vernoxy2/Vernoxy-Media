@@ -30,24 +30,24 @@ const AIRevolution = () => {
         </div>
 
         {/* Right column */}
-        <div className="text-right space-y-4">
+        <div className="md:text-right space-y-4">
           {/* Avatars */}
-          <div className="flex justify-end -space-x-6">
+          <div className="flex md:justify-end -space-x-6">
             {avatars.map((avatar) => (
               <img
                 key={avatar.id}
-                className="w-16 h-16 rounded-full border-2 border-black"
+                className="w-14 h-14 rounded-full border-2 border-black"
                 src={avatar.src}
                 alt={avatar.alt}
               />
             ))}
-            <span className="w-16 h-16 flex items-center justify-center rounded-full bg-gray-600 text-white text-sm border-2 border-black">
+            <span className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-600 text-white text-sm border-2 border-black">
               +99
             </span>
           </div>
 
           {/* Stats */}
-          <div className="text-right uppercase">
+          <div className="text-start md:text-right uppercase">
             <p className="text-3xl">3.5k+</p>
             <p>Happy Customers and counting</p>
           </div>
