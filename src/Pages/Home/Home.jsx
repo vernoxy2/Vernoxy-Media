@@ -4,6 +4,10 @@ import BottomLine from "../../Components/BottomLine";
 import HomeHero from "./Sections/HomeHero";
 import Who from "./Sections/Who";
 import Offer from "./Sections/Offer";
+import Action from "./Sections/Action";
+import Review from "./Sections/Review";
+import Industries from "./Sections/Industries";
+import AIRevolution from "./Sections/AIRevolution";
 
 const Home = () => {
   return (
@@ -12,6 +16,10 @@ const Home = () => {
       <div className="bg-gradient-to-r from-vernoxy via-primary/50 to-vernoxy text-white h-[1px]"></div>
       <Who />
       <Offer />
+      <Action/>
+      <Review/>
+      <Industries/>
+      <AIRevolution/>
     </>
   );
 };
