@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import Video from "../../../assets/HomePageImgs/HeroV.mp4";
 import BottomLine from "../../../Components/BottomLine";
 
@@ -21,8 +21,12 @@ const HomeHero = () => {
       {/* Content */}
       <div className="relative z-10 flex flex-col justify-center h-full mt-16 container">
         {/* Centered Heading */}
-        <h1 className="text-white text-2xl md:text-6xl mb-4 max-w-7xl mx-auto font-Bai_Jamjuree uppercase text-center">
-          Empowering <span className="font-bold">Brands</span> Through{" "}
+        <h1
+          className="text-2xl md:text-6xl mb-4 max-w-7xl mx-auto font-light font-Bai_Jamjuree uppercase text-center 
+             bg-gradient-to-b from-primary/80 to-white bg-clip-text text-transparent"
+        >
+          Empowering <span className="font-bold">Brands</span>{" "}
+          <br className="hidden xl:block" /> Through{" "}
           <span className="font-bold">Creative</span> Solutions
         </h1>
 
@@ -31,10 +35,10 @@ const HomeHero = () => {
           Empowering brands with data-driven strategies, creative solutions, and
           modern digital design
         </p>
-        <BottomLine/>
+        <BottomLine />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HomeHero
+export default HomeHero;

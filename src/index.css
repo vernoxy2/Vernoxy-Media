@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 @font-face {
-  font-family: 'MyCustomFont';
-  src: url('./assets/fonts/MyCustomFont.woff2') format('woff2'),
-       url('./assets/fonts/MyCustomFont.woff') format('woff');
+  font-family: 'Bai_Jamjuree';
+  src: url('./assets/fonts/BaiJamjuree-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -16,8 +15,7 @@
 /* Example base styles */
 @layer base {
   p {
-    @apply text-white text-sm md:text-xl;
-    font-family: 'Mulish', sans-serif; /* Mulish font */
+    @apply text-white text-sm md:text-xl font-Mulish;
   }
   section {
     @apply py-12 md:py-24 space-y-8 md:space-y-16;

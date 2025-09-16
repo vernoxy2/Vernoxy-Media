@@ -6,12 +6,14 @@ export default {
   ],
   theme: {
     extend: {
+
       colors: {
         'vernoxy': '#000000',
         'primary': '#4ED5E2'
       },
       fontFamily: {
         'Bai_Jamjuree': ['Bai_Jamjuree', 'sans-serif'],
+        'Mulish': ['Mulish', 'sans-serif'],
       },
       container: {
         center: true,
