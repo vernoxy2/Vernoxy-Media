@@ -14,7 +14,7 @@
 /* Example base styles */
 @layer base {
   p {
-    @apply text-white text-lg;
+    @apply text-white md:text-lg;
   }
   section {
     @apply py-24 space-y-16
