@@ -25,7 +25,7 @@ const Who = () => {
               normalText={"We Are"}
               className={"text-left"}
             />
-            <p className="max-w-md ">
+            <p className="max-w-lg ">
               At Vernoxy Media, we empower brands with data-driven creativity,
               transforming ideas into impactful strategies. Through design,
               analytics, and modern digital tools, we craft customized branding

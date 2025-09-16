@@ -27,7 +27,7 @@ const HomeHero = () => {
         </h1>
 
         {/* Left-Aligned Paragraph */}
-        <p className="text-white text-lg md:text-xl md:max-w-[330px] text-left mt-10 pt-6">
+        <p className="text-white text-lg md:text-xl md:max-w-[350px] text-left mt-10 pt-6">
           Empowering brands with data-driven strategies, creative solutions, and
           modern digital design
         </p>
