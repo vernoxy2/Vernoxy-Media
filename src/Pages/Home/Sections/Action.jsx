@@ -1,7 +1,7 @@
 import React from "react";
 import Heading from "../../../Components/Heading";
 import BottomLine from "../../../Components/BottomLine";
-import ActionV from "../../../assets/HomePageImgs/ActionV.mp4"
+import ActionV from "../../../assets/HomePageImgs/ActionV.mp4";
 
 const Action = () => {
   return (
@@ -23,9 +23,13 @@ const Action = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
         <div className="md:col-span-2 lg:col-span-1 lg:row-span-2 md:h-full">
-          <h1 className="text-4xl font-bold text-start max-w-xl lg:max-w-md">
-            Enhancing Operational Efficiency with Predictive Al
+          <h1
+            className="text-4xl font-bold text-start   font-Bai_Jamjuree 
+             bg-gradient-to-r from-primary to-white bg-clip-text text-transparent"
+          >
+            Enhancing Operational Efficiency with <br className="hidden 2xl:block" /> Predictive AI
           </h1>
+
           <BottomLine />
         </div>
         <div className="bg-gradient-to-b from-primary/20 hover:from-primary/40  to-vernoxy border-[2px] border-vernoxy hover:border-primary/40 duration-500 transform text-white h-[150px] rounded-lg"></div>

@@ -47,8 +47,8 @@ const AIRevolution = () => {
           </div>
 
           {/* Stats */}
-          <div className="text-start md:text-right uppercase">
-            <p className="text-3xl">3.5k+</p>
+          <div className="text-start md:text-right uppercase font-Bai_Jamjuree">
+            <p className="text-3xl">3.5k           </p>
             <p>Happy Customers and counting</p>
           </div>
         </div>
