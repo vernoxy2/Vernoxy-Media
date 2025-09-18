@@ -55,13 +55,13 @@ const People = () => {
         {PeopleData.map((item) => (
           <div
             key={item.id}
-            className="text-left space-y-4 bg-[#D9D9D9] rounded-xl relative"
+            className="text-left space-y-4 bg-[#D9D9D9] rounded-xl relative"    
           >
             <img src={item.img} alt="" className="mx-auto pt-8 h-full" />
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-primary/50 py-4 w-full text-center font-Bai_Jamjuree rounded-b-xl">
-              <h2 className="text-3xl font-semibold">{item.name}</h2>
-              <p className="text-xl ">{item.title}</p>
-            </div>
+            <div className="absolute bottom-0 left-0 w-full bg-primary/50 py-4 text-center text-white font-Bai_Jamjuree rounded-b-xl">
+              <h2 className="text-2xl font-semibold">{item.name}</h2>
+              <p className="text-lg">{item.title}</p>
+            </div>  
           </div>
         ))}
       </div>
