@@ -13,7 +13,7 @@ const Clinets = () => {
           className={"text-start"}
         />
         <img src={ClinetsImg} alt="" className="w-full" />
-        <div className="lg:flex items-center ">
+        <div className="lg:flex items-center">
           <div className="lg:w-4/12 py-4">
             <Heading
               boldText={"Our"}

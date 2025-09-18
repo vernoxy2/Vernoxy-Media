@@ -1,16 +1,21 @@
-import React from 'react'
-import AboutHero from './Sections/AboutHero'
-import Clinets from './Sections/Clinets'
-import Expertise from './Sections/Expertise'
+import React from "react";
+import AboutHero from "./Sections/AboutHero";
+import Clinets from "./Sections/Clinets";
+import Expertise from "./Sections/Expertise";
+import Future from "./Sections/Future";
+import People from "./Sections/People";
 
 const AboutUs = () => {
   return (
     <div>
-      <AboutHero/>
-      <Clinets/>
-      <Expertise/>
+      <AboutHero />
+      <Clinets />
+      <Expertise />
+      <div className="bg-gradient-to-r from-vernoxy via-primary/50 to-vernoxy text-white h-[1px] -mt-5"></div>
+      <Future />
+      <People />
     </div>
-  )
-}
+  );
+};
 
-export default AboutUs
+export default AboutUs;
