@@ -1,7 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Heading from "../../../Components/Heading";
-import BottomLine from "../../../Components/BottomLine";
 import WPro1 from "../../../assets/HomePageImgs/Work/Web/Pun.webp";
 import WPro2 from "../../../assets/HomePageImgs/Work/Web/AN.webp";
 import WPro3 from "../../../assets/HomePageImgs/Work/Web/KT.webp";
@@ -90,24 +89,23 @@ const ProjectCard = ({ item }) => {
 
         {/* Overlay */}
         <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black transition-all duration-500 flex flex-row items-end justify-between p-6 text-white text-start font-Bai_Jamjuree group">
-  <div className="max-w-md">
-    {/* Title: moves up on hover */}
-    <h2 className="text-3xl font-bold transform transition-all duration-500 group-hover:-translate-y-4">
-      {item.title}
-    </h2> 
+          <div className="max-w-md">
+            {/* Title: moves up on hover */}
+            <h2 className="text-3xl font-bold transform transition-all duration-500 group-hover:-translate-y-4">
+              {item.title}
+            </h2>
 
-    {/* Text fades in after title lifts */}
-    <p className="text-xl mt-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-200">
-      {item.text}
-    </p>
-  </div>
+            {/* Text fades in after title lifts */}
+            <p className="text-xl mt-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-200">
+              {item.text}
+            </p>
+          </div>
 
-  {/* Button fades in after text */}
-  <div className="mt-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-300">
-    <PrimaryBtn>Learn More</PrimaryBtn>
-  </div>
-</div>
-
+          {/* Button fades in after text */}
+          <div className="mt-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-300">
+            <PrimaryBtn>Learn More</PrimaryBtn>
+          </div>
+        </div>
       </div>
     </div>
   );
