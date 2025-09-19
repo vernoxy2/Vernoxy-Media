@@ -7,6 +7,7 @@ import Home from "./Pages/Home/Home";
 import AboutUs from "./Pages/AboutUs/AboutUs";
 import Services from "./Pages/Services/Services";
 import ContactUs from "./Pages/ContactUs/ContactUs";
+import Projects from "./Pages/Projects/Projects";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/products" element={<Projects />} />
           <Route path="/contact-us" element={<ContactUs />} />
           {/* 404 fallback */}
           <Route

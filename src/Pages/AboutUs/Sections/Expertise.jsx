@@ -40,7 +40,7 @@ const Expertise = () => {
         <motion.img
           src={VR_Man}
           alt="VR Man"
-          className="mx-auto -mb-28 z-10 relative"
+          className="mx-auto -mb-28 z-0 relative"
           animate={{ y: [-14, 14, -14] }} // scale fixed at 1
           transition={{
             duration: 5,
@@ -50,7 +50,7 @@ const Expertise = () => {
           }}
         />
 
-        <div className="bg-gradient-to-b from-primary/30 hover:from-primary/40 to-vernoxy border-[2px] border-vernoxy hover:border-primary/40 duration-500 transform text-white rounded-lg py-12 container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 font-Bai_Jamjuree backdrop-blur-3xl bg-white/10">
+        <div className=" bg-gradient-to-b from-primary/30 hover:from-primary/40 to-vernoxy border-[2px] border-vernoxy hover:border-primary/40 duration-500 transform text-white rounded-lg py-12 container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 font-Bai_Jamjuree backdrop-blur-sm bg-white/10">
           {data.map((item) => (
             <div key={item.id} className="text-center">
               <h2 className="text-6xl font-bold">{item.Count}</h2>

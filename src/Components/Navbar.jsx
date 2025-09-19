@@ -8,6 +8,7 @@ const navitems = [
   { name: "Home", path: "/" },
   { name: "About Us", path: "/about-us" },
   { name: "Services", path: "/services" },
+  { name: "Products", path: "/products" },
   { name: "Contact Us", path: "/contact-us" },
 ];
 
@@ -21,7 +22,7 @@ const Navbar = () => {
         <img src={Logo} alt="Logo" className="h-10 w-auto" />
 
         {/* Desktop Menu */}
-        <div className="hidden md:block border border-primary py-2 px-3 lg:px-5 rounded-md bg-white/20">
+        <div className="hidden md:block border border-primary py-2 px-3 lg:px-5 rounded-md bg-white/20 backdrop-blur-md">
           <ul className="flex gap-5 lg:gap-10 uppercase">
             {navitems.map((item, i) => (
               <li key={i}>
