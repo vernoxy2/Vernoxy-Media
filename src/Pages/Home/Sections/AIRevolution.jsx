@@ -2,6 +2,9 @@ import React from "react";
 import Heading from "../../../Components/Heading";
 import PrimaryBtn from "../../../Components/PrimartyBtn";
 import AvatarsImg from "../../../assets/HomePageImgs/Avatars.png";
+import Earth from "../../../assets/HomePageImgs/Earth.svg";
+import Right from "../../../assets/HomePageImgs/Right.svg";
+import Left from "../../../assets/HomePageImgs/Left.svg";
 
 const avatars = [
   { id: 1, src: AvatarsImg, alt: "Customer 1" },
@@ -12,7 +15,7 @@ const avatars = [
 
 const AIRevolution = () => {
   return (
-    <section>
+    <section className="-space-y-16">
       <div className="container grid grid-cols-1 md:grid-cols-2 gap-7">
         {/* Left column */}
         <div className="flex flex-col items-start space-y-4">
@@ -48,9 +51,26 @@ const AIRevolution = () => {
 
           {/* Stats */}
           <div className="text-start md:text-right uppercase font-Bai_Jamjuree">
-            <p className="text-3xl">3.5k           </p>
+            <p className="text-3xl">3.5k </p>
             <p>Happy Customers and counting</p>
           </div>
+        </div>
+      </div>
+      <div className="relative">
+        <img src={Earth} alt="Earth" className="mx-auto" />
+
+        <div className="mx-auto">
+          <img
+          src={Right}
+          alt="Right Orbit"
+          className="absolute top-0 right-1/2 animate-Efloat"
+        />
+
+        <img
+          src={Left}
+          alt="Left Orbit"
+          className="absolute top-0 right-1/2 animate-Efloat"
+        />
         </div>
       </div>
     </section>
