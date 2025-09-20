@@ -4,7 +4,7 @@ import Clinets from "./Sections/Clinets";
 import Expertise from "./Sections/Expertise";
 import Future from "./Sections/Future";
 import People from "./Sections/People";
-import WithVernoxy from "./Sections/withVernoxy";
+import WithVernoxy from "./Sections/WithVernoxy";
 
 const AboutUs = () => {
   return (
