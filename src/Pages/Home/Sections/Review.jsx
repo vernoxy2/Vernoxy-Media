@@ -17,7 +17,7 @@ const ReviewData = [
     img: Women,
     name: "John Doe",
     title: "CEO of ABC Company",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae.",
+    text: "Working with this team transformed our business their precision and dedication went beyond our expectations.",
     stars: [FillStar, FillStar, FillStar, FillStar, BlenkStar],
   },
   {
@@ -25,7 +25,7 @@ const ReviewData = [
     img: Men,
     name: "John Doe",
     title: "CEO of ABC Company",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae.",
+    text: "Expert execution, exceeded all expectations brilliantly.",
     stars: [FillStar, FillStar, FillStar, FillStar, FillStar],
   },
   {
@@ -33,7 +33,7 @@ const ReviewData = [
     img: Men,
     name: "John Doe",
     title: "CEO of ABC Company",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae.",
+    text: "Expert execution, exceeded all expectations brilliantly.",
     stars: [FillStar, FillStar, FillStar, FillStar, FillStar],
   },
   {
@@ -41,15 +41,15 @@ const ReviewData = [
     img: Women,
     name: "Jane Doe",
     title: "Manager at XYZ",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae.",
+    text: "Working with this team transformed our business their precision and dedication went beyond our expectations.",
     stars: [FillStar, FillStar, FillStar, BlenkStar, BlenkStar],
   },
 ];
 
 const ReviewCard = ({ item }) => {
   return (
-    <div className="flex flex-col items-start space-y-6 border border-primary rounded-xl px-6 py-10 text-start">
-      <div className="w-24 h-24 rounded-full overflow-hidden bg-white ">
+    <div className="flex flex-col items-start space-y-6 border border-primary hover:bg-primary/10 rounded-xl px-6 py-10 text-start h-full">
+      <div className="w-10 h-10 md:w-24 md:h-24 rounded-full overflow-hidden bg-white ">
         <img
           src={item.img}
           alt={`${item.name} photo`}
@@ -74,9 +74,9 @@ const ReviewCard = ({ item }) => {
 const Review = () => {
   return (
     <section>
-      <div className="container pr-0 py-10 flex gap-12 items-center">
+      <div className="container pr-0 py-10 lg:flex gap-12 items-center">
         {/* Left column */}
-        <div className="md:w-4/12 space-y-6 mb-8">
+        <div className=" md:w-9/12 lg:w-4/12 w-full space-y-6 mb-8">
           <div className="flex flex-row items-center gap-2 max-w-sm">
             <p className="text-xl text-start">Our Clients Review</p>
             <BottomLine />
@@ -91,7 +91,7 @@ const Review = () => {
           </p>
         </div>
         {/* Right column Carousel  */}
-        <div className="md:w-8/12 relative">
+        <div className="lg:w-8/12 w-full h-full relative">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={20}
@@ -109,14 +109,18 @@ const Review = () => {
               disableOnInteraction: false,
             }}
             loop={true}
-            className="pb-16"
+            className=" h-full"
+            breakpoints={{
+              320: { slidesPerView: 1, spaceBetween: 10 }, // Mobile: 1 card
+              640: { slidesPerView: 2, spaceBetween: 15 }, // Tablet: 2 cards
+              1280: { slidesPerView: 2.5, spaceBetween: 20 }, // Desktop: 2.5 cards (2 full, 3rd half)
+            }}
           >
             {ReviewData.map((item) => (
-              <SwiperSlide key={item.id}>
-                <ReviewCard item={item} />
+              <SwiperSlide key={item.id} className="h-full">
+                <ReviewCard item={item} className="h-full" />
               </SwiperSlide>
             ))}
-
           </Swiper>
         </div>
       </div>

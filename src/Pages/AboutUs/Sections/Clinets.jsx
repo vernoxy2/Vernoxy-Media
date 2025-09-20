@@ -2,15 +2,17 @@ import React from "react";
 import ClinetsImg from "../../../assets/AboutPageImg/ClinetsImg.png";
 import Heading from "../../../Components/Heading";
 import BottomLine from "../../../Components/BottomLine";
+import PrimaryBg from "../../../Components/PrimaryBg";
 
 const Clinets = () => {
   return (
     <section>
-      <div className="container space-y-8 md:space-y-14">
+      <div className="container space-y-8 md:space-y-14 relative z-10">
+        <PrimaryBg className="-top-52 " />
         <Heading
           boldText={"Empowering Growth,"}
           normalText={"Streamlining Efficiency, Inspiring Innovation"}
-          className={"text-start"}
+          className={"text-start z-20"}
         />
         <img src={ClinetsImg} alt="" className="w-full" />
         <div className="lg:flex items-center">

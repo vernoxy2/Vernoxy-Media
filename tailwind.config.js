@@ -42,5 +42,19 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.text-stroke': {
+          '-webkit-text-stroke': '0.4px #4ED5E2',
+          color: 'transparent',
+        },
+        '.text-stroke-md': {
+          '-webkit-text-stroke': '1px #4ED5E2',
+          color: 'transparent',
+        },
+      };
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    },
+  ],
 };
