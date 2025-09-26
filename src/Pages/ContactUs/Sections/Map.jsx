@@ -1,0 +1,38 @@
+import React from "react";
+import LeftTop from "../../../assets/ContactPageImg/LeftTop.svg";
+import LeftBottom from "../../../assets/ContactPageImg/LeftBottom.svg";
+
+const Map = () => {
+  return (
+    <section className="container">
+      <div  className=" p-10 mx-auto flex flex-col lg:flex-row space-y-0 relative"> 
+        <img src={LeftTop} alt="" className="absolute top-0 left-0 " />
+        <img src={LeftBottom} alt="" className="absolute bottom-0 left-0 " />
+        {/* Left background/placeholder */}
+      <div className="w-full p-9 lg:w-5/12 h-[420px] bg-[#464646]/50 flex flex-col justify-center items-start text-start">
+        <h1 className="uppercase font-bold text-6xl font-Bai_Jamjuree">
+          Find Your Way To Us
+        </h1>
+        <p className="w-[80%] mt-4 text-gray-200">
+          Visit our location for professional services and trusted customer
+          support.
+        </p>
+      </div>
+
+      {/* Right map */}
+      <div className="w-full lg:w-7/12 h-[420px] overflow-hidden">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2951.926812325602!2d72.9511627324894!3d20.592447395998203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be0c3bdd46352cb%3A0xb318e29624cbcfa4!2sKALAJI%20BUSINESS%20CENTER!5e1!3m2!1sen!2sin!4v1758877817491!5m2!1sen!2sin"
+          title="Kalaji Business Center Map"
+          className="w-full h-full border-0"
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+      </div>
+    </section>
+  );
+};
+
+export default Map;

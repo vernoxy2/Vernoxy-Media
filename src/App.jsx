@@ -8,6 +8,7 @@ import AboutUs from "./Pages/AboutUs/AboutUs";
 import Services from "./Pages/Services/Services";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import Projects from "./Pages/Projects/Projects";
+import Footer from "./Components/Footer";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
             element={<div className="p-8 text-3xl text-center">404 - Page Not Found</div>}
           />
         </Routes>
+        <Footer/>
       </div>
     </Router>
   );
