@@ -1,20 +1,21 @@
-import React from 'react'
-import ContHero from './Sections/ContHero'
-import Form from './Sections/Form'
-import Video from './Sections/Video'
-import Map from './Sections/Map'
+import React from "react";
+import ContHero from "./Sections/ContHero";
+import Form from "./Sections/Form";
+import Video from "./Sections/Video";
+import Map from "./Sections/Map";
+import PrimaryHero from "../../Components/PrimaryHead";
 
 const ContactUs = () => {
   return (
     <div>
-      <ContHero/>
-            <div className="bg-gradient-to-r from-vernoxy via-primary/50 to-vernoxy text-white h-[1px] -mt-5"></div>
-        
-      <Form/>
-      <Video/>
-      <Map/>
+      <section className="pb-0">
+        <PrimaryHero title={"Contacts"} subtitle={"Get in Touch with us"} />
+      </section>
+      <Form />
+      <Video />
+      <Map />
     </div>
-  )
-}
+  );
+};
 
-export default ContactUs
+export default ContactUs;

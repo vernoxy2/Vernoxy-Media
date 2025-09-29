@@ -12,10 +12,10 @@ const Links = [
 ];
 
 const SerLinkd = [
-  { id: 1, name: "UI/UX", Link: "/services" },
-  { id: 2, name: "Web Development", Link: "/services" },
-  { id: 3, name: "Graphics Designer", Link: "/services" },
-  { id: 4, name: "Video Editing", Link: "/services" },
+  { id: 1, name: "Digital Marketing", Link: "/services/digital_marketing" },
+  { id: 2, name: "Web Development", Link: "/services/web_development" },
+  { id: 3, name: "Graphics Designer", Link: "/services/graphics_design" },
+  { id: 4, name: "Video Editing", Link: "/services/video_editing" },
 ];
 
 const Footer = () => {

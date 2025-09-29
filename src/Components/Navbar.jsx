@@ -11,7 +11,7 @@ const navitems = [
     name: "Services",
     path: "/services",
     dropdown: [
-      { name: "UI/UX Design", path: "/services/ui-ux_design" },
+      { name: "Digital Marketing", path: "/services/digital_marketing" },
       { name: "Web Development", path: "/services/web_development" },
       { name: "Graphics Designer", path: "/services/graphics_design" },
       { name: "Video Editing", path: "/services/video_editing" },
@@ -72,7 +72,7 @@ const Navbar = () => {
                   ? openDropdown === i
                     ? "block pl-4 mt-2"
                     : "hidden"
-                  : "absolute left-0 mt-2 w-48 bg-primary/90 rounded-md shadow-lg transition-all duration-300 hidden group-hover:block group-focus-within:block"
+                  : "absolute left-0 mt-2 w-48 bg-white/20 border border-primary border-t-0 backdrop-blur-md rounded-md shadow-lg transition-all duration-300 hidden group-hover:block group-focus-within:block"
               }`}
             >
               {item.dropdown.map((drop, idx) => (

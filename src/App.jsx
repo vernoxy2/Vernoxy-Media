@@ -27,7 +27,7 @@ const App = () => {
           <Route path="/services" element={<Services />} />
 
           {/* Service inner pages */}
-          <Route path="/services/ui-ux_design" element={<DigitalMarketing/>} />
+          <Route path="/services/digital_marketing" element={<DigitalMarketing/>} />
           <Route path="/services/web_development" element={<WebDevelopment />} />
           <Route path="/services/graphics_design" element={<GraphicsDesign />} />
           <Route path="/services/video_editing" element={<VideoEditing />} />
