@@ -6,10 +6,10 @@ import { RiTwitterXFill } from "react-icons/ri";
 import { TiSocialInstagram } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import PrimaryBtn from "../../../Components/PrimartyBtn";
-import LeftBottom from "../../../assets/ContactPageImg/LeftBottom.svg"
-import RightTop from "../../../assets/ContactPageImg/RightTop.svg"
-import RightBottom from "../../../assets/ContactPageImg//RightBottom.svg"
-import LeftTop from "../../../assets/ContactPageImg/LeftTop.svg"
+import LeftBottom from "../../../assets/ContactPageImg/LeftBottom.svg";
+import RightTop from "../../../assets/ContactPageImg/RightTop.svg";
+import RightBottom from "../../../assets/ContactPageImg//RightBottom.svg";
+import LeftTop from "../../../assets/ContactPageImg/LeftTop.svg";
 
 const Soical = [
   {
@@ -102,12 +102,30 @@ const Form = () => {
         </div>
         {/* Contact Form */}
         <div className="p-6 md:p-12 relative ">
-          <img src={LeftTop} alt="" className="absolute left-0 top-0 object-contain"/>
-          <img src={LeftBottom} alt="" className="absolute left-0 bottom-0 object-contain"/>
-          <img src={RightTop} alt="" className="absolute right-0 top-0 object-contain"/>
-          <img src={RightBottom} alt="" className="absolute right-0 bottom-0 object-contain"/>
-          <div className="h-full bg-[#464646] p-5 md:p-10 rounded-sm relative">
-            <p className="absolute -top-5 left-1/2 -translate-x-1/2 font-Bai_Jamjuree text-2xl md:text-3xl">Contact Form</p>
+          <img
+            src={LeftTop}
+            alt=""
+            className="absolute left-0 top-0 object-contain"
+          />
+          <img
+            src={LeftBottom}
+            alt=""
+            className="absolute left-0 bottom-0 object-contain"
+          />
+          <img
+            src={RightTop}
+            alt=""
+            className="absolute right-0 top-0 object-contain"
+          />
+          <img
+            src={RightBottom}
+            alt=""
+            className="absolute right-0 bottom-0 object-contain"
+          />
+          <div className="h-full bg-[#464646]/50 p-5 md:p-10 rounded-sm relative backdrop-blur-md">
+            <p className="absolute -top-5 left-1/2 -translate-x-1/2 font-Bai_Jamjuree text-2xl md:text-3xl">
+              Contact Form
+            </p>
             <form action="submit" className="flex flex-col gap-5 pt-5">
               <input
                 type="text"

@@ -23,7 +23,7 @@ const HomeHero = () => {
         {/* Centered Heading */}
         <h1
           className="text-2xl md:text-6xl mb-4 max-w-7xl mx-auto font-light font-Bai_Jamjuree uppercase text-center 
-             bg-gradient-to-b from-primary/80 to-white bg-clip-text text-transparent"
+             bg-gradient-to-b from-primary to-white bg-clip-text text-transparent"
         >
           Empowering <span className="font-bold">Brands</span>{" "}
           <br className="hidden xl:block" /> Through{" "}

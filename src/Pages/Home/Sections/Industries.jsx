@@ -24,9 +24,9 @@ const Industries = () => {
         {data.map((industry) => (
           <div
             key={industry.id}
-            className="bg-gradient-to-b from-primary/20 hover:from-primary/40 to-vernoxy border-[2px] border-vernoxy hover:border-primary/40 duration-500 text-white h-[150px] rounded-lg flex items-center justify-center text-center px-4 cursor-pointer transition-transform hover:scale-y-105 ease-in-out"
+            className="bg-gradient-to-b from-primary/20 hover:from-primary/40 to-vernoxy border-[2px] border-vernoxy hover:border-primary/40 duration-500 text-white h-[150px] rounded-lg flex items-center justify-center text-center px-4 cursor-pointer transition-transform hover:scale-y-105 ease-in-out group"
           >
-            <h2 className="text-xl md:text-2xl font-semibold">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-Bai_Jamjuree group-hover:scale-110 duration-500 font-semibold transition-transform ease-in-out">
               {industry.name}
             </h2>
           </div>

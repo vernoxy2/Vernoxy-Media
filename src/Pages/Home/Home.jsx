@@ -7,7 +7,7 @@ import Offer from "./Sections/Offer";
 import Action from "./Sections/Action";
 import Review from "./Sections/Review";
 import Industries from "./Sections/Industries";
-import AIRevolution from "./Sections/AIRevolution";
+import AIRevolution from "../../Components/AIRevolution";
 import Work from "./Sections/Work";
 
 const Home = () => {

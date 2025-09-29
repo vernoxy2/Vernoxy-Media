@@ -22,9 +22,9 @@ const Footer = () => {
   return (
     <section>
       {/* Main Container */}
-      <div className="container  mx-auto grid grid-cols-1 lg:grid-cols-4 gap-y-8 gap-x-6">
+      <div className="container  mx-auto grid grid-cols-1 lg:grid-cols-6 gap-y-8 gap-x-6">
         {/* First column */}
-        <div className="text-start space-y-4">
+        <div className="text-start space-y-5 col-span-2 ">
           <img src={Logo} alt="Logo" className="w-32" />
           <p className="font-Mulish ">
             Transforming Ideas into Digital Excellence. Elevate your online
@@ -33,7 +33,7 @@ const Footer = () => {
           </p>
           <div className="flex gap-3">
             <MdAddCall className="text-5xl text-primary" />
-            <h1 className="font-bold text-lg">+91 96241 50967</h1>
+            <h1 className="font-bold text-xl lg:text-2xl font-Bai_Jamjuree">+91 96241 50967</h1>
           </div>
           <div className="flex gap-3">
             <HiOutlineMail className="text-5xl text-primary" />
@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
 
         {/* Second column */}
-        <div className="text-start space-y-4 lg:mx-auto">
+        <div className="text-start space-y-5 lg:mx-auto">
           <h1 className="font-extrabold text-3xl text-primary font-Bai_Jamjuree">
             Quick Links
           </h1>
@@ -63,7 +63,7 @@ const Footer = () => {
         </div>
 
         {/* Third column */}
-        <div className="text-start space-y-4">
+        <div className="text-start space-y-5">
           <h1 className="font-extrabold text-3xl text-primary font-Bai_Jamjuree">
             Services
           </h1>
@@ -82,8 +82,8 @@ const Footer = () => {
         </div>
 
         {/* Fourth column */}
-        <div className="text-start space-y-4">
-          <h1 className="font-extrabold text-2xl text-primary font-Bai_Jamjuree">
+        <div className="text-start space-y-5 w-[90%] lg:ml-auto col-span-2">
+          <h1 className="font-extrabold text-3xl text-primary font-Bai_Jamjuree">
             Subscribe Our Newsletter
           </h1>
           <input
@@ -92,9 +92,9 @@ const Footer = () => {
             className="bg-[#D9D9D9]/10 p-4 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-primary"
           />
           <PrimaryBtn className="w-full">Subscribe</PrimaryBtn>
-          <div className="flex items-center gap-4">
-            <LuMapPin className="text-9xl text-primary " />
-            <p className="font-Mulish  text-sm">
+          <div className="flex items-center gap-3">
+            <LuMapPin className="text-[180px] text-primary " />
+            <p className="font-Mulish ">
               Kalaji Business Center, Dharampur Chokdi, NH8, near Saurashtra
               Kadva Patidar Samaj Vadi, Abrama Village, Valsad, Gujarat 396001
             </p>

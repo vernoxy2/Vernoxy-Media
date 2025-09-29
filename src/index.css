@@ -25,7 +25,7 @@
 /* Custom input style */
 @layer components {
   .input-style {
-    @apply p-2 md:p-4 text-sm md:text-xl rounded-md bg-[#D9D9D9]/10 focus:outline-none focus:ring-2 focus:ring-primary placeholder-white placeholder:font-Mulish;
+    @apply p-2 md:p-4 text-sm md:text-xl rounded-md bg-[#FFFFFF]/10 focus:outline-none focus:ring-2 focus:ring-primary placeholder-white placeholder:font-Mulish;
   }
 }
 

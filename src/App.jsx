@@ -10,6 +10,12 @@ import ContactUs from "./Pages/ContactUs/ContactUs";
 import Projects from "./Pages/Projects/Projects";
 import Footer from "./Components/Footer";
 
+// Services inner pages
+import WebDevelopment from "./Pages/Services/WebDevelopment/WebDevelopment";
+import GraphicsDesign from "./Pages/Services/GraphicsDesign/GraphicsDesign";
+import VideoEditing from "./Pages/Services/VideoEditing/VideoEditing";
+import DigitalMarketing from "./Pages/Services/DigitalMarketing/DigitalMarketing";
+
 const App = () => {
   return (
     <Router>
@@ -19,6 +25,13 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/services" element={<Services />} />
+
+          {/* Service inner pages */}
+          <Route path="/services/ui-ux_design" element={<DigitalMarketing/>} />
+          <Route path="/services/web_development" element={<WebDevelopment />} />
+          <Route path="/services/graphics_design" element={<GraphicsDesign />} />
+          <Route path="/services/video_editing" element={<VideoEditing />} />
+
           <Route path="/products" element={<Projects />} />
           <Route path="/contact-us" element={<ContactUs />} />
           {/* 404 fallback */}
