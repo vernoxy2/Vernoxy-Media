@@ -2,7 +2,7 @@ import React from 'react'
 import PrimaryHero from '../../../Components/PrimaryHead'
 import AIRevolution from '../../../Components/AIRevolution'
 import PrimaryBanner from '../../../Components/PrimaryBanner'
-import BannerImg from '../../../assets/ServicePageImg/CRM.webp'
+import BannerImg from '../../../assets/ServicePageImg/BannerImg/CRM.webp'
 
 const VideoEditing = () => {
   return (

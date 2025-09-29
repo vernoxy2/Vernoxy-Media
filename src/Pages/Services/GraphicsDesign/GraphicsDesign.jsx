@@ -2,7 +2,7 @@ import React from 'react'
 import PrimaryHero from '../../../Components/PrimaryHead'
 import AIRevolution from '../../../Components/AIRevolution'
 import PrimaryBanner from '../../../Components/PrimaryBanner'
-import BannereImg from '../../../assets/ServicePageImg/AD.webp'
+import BannereImg from '../../../assets/ServicePageImg/BannerImg/AD.webp'
 
 const GraphicsDesign = () => {
   return (
