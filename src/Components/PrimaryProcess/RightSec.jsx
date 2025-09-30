@@ -18,12 +18,12 @@ const Category = [
   {
     id: 3,
     name: "Application Development",
-    link: "/services/application_development",
+    link: "/services/graphics_design",
   },
   {
     id: 4,
     name: "Customise CRM System",
-    link: "/services/custom_crm",
+    link: "/services/video_editing",
   },
 ];
 

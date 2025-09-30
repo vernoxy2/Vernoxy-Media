@@ -6,6 +6,7 @@ import BannereImg from '../../../assets/ServicePageImg/BannerImg/AD.webp'
 import FatureKey from '../../../Components/FatureKey'
 import keyBanner from "../../../assets/ServicePageImg/FatureKey/AppDKey.webp";
 import ServiceSlider from '../../../Components/ServiceSlider'
+import PrimaryProcess from '../../../Components/PrimaryProcess/PrimaryProcess'
 
 const KeyItems = [
   "User-Friendly Interfaces",
@@ -23,6 +24,7 @@ const GraphicsDesign = () => {
       <ServiceSlider/>
       <PrimaryBanner boldText={"Designing the Future,"} normalText={"One App at a Time"} bannerImg={BannereImg} description={"We specialize in designing and developing applications that combine intuitive user experiences with powerful functionality. From initial planning to final deployment, we ensure each app is tailored to meet user needs, streamline workflows, and deliver measurable results."}/>
       <FatureKey boldText={"Key Feature of "} normalText={"App Development"} Keybanner={keyBanner} KeyList={KeyItems}/>
+      <PrimaryProcess/>
       <AIRevolution/>
     </div>
   )
