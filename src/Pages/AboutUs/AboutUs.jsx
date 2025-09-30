@@ -10,9 +10,9 @@ import PrimaryHero from "../../Components/PrimaryHead";
 const AboutUs = () => {
   return (
     <div>
-      <section className="pb-0">
+      <div className="pb-0">
       <PrimaryHero title={"About"} subtitle={"Our Journey & purpose"} />
-      </section>
+      </div>
       <Clinets />
       <Expertise />  
       <div className="bg-gradient-to-r from-vernoxy via-primary/50 to-vernoxy text-white h-[1px] -mt-5"></div>

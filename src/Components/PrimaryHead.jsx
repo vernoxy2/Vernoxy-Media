@@ -3,9 +3,9 @@ import PrimaryBg from "../assets/HeroBg.svg";
 
 const PrimaryHero = ({ title, subtitle }) => {
   return (
-    <section className="relative -mt-24 pb-0">
+    <section className="relative pb-0">
       <div className="absolute top-0 left-0 w-full">
-        <img src={PrimaryBg} alt="Hero Background" className="mx-auto" />
+        <img src={PrimaryBg} alt="Hero Background" className="mx-auto pointer-events-none" />
       </div>
 
       <div className="w-full flex flex-col justify-center items-start container">

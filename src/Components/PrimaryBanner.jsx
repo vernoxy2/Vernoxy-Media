@@ -19,7 +19,7 @@ const PrimaryBanner = ({ boldText, normalText, bannerImg, description }) => {
           <img
             src={bannerImg}
             alt={normalText || "Banner"}
-            className="w-full object-cover mx-auto"
+            className="w-full object-cover mx-auto pointer-events-none"
           />
         </div>
 

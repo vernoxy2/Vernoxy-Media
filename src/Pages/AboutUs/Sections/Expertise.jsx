@@ -41,7 +41,7 @@ const Expertise = () => {
         <img
           src={VR_Man}
           alt="VR Man"
-          className="mx-auto h-full -mb-20 z-0 relative animate-float"
+          className="mx-auto h-full -mb-20 z-0 relative animate-float pointer-events-none"
         />
 
         <div className=" bg-gradient-to-b from-primary/30 to-vernoxy border-[2px] border-vernoxy hover:border-primary/40 duration-500 transform text-white rounded-lg py-12 container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 font-Bai_Jamjuree backdrop-blur-sm bg-white/10">

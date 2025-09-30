@@ -39,7 +39,7 @@ const AIRevolution = () => {
             {avatars.map((avatar) => (
               <img
                 key={avatar.id}
-                className="w-14 h-14 rounded-full border-2 border-black"
+                className="w-14 h-14 rounded-full border-2 border-black pointer-events-none"
                 src={avatar.src}
                 alt={avatar.alt}
               />
@@ -57,7 +57,7 @@ const AIRevolution = () => {
         </div>
       </div>
       <div className="relative">
-        <img src={Earth} alt="Earth" className="mx-auto" />
+        <img src={Earth} alt="Earth" className="mx-auto pointer-events-none" />
 
         <div className="mx-auto">
           <img

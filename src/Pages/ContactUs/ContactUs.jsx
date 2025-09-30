@@ -8,9 +8,9 @@ import PrimaryHero from "../../Components/PrimaryHead";
 const ContactUs = () => {
   return (
     <div>
-      <section className="pb-0">
+      <div className="pb-0">
         <PrimaryHero title={"Contacts"} subtitle={"Get in Touch with us"} />
-      </section>
+      </div>
       <Form />
       <Video />
       <Map />
