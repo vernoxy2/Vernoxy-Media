@@ -5,6 +5,7 @@ import PrimaryBanner from "../../../Components/PrimaryBanner";
 import BannerImg from "../../../assets/ServicePageImg/BannerImg/DC.webp";
 import FatureKey from "../../../Components/FatureKey";
 import keyBanner from "../../../assets/ServicePageImg/FatureKey/WebDKey.webp";
+import ServiceSlider from "../../../Components/ServiceSlider";
 const KeyItems = [
   "Responsive and Mobile-Friendly Websites",
   "Customizable and Interactive User Interfaces",
@@ -18,6 +19,7 @@ const WebDevelopment = () => {
   return (
     <div>
       <PrimaryHero title={"Service"} subtitle={"Web Design & Development"} />
+      <ServiceSlider/>
       <PrimaryBanner
         boldText={"Designing Creativity,"}
         normalText={"Developing Excellence"}
