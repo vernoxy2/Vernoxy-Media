@@ -30,9 +30,7 @@ const ServiceSlider = () => {
           ))}
         </div>
       </div>
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-vernoxy via-transparent to-vernoxy">
-
-      </div>
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-vernoxy via-transparent to-vernoxy"></div>
     </div>
   );
 };
