@@ -23,7 +23,7 @@ const LeftSec = () => {
         <BottomLine />
       </div>
       {/* Steps Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mr-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-7 lg:mr-24">
         <div className="h-80 rounded-xl border-[0.5px] border-primary/30 bg-[#464646]/30 backdrop-blur-md"></div>
         <div className="h-80 rounded-xl border-[0.5px] border-primary/30 bg-[#464646]/30 backdrop-blur-md"></div>
         <div className="h-80 rounded-xl border-[0.5px] border-primary/30 bg-[#464646]/30 backdrop-blur-md"></div>

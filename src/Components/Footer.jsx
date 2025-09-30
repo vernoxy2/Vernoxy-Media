@@ -33,7 +33,9 @@ const Footer = () => {
           </p>
           <div className="flex gap-3">
             <MdAddCall className="text-5xl text-primary" />
-            <h1 className="font-bold text-xl lg:text-2xl font-Bai_Jamjuree">+91 96241 50967</h1>
+            <h1 className="font-bold text-xl lg:text-2xl font-Bai_Jamjuree">
+              +91 96241 50967
+            </h1>
           </div>
           <div className="flex gap-3">
             <HiOutlineMail className="text-5xl text-primary" />
@@ -82,7 +84,7 @@ const Footer = () => {
         </div>
 
         {/* Fourth column */}
-        <div className="text-start space-y-5 w-[90%] lg:ml-auto col-span-2">
+        <div className="text-start space-y-5 lg:w-[90%] lg:ml-auto col-span-2">
           <h1 className="font-extrabold text-3xl text-primary font-Bai_Jamjuree">
             Subscribe Our Newsletter
           </h1>
@@ -101,8 +103,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-            <div className="bg-gradient-to-r from-vernoxy via-primary/50 to-vernoxy text-white h-[1px]"></div>
-      
+      <div className="bg-gradient-to-r from-vernoxy via-primary/50 to-vernoxy text-white h-[1px]"></div>
     </section>
   );
 };
