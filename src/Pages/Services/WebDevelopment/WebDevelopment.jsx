@@ -6,6 +6,7 @@ import BannerImg from "../../../assets/ServicePageImg/BannerImg/DC.webp";
 import FatureKey from "../../../Components/FatureKey";
 import keyBanner from "../../../assets/ServicePageImg/FatureKey/WebDKey.webp";
 import ServiceSlider from "../../../Components/ServiceSlider";
+import PrimaryProcess from "../../../Components/PrimaryProcess/PrimaryProcess";
 const KeyItems = [
   "Responsive and Mobile-Friendly Websites",
   "Customizable and Interactive User Interfaces",
@@ -34,6 +35,7 @@ const WebDevelopment = () => {
         Keybanner={keyBanner}
         KeyList={KeyItems}
       />
+      <PrimaryProcess/>
       <AIRevolution />
     </div>
   );

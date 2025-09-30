@@ -6,7 +6,7 @@ import bannerImg from "../../../assets/ServicePageImg/BannerImg/DM.webp"
 import FatureKey from "../../../Components/FatureKey";
 import keyBanner from "../../../assets/ServicePageImg/FatureKey/Key1.webp"
 import ServiceSlider from "../../../Components/ServiceSlider";
-import PrimaryProcess from "../../../Components/PrimaryProcess";
+import PrimaryProcess from "../../../Components/PrimaryProcess/PrimaryProcess";
 
 const KeyItems = [
   "Content Marketing That Tells Your Brand's Story",
