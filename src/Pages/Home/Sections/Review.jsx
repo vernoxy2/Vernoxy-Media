@@ -48,7 +48,7 @@ const ReviewData = [
 
 const ReviewCard = ({ item }) => {
   return (
-    <div className="flex flex-col items-start space-y-6 border border-primary hover:bg-primary/10 rounded-xl px-6 py-10 text-start h-full">
+    <div className="flex h-full flex-col items-start space-y-6 border border-primary hover:bg-primary/10 rounded-xl px-6 py-10 text-start ">
       <div className="w-10 h-10 md:w-24 md:h-24 rounded-full overflow-hidden bg-white ">
         <img
           src={item.img}
@@ -91,7 +91,7 @@ const Review = () => {
           </p>
         </div>
         {/* Right column Carousel  */}
-        <div className="lg:w-8/12 w-full h-full relative">
+        <div className="lg:w-8/12 w-full h-full relative ">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={20}
@@ -109,7 +109,7 @@ const Review = () => {
               disableOnInteraction: false,
             }}
             loop={true}
-            className=" h-full"
+            className="  flex flex-col h-full"
             breakpoints={{
               320: { slidesPerView: 1, spaceBetween: 10 }, // Mobile: 1 card
               640: { slidesPerView: 2, spaceBetween: 15 }, // Tablet: 2 cards
@@ -117,8 +117,8 @@ const Review = () => {
             }}
           >
             {ReviewData.map((item) => (
-              <SwiperSlide key={item.id} className="h-full">
-                <ReviewCard item={item} className="h-full" />
+              <SwiperSlide key={item.id} className="h-full ">
+                <ReviewCard item={item} className="h-full " />
               </SwiperSlide>
             ))}
           </Swiper>

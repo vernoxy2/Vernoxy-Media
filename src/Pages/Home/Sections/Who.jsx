@@ -1,25 +1,52 @@
-import React from "react";
-import img from "../../../assets/HomePageImgs/WhoImg.webp";
+import React, { useState, useEffect } from "react";
 import Heading from "../../../Components/Heading";
 import PrimaryBtn from "../../../Components/PrimartyBtn";
 import { Link } from "react-router-dom";
 
+// Slider images
+import img1 from "../../../assets/HomePageImgs/WhoImg.webp";
+import img2 from "../../../assets/HomePageImgs/WhoImg2.webp";
+import img3 from "../../../assets/HomePageImgs/WhoImg3.webp";
+
+const images = [img1, img2, img3]; // add more if needed
+
 const Who = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Auto change image every 5s
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000); // 5 seconds
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section>
-      <div className="container mx-auto relative">
-        {/* Image */}
-        <img src={img} alt="Who We Are" className="w-full" />
+      <div className="container mx-auto relative overflow-hidden rounded-2xl">
+        {/* Image Slider */}
+        <div className="w-full h-[500px] relative">
+          {images.map((src, index) => (
+            <img
+              key={index}
+              src={src}
+              alt="Who We Are"
+              className={`absolute top-0 left-0  h-full object-cover transition-opacity duration-1000 ${
+                index === currentIndex ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
+        </div>
 
         {/* Overlay */}
-        <div className="absolute top-0 left-0 w-full h-full md:bg-black/30"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
 
-        {/* Content over the overlay */}
-        <div className="md:absolute top-0 left-0 w-full h-full grid grid-cols-1 md:grid-cols-2 md:-mt-10 items-top text-white px-4 md:px-24">
-          {/* Left column (empty) */}
+        {/* Content */}
+        <div className="absolute top-0 left-0 w-full h-full grid grid-cols-1 md:grid-cols-2 items-center text-white px-6 md:px-24">
+          {/* Left column (empty for spacing) */}
           <div></div>
 
-          {/* Right column (content) */}
+          {/* Right column */}
           <div className="space-y-4 md:space-y-6 text-left">
             <Heading
               boldText="Who"
