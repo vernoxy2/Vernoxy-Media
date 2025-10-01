@@ -7,6 +7,15 @@ import FatureKey from "../../../Components/FatureKey";
 import keyBanner from "../../../assets/ServicePageImg/FatureKey/WebDKey.webp";
 import ServiceSlider from "../../../Components/ServiceSlider";
 import PrimaryProcess from "../../../Components/PrimaryProcess/PrimaryProcess";
+import Icon from "../../../assets/ServicePageImg/Process/Digital/identity1.svg";
+import Icon2 from "../../../assets/ServicePageImg/Process/Digital/Presence1.svg";
+import Icon3 from "../../../assets/ServicePageImg/Process/Digital/Engagement2.svg";
+import Icon4 from "../../../assets/ServicePageImg/Process/Digital/growth1.svg";
+import Img from "../../../assets/ServicePageImg/Process/Digital/Plan2.webp";
+import Img2 from "../../../assets/ServicePageImg/Process/Digital/Plan2.webp";
+import Img3 from "../../../assets/ServicePageImg/Process/Digital/Plan3.webp";
+import Img4 from "../../../assets/ServicePageImg/Process/Digital/Plan4.webp";
+
 const KeyItems = [
   "Responsive and Mobile-Friendly Websites",
   "Customizable and Interactive User Interfaces",
@@ -15,6 +24,35 @@ const KeyItems = [
   "Dynamic and Interactive Web Applications",
   "Website Maintenance and Support",
 ];
+
+const stepData = [
+  { icon: Icon, title: "Identity", text: "Define identity through visuals, logo, design." },
+  { icon: Img },
+  { icon: Img2 },
+  { icon: Icon2, title: "Presence", text: "Showcase brand via website, social media." },
+  { icon: Icon3, title: "Engagement", text: "Engage audience with creative content, campaigns." },
+  { icon: Img3 },
+  { icon: Img4 },
+  { icon: Icon4, title: "Growth ", text: "Track results, refine strategies, scale impact." },
+];
+
+let stepCount = 0;
+const Planning = stepData.map((item) => {
+  if (item.title && item.text) {
+    stepCount += 1;
+    return {
+      ...item,
+      Step: (
+        <>
+          <span className="text-white font-bold">step</span>
+          <br />
+          <span className="text-primary font-bold">{String(stepCount).padStart(2, "0")}</span>
+        </>
+      ),
+    };
+  }
+  return item;
+});
 
 const WebDevelopment = () => {
   return (
@@ -35,7 +73,7 @@ const WebDevelopment = () => {
         Keybanner={keyBanner}
         KeyList={KeyItems}
       />
-      {/* <PrimaryProcess/> */}
+      <PrimaryProcess Planning={Planning}/>
       <AIRevolution />
     </div>
   );
