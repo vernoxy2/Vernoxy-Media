@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Logo from "../assets/Logo.svg";
 import PrimaryBtn from "./PrimartyBtn";
 import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const navitems = [
   { name: "Home", path: "/" },
@@ -57,9 +57,7 @@ const Navbar = () => {
                 isMobile ? "text-white" : "text-white group-hover:text-primary"
               }`}
               onClick={() =>
-                isMobile
-                  ? setOpenDropdown(openDropdown === i ? null : i)
-                  : null
+                isMobile ? setOpenDropdown(openDropdown === i ? null : i) : null
               }
             >
               {item.name} <HiChevronDown className="text-lg" />
@@ -102,7 +100,9 @@ const Navbar = () => {
     <div className="absolute top-0 left-0 w-full z-50 bg-transparent font-alumni">
       <nav className="container mx-auto flex justify-between items-center py-6 relative">
         {/* Logo */}
-        <img src={Logo} alt="Logo" className="h-10 w-auto" />
+        <Link to="/">
+          <img src={Logo} alt="Logo" className="h-10 w-auto" />
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden lg:block border border-primary py-2 px-3 lg:px-5 rounded-md bg-white/20 backdrop-blur-md">
@@ -110,9 +110,9 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Button */}
-        <div className="hidden lg:block">
+        <Link to="/contact-us" className="hidden lg:block">
           <PrimaryBtn>Get in Touch</PrimaryBtn>
-        </div>
+        </Link>
 
         {/* Mobile Menu Button */}
         <button

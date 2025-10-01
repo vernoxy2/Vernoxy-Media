@@ -32,7 +32,7 @@ const Future = () => {
       <Heading
         boldText={"Innovating the Future"}
         normalText={"With Vernoxy"}
-        className={"container  flex justify-start"}
+        className={"container gap-4 flex justify-start"}
       ></Heading>
       <div className="container grid grid-cols-1 lg:grid-cols-2 gap-7">
         <div className="py-0 p-6 space-y-6 ">
@@ -44,8 +44,8 @@ const Future = () => {
                 </div>
             ))}
         </div>
-        <div className="py-10 border-2">
-            
+        <div className="">
+            <img src={Img1} alt=""  className="mx-auto my-auto"/>
         </div>
       </div>
     </section>

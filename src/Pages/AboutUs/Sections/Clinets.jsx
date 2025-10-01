@@ -12,7 +12,7 @@ const Clinets = () => {
         <Heading
           boldText={"Empowering Growth,"}
           normalText={"Streamlining Efficiency, Inspiring Innovation"}
-          className={"text-start z-20"}
+          className={"text-start z-20 "}
         />
         <img src={ClinetsImg} alt="" className="w-full pointer-events-none" />
         <div className="lg:flex items-center">
@@ -20,7 +20,7 @@ const Clinets = () => {
             <Heading
               boldText={"Our"}
               normalText={"Clients"}
-              className={"text-start"}
+              className={"text-start flex gap-4"}
             />
             <BottomLine />
           </div>

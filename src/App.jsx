@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
+import ScrollToTop from "./Components/ScrollToTop";
 
 // Pages
 import Home from "./Pages/Home/Home";
@@ -8,7 +10,6 @@ import AboutUs from "./Pages/AboutUs/AboutUs";
 import Services from "./Pages/Services/Services";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import Projects from "./Pages/Projects/Projects";
-import Footer from "./Components/Footer";
 
 // Services inner pages
 import WebDevelopment from "./Pages/Services/WebDevelopment/WebDevelopment";
@@ -19,6 +20,7 @@ import DigitalMarketing from "./Pages/Services/DigitalMarketing/DigitalMarketing
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <div className="bg-vernoxy text-white min-h-screen text-center">
         <Navbar />
         <Routes>
@@ -27,20 +29,21 @@ const App = () => {
           <Route path="/services" element={<Services />} />
 
           {/* Service inner pages */}
-          <Route path="/services/digital_marketing" element={<DigitalMarketing/>} />
+          <Route path="/services/digital_marketing" element={<DigitalMarketing />} />
           <Route path="/services/web_development" element={<WebDevelopment />} />
           <Route path="/services/graphics_design" element={<GraphicsDesign />} />
           <Route path="/services/video_editing" element={<VideoEditing />} />
 
           <Route path="/products" element={<Projects />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          
           {/* 404 fallback */}
           <Route
             path="*"
             element={<div className="p-8 text-3xl text-center">404 - Page Not Found</div>}
           />
         </Routes>
-        <Footer/>
+        <Footer />
       </div>
     </Router>
   );

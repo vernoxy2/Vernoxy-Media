@@ -3,6 +3,8 @@ import Heading from "../../../Components/Heading";
 import BottomLine from "../../../Components/BottomLine";
 import ActionV from "../../../assets/HomePageImgs/ActionV.mp4";
 import PrimaryBg from "../../../Components/PrimaryBg";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer"; // ✅ better for scroll detection
 
 // Data
 const Count = [
@@ -14,10 +16,28 @@ const Count = [
 
 // Single Card Component
 const StatCard = ({ count, text }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true, // animate only once
+    threshold: 0.3,    // trigger when 30% is visible
+  });
+
+  // Split number and suffix (e.g., "150+" → 150 + "+")
+  const match = count.match(/^(\d+)(\D*)$/);
+  const number = match ? parseInt(match[1], 10) : 0;
+  const suffix = match ? match[2] : "";
+
   return (
-    <div className="bg-gradient-to-b from-primary/20 hover:from-primary/40 to-vernoxy border-vernoxy border-[2px] hover:border-primary/40 duration-500 rounded-lg h-[150px] flex flex-col justify-center items-center text-white text-center">
+    <div
+      ref={ref}
+      className="bg-gradient-to-b from-primary/20 hover:from-primary/40 to-vernoxy border-vernoxy border-[2px] hover:border-primary/40 duration-500 rounded-lg h-[150px] flex flex-col justify-center items-center text-white text-center"
+    >
       <h2 className="text-2xl md:text-6xl font-semibold font-Bai_Jamjuree">
-        {count}
+        {inView ? (
+          <CountUp start={0} end={number} duration={2.5} separator="," />
+        ) : (
+          0
+        )}
+        {suffix}
       </h2>
       <p className="text-xl md:text-2xl lg:text-3xl font-Bai_Jamjuree">{text}</p>
     </div>
@@ -29,6 +49,7 @@ const Action = () => {
   return (
     <section className="container space-y-10 relative -z-0">
       <PrimaryBg className="bottom-40 pr-80" />
+      
       {/* Heading */}
       <Heading
         boldText={"See Vernoxy"}

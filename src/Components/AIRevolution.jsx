@@ -57,21 +57,21 @@ const AIRevolution = () => {
         </div>
       </div>
       <div className="relative">
-        <img src={Earth} alt="Earth" className="mx-auto pointer-events-none" />
+        <img src={Earth} alt="Earth" className="mx-auto pointer-events-none relative" />
+      </div>
 
-        <div className="mx-auto">
-          <img
+      <div className="mx-auto absolute top-0">
+        <img
           src={Right}
           alt="Right Orbit"
-          className="absolute top-0 right-1/2 animate-Efloat"
+          className=" top-0 right-1/2 animate-Efloat"
         />
 
         <img
           src={Left}
           alt="Left Orbit"
-          className="absolute top-0 right-1/2 animate-Efloat"
+          className=" top-0 right-1/2 animate-Efloat"
         />
-        </div>
       </div>
     </section>
   );
