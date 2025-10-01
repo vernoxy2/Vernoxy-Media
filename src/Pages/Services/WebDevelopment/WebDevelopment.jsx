@@ -7,15 +7,16 @@ import FatureKey from "../../../Components/FatureKey";
 import keyBanner from "../../../assets/ServicePageImg/FatureKey/WebDKey.webp";
 import ServiceSlider from "../../../Components/ServiceSlider";
 import PrimaryProcess from "../../../Components/PrimaryProcess/PrimaryProcess";
-import Icon from "../../../assets/ServicePageImg/Process/Digital/identity1.svg";
-import Icon2 from "../../../assets/ServicePageImg/Process/Digital/Presence1.svg";
-import Icon3 from "../../../assets/ServicePageImg/Process/Digital/Engagement2.svg";
-import Icon4 from "../../../assets/ServicePageImg/Process/Digital/growth1.svg";
-import Img from "../../../assets/ServicePageImg/Process/Digital/Plan2.webp";
-import Img2 from "../../../assets/ServicePageImg/Process/Digital/Plan2.webp";
-import Img3 from "../../../assets/ServicePageImg/Process/Digital/Plan3.webp";
-import Img4 from "../../../assets/ServicePageImg/Process/Digital/Plan4.webp";
+import Icon from "../../../assets/ServicePageImg/Process/Web/Plan1.svg";
+import Icon2 from "../../../assets/ServicePageImg/Process/Web/Plan2.svg";
+import Icon3 from "../../../assets/ServicePageImg/Process/Web/Plan3.svg";
+import Icon4 from "../../../assets/ServicePageImg/Process/Web/Plan4.svg";
+import Img from "../../../assets/ServicePageImg/Process/Web/Plan1.webp";
+import Img2 from "../../../assets/ServicePageImg/Process/Web/Plan2.webp";
+import Img3 from "../../../assets/ServicePageImg/Process/Web/Plan3.webp";
+import Img4 from "../../../assets/ServicePageImg/Process/Web/Plan4.webp";
 
+// 
 const KeyItems = [
   "Responsive and Mobile-Friendly Websites",
   "Customizable and Interactive User Interfaces",
@@ -26,14 +27,14 @@ const KeyItems = [
 ];
 
 const stepData = [
-  { icon: Icon, title: "Identity", text: "Define identity through visuals, logo, design." },
+  { icon: Icon, title: "Consultation", text: "Understanding goals to craft tailored solutions." },
   { icon: Img },
   { icon: Img2 },
-  { icon: Icon2, title: "Presence", text: "Showcase brand via website, social media." },
-  { icon: Icon3, title: "Engagement", text: "Engage audience with creative content, campaigns." },
+  { icon: Icon2, title: "Design ", text: "Transforming ideas into visually stunning solutions." },
+  { icon: Icon3, title: "Development", text: "Develop robust solutions for business efficiency." },
   { icon: Img3 },
   { icon: Img4 },
-  { icon: Icon4, title: "Growth ", text: "Track results, refine strategies, scale impact." },
+  { icon: Icon4, title: "Deploying & Support", text: "Launch, maintain, support seamlessly" },
 ];
 
 let stepCount = 0;
