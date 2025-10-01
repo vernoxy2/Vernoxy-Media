@@ -35,7 +35,7 @@ const WebDevelopment = () => {
         Keybanner={keyBanner}
         KeyList={KeyItems}
       />
-      <PrimaryProcess/>
+      {/* <PrimaryProcess/> */}
       <AIRevolution />
     </div>
   );

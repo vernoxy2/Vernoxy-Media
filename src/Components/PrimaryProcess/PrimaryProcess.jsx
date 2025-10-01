@@ -2,12 +2,12 @@ import React from "react";
 import RightSec from "./RightSec";
 import LeftSec from "./LeftSec";
 
-const PrimaryProcess = () => {
+const PrimaryProcess = ({Planning}) => {
   return (
     <div className="container">
       <div className="flex flex-col lg:flex-row ">
         <div className="lg:w-7/12">
-          <LeftSec />
+          <LeftSec planning={Planning}/>
         </div>
         <div className=" lg:w-5/12  ">
           <RightSec />

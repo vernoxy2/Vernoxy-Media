@@ -46,7 +46,7 @@ const Footer = () => {
         </div>
 
         {/* Second column */}
-        <div className="text-start space-y-5 lg:mx-auto">
+        <div className="text-start space-y-5 lg:mx-auto  ">
           <h1 className="font-extrabold text-3xl text-primary font-Bai_Jamjuree">
             Quick Links
           </h1>
@@ -65,7 +65,7 @@ const Footer = () => {
         </div>
 
         {/* Third column */}
-        <div className="text-start space-y-5">
+        <div className="text-start space-y-5 mx-auto  w-full">
           <h1 className="font-extrabold text-3xl text-primary font-Bai_Jamjuree">
             Services
           </h1>

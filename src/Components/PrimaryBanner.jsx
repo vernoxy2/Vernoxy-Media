@@ -1,11 +1,13 @@
 import React from "react";
 import Heading from "./Heading";
 import BottomLine from "./BottomLine";
+import PrimaryBg from "./PrimaryBg";
 
 const PrimaryBanner = ({ boldText, normalText, bannerImg, description }) => {
   return (
     <section className="py-10 md:py-16">
-      <div className="container space-y-6 md:space-y-10">
+      <div className="container space-y-6 md:space-y-10 relative z-30">
+        <PrimaryBg className="-top-44 rotate-180"/>
         
         {/* Heading */}
         <Heading
@@ -30,6 +32,7 @@ const PrimaryBanner = ({ boldText, normalText, bannerImg, description }) => {
 
         {/* Bottom Line */}
         <BottomLine className="mx-auto" />
+        
       </div>
     </section>
   );

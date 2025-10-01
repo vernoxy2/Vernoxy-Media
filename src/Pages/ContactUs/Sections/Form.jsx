@@ -10,6 +10,7 @@ import LeftBottom from "../../../assets/ContactPageImg/LeftBottom.svg";
 import RightTop from "../../../assets/ContactPageImg/RightTop.svg";
 import RightBottom from "../../../assets/ContactPageImg//RightBottom.svg";
 import LeftTop from "../../../assets/ContactPageImg/LeftTop.svg";
+import PrimaryBg from "../../../Components/PrimaryBg";
 
 const Soical = [
   {
@@ -42,7 +43,9 @@ const Soical = [
 const Form = () => {
   return (
     <section>
-      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-y-12">
+      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-y-12 relative z-0">
+        <PrimaryBg className="pr-[40rem] -top-52"/>
+        <PrimaryBg className="-left-52 -bottom-48"/>
         {/* Contact Details */}
         <div className="text-start md:w-[86%] lg:w-[75%] space-y-6">
           <p>
@@ -53,9 +56,9 @@ const Form = () => {
           </p>
           <BottomLine />
           {/* icons and text */}
-          <div className="border border-black py-5 space-y-6">
+          <div className=" py-5 space-y-6">
             {/* Call */}
-            <div className="border border-black flex gap-4  items-center">
+            <div className=" flex gap-4  items-center">
               {/* Icon */}
               <div className="">
                 <MdAddCall className="border-2 border-primary rounded-full p-4 text-7xl" />
@@ -69,7 +72,7 @@ const Form = () => {
               </div>
             </div>
             {/* Email */}
-            <div className="border border-black flex gap-4  items-center">
+            <div className=" flex gap-4  items-center">
               {/* Icon */}
               <div className="">
                 <MdEmail className="border-2 border-primary rounded-full p-4 text-7xl" />
