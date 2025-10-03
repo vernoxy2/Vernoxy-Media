@@ -45,7 +45,7 @@ const Form = () => {
     <section>
       <div className="container grid grid-cols-1 lg:grid-cols-2 gap-y-12 relative z-0">
         <PrimaryBg className="pr-[40rem] -top-52"/>
-        <PrimaryBg className="-left-52 -bottom-48"/>
+        <PrimaryBg className="right-64 -bottom-48"/>
         {/* Contact Details */}
         <div className="text-start md:w-[86%] lg:w-[75%] space-y-6">
           <p>

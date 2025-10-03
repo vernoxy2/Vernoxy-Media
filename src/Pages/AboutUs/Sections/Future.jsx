@@ -5,23 +5,23 @@ import Img2 from "../../../assets/AboutPageImg/Future.webp";
 import Img3 from "../../../assets/AboutPageImg/Future.webp";
 import BottomLine from "../../../Components/BottomLine";
 
-const  InnovatingData = [
+const InnovatingData = [
     {
         id:1,
         title:"Our Approach",
-        text:"At Vernoxy, collaboration is at the heart of everything we do. We partner with our clients to deeply understand their challenges and ambitions, delivering solutions that are tailored to fit their vision and objectives.",
+       text:<><span className="text-primary font-black">At Vernoxy</span>, is to shape a smarter, connected future where technology and collaboration unlock limitless possibilities, empowering businesses and communities to thrive globally.</>,
         img:Img1
     },
     {
         id:2,
         title:"Our Mission",
-        text:"At Vernoxy, is to shape a smarter, connected future where technology and collaboration unlock limitless possibilities, empowering businesses and communities to thrive globally.",
+        text:<><span className="text-primary font-black">At Vernoxy</span>, is to shape a smarter, connected future where technology and collaboration unlock limitless possibilities, empowering businesses and communities to thrive globally.</>,
         img:Img2
     },
     {
         id:3,
         title:"Our Vision",
-        text:"At Vernoxy, is to shape a smarter, connected future where technology and collaboration unlock limitless possibilities, empowering businesses and communities to thrive globally.",
+        text:<><span className="text-primary font-black">At Vernoxy</span>, is to shape a smarter, connected future where technology and collaboration unlock limitless possibilities, empowering businesses and communities to thrive globally.</>,
         img:Img3
     }
 ]
@@ -40,7 +40,7 @@ const Future = () => {
                 <div key={item.id} className="text-left space-y-4">
                     <h2 className="text-3xl font-semibold">{item.title}</h2>
                     <BottomLine className=""/>
-                    <p className="text-xl font-semibold">{item.text}</p>
+                    <p className="text-xl font-semibold w-[92%]">{item.text}</p>
                 </div>
             ))}
         </div>

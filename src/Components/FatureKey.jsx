@@ -6,8 +6,8 @@ import PrimaryBg from "./PrimaryBg";
 
 const FatureKey = ({ boldText, normalText, KeyList, Keybanner }) => {
   return (
-    <section className="relative z-0">
-      <div className="container grid grid-cols-1 lg:grid-cols-2  gap-y-14">
+    <section className="">
+      <div className="relative z-0 container grid grid-cols-1 lg:grid-cols-2  gap-y-14">
         <PrimaryBg className="right-80 translate-x-60 -top-5" />
         {/* Left Content */}
         <div>

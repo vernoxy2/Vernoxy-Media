@@ -1,9 +1,14 @@
 import Logo from "../assets/Logo.svg";
+import bg from "../assets/BigBG.svg";
 import { Link } from "react-router-dom";
 import PrimaryBtn from "./PrimartyBtn";
 import { LuMapPin } from "react-icons/lu";
 import { MdAddCall } from "react-icons/md";
 import { HiOutlineMail } from "react-icons/hi";
+import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
+import { TiSocialInstagram } from "react-icons/ti";
+import { RiTwitterXFill } from "react-icons/ri";
+import PrimaryBg from "./PrimaryBg";
 
 const Links = [
   { id: 1, name: "Home", Link: "/" },
@@ -18,9 +23,32 @@ const SerLinkd = [
   { id: 4, name: "Video Editing", Link: "/services/video_editing" },
 ];
 
+const Soical = [
+  {
+    id: 1,
+    icon: <FaWhatsapp />,
+    Link: "https://www.whatsapp.com/",
+  },
+  {
+    id: 2,
+    icon: <FaFacebookF />,
+    Link: "https://www.facebook.com/",
+  },
+  {
+    id: 3,
+    icon: <TiSocialInstagram />,
+    Link: "https://www.instagram.com/",
+  },
+  {
+    id: 4,
+    icon: <RiTwitterXFill />,
+    Link: "https://twitter.com/",
+  },
+];
+
 const Footer = () => {
   return (
-    <section>
+    <section className="overflow-hidden">
       {/* Main Container */}
       <div className="container  mx-auto grid grid-cols-1 lg:grid-cols-6 gap-y-8 gap-x-6">
         {/* First column */}
@@ -103,7 +131,31 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="bg-gradient-to-r from-vernoxy via-primary/50 to-vernoxy text-white h-[1px]"></div>
+      <div className="relative z-10">
+        {/* Gradient divider line */}
+        <div className="bg-gradient-to-r from-primary via-black to-primary h-[3px]" />
+
+        {/* Floating social icons */}
+        <div
+          className="flex gap-5 justify-center absolute w-full -top-6 left-1/2 -translate-x-1/2 
+                px-4 py-2 rounded-lg z-20"
+        >
+          {Soical.map((item) => (
+            <Link
+              to={item.Link}
+              key={item.id}
+              className="text-4xl text-primary hover:text-white duration-300 transition-colors"
+            >
+              {item.icon}
+            </Link>
+          ))}
+        </div>
+
+        {/* Background image centered at bottom */}
+        <div className="absolute -bottom-[460px] left-1/2 -translate-x-1/2 z-0">
+          <img src={bg} alt="Background Blur" className="object-cover rotate-180" />
+        </div>
+      </div>
     </section>
   );
 };

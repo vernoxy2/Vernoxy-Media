@@ -70,7 +70,7 @@ const AIRevolution = () => {
             className="absolute top-0  animate-Efloat"
           />
         </div>
-        <PrimaryBg className="top-0" />
+        <PrimaryBg className="-top-16" />
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { GoArrowRight } from "react-icons/go";
 import PrimaryBtn from "../PrimartyBtn";
 import questions from "../../assets/ServicePageImg/questions.svg";
+import PrimaryBg from "../PrimaryBg";
 
 const Category = [
   {
@@ -29,7 +30,7 @@ const Category = [
 
 const RightSec = () => {
   return (
-    <div>
+    <div className="relative z-10 ">
       {/* Services Category with Links */}
       <div className="my-20 rounded-3xl bg-[#464646]/30 backdrop-blur-md text-start">
         <div className="px-10 py-8">
@@ -67,15 +68,18 @@ const RightSec = () => {
       </div>
       {/* Call for qustions */}
       <div className="rounded-3xl bg-[#464646]/30 backdrop-blur-md p-10 md:p-20 text-center flex flex-col items-center justify-center space-y-8">
-      <img src={questions} alt="questions" className="w-1/3 mx-auto" />
-      <h1 className="text-2xl lg:text-3xl font-Bai_Jamjuree font-black text-primary">You have a different question?</h1>
-      <p className="font-Bai_Jamjuree">
-        Our team will answer all your questions. We ensure a quick response.
-      </p>
-      <a href="tel:+919624150967">
-        <PrimaryBtn>+91 96241 50967</PrimaryBtn>
-      </a>
-    </div>
+        <img src={questions} alt="questions" className="w-1/3 mx-auto" />
+        <h1 className="text-2xl lg:text-3xl font-Bai_Jamjuree font-black text-primary">
+          You have a different question?
+        </h1>
+        <p className="font-Bai_Jamjuree">
+          Our team will answer all your questions. We ensure a quick response.
+        </p>
+        <a href="tel:+919624150967">
+          <PrimaryBtn>+91 96241 50967</PrimaryBtn>
+        </a>
+      </div>
+      <PrimaryBg className="top-1/3 right-40 w-full" />
     </div>
   );
 };
