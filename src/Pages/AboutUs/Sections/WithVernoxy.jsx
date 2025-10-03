@@ -3,6 +3,7 @@ import Heading from "../../../Components/Heading";
 import PrimaryBtn from "../../../Components/PrimartyBtn";
 import Puxxle1 from "../../../assets/AboutPageImg/Puzzle1.svg";
 import Puxxle2 from "../../../assets/AboutPageImg/Puzzle2.svg";
+import Communicate from "../../../assets/AboutPageImg/Communicate.png"
 import { Link } from "react-router-dom";
 
 const WithVernoxy = () => {
@@ -19,7 +20,7 @@ const WithVernoxy = () => {
           alt=""
           className="mx-auto -mb-20 h-full pointer-events-none"
         />
-        <div className=" bg-gradient-to-b from-primary/30  to-vernoxy border-[2px] border-vernoxy border-t-0 hover:border-primary/40 duration-500 transform text-white rounded-lg py-14 font-Bai_Jamjuree backdrop-blur-md bg-white/10 space-y-5">
+        <div className=" bg-gradient-to-b from-primary/20  to-vernoxy border-[2px] border-vernoxy border-t-0 hover:border-primary/40 duration-500 transform text-white rounded-lg py-14 font-Bai_Jamjuree backdrop-blur-md bg-white/10 space-y-6">
           <Heading
             boldText="Innovate. Collaborate. Grow"
             normalText="With Vernoxy"
@@ -29,10 +30,11 @@ const WithVernoxy = () => {
             Collaborate with Vernoxy to innovate, grow, and communicate
             effectively with experts driving impactful solutions.
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center relative container pb-10">
             <Link to="/contact-us">
               <PrimaryBtn className="flex-none">Speak to Expert</PrimaryBtn>
             </Link>
+          <div className=""><img src={Communicate} alt="" className="absolute top-2.5 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none" /></div>
           </div>
         </div>
       </div>

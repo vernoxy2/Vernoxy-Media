@@ -6,6 +6,7 @@ import Earth from "../assets/HomePageImgs/Earth.svg";
 import Right from "../assets/HomePageImgs/Right.svg";
 import Left from "../assets/HomePageImgs/Left.svg";
 import PrimaryBg from "./PrimaryBg";
+import Ttusted_Globally from "../assets/HomePageImgs/Ttusted_Globally.png";
 import { Link } from "react-router-dom";
 
 const avatars = [
@@ -63,19 +64,34 @@ const AIRevolution = () => {
         </div>
       </div>
       {/* Orbit */}
-      <div className="relative container z-10 ">
+      <div className="relative container z-10">
+        {/* Earth Image */}
         <img src={Earth} alt="Earth" className="mx-auto pointer-events-none" />
 
-        <div className="mx-auto absolute top-14  right-1/2 translate-x-1/2 ">
+        {/* Orbit Images */}
+        <div className="mx-auto absolute top-14 right-1/2 translate-x-1/2 pointer-events-none">
           <img src={Right} alt="Right Orbit" className="animate-Efloat" />
-
           <img
             src={Left}
             alt="Left Orbit"
-            className="absolute top-0  animate-Efloat"
+            className="absolute top-0 animate-Efloat"
           />
         </div>
-        <PrimaryBg className="-top-16" />
+
+        {/* Primary Background */}
+        <PrimaryBg className="-top-16 pointer-events-none" />
+
+        {/* Trusted Globally (centered in background) */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full pointer-events-none -z-10 container px-0 overflow-hidden  ">
+          <div className="flex gap-x-24 animate-marquee justify-center">
+            <img src={Ttusted_Globally} alt="Trusted Globally" />
+            <img src={Ttusted_Globally} alt="Trusted Globally" />
+            <img src={Ttusted_Globally} alt="Trusted Globally" />
+            <img src={Ttusted_Globally} alt="Trusted Globally" />
+            <img src={Ttusted_Globally} alt="Trusted Globally" />
+            <img src={Ttusted_Globally} alt="Trusted Globally" />
+          </div>
+        </div>
       </div>
     </section>
   );
