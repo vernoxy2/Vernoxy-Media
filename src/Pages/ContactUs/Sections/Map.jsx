@@ -11,8 +11,8 @@ const Map = () => {
         {/* <img src={LeftTop} alt="" className="absolute top-0 left-0 " />
         <img src={LeftBottom} alt="" className="absolute bottom-0 right-0 " /> */}
         {/* Left background/placeholder */}
-        <div className="w-full z-0 md:p-9 lg:w-5/12 h-[320px] lg:h-auto bg-[#464646]/50 flex flex-col justify-center items-start text-start">
-          <h1 className="uppercase font-bold lg:text-6xl font-Bai_Jamjuree">
+        <div className="w-full z-0 p-5 md:p-9 lg:w-5/12 h-[320px] lg:h-auto bg-[#464646]/50 flex flex-col justify-center items-start text-start">
+          <h1 className="uppercase font-bold text-4xl md:text-5xl lg:text-6xl font-Bai_Jamjuree">
             Find Your Way To Us
           </h1>
           <p className="w-[80%] mt-4 text-gray-200">

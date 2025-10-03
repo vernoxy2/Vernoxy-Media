@@ -44,8 +44,8 @@ const Soical = [
 
 const Form = () => {
   return (
-    <section>
-      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-y-12 relative z-0 ">
+    <section className="relative z-0 ">
+      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-y-28 ">
         <PrimaryBg className="pr-[65rem] -top-52"/>
         <PrimaryBg className="pl-[60rem] -bottom-48"/>
         {/* Contact Details */}
@@ -128,7 +128,7 @@ const Form = () => {
             className="absolute right-0 bottom-0 object-contain"
           />
           <div className="h-full bg-[#464646]/50 p-5 md:p-10 rounded-sm relative backdrop-blur-md">
-            <p className="absolute -top-5 left-1/2 -translate-x-1/2 font-Bai_Jamjuree text-2xl md:text-3xl">
+            <p className=" font-Bai_Jamjuree text-2xl md:text-3xl">
               Contact Form
             </p>
             <form action="submit" className="flex flex-col gap-5 pt-5">
@@ -154,8 +154,8 @@ const Form = () => {
             </form>
           </div>
         </div>
-        <PrimaryObject src={src} className="-top-14 right-0" />
       </div>
+        <PrimaryObject src={src} className="-top-14 right-0" />
     </section>
   );
 };
