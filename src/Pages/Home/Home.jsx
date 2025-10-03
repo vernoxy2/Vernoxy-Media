@@ -13,7 +13,7 @@ import PrimaryObject from "../../Components/PrimaryObject";
 
 const Home = () => {
   return (
-    <>
+    <div className="overflow-hidden">
       <HomeHero />
       <div className="bg-gradient-to-r from-vernoxy via-primary/50 to-vernoxy text-white h-[1px]"></div>
       <Who />
@@ -23,7 +23,7 @@ const Home = () => {
       <Review/>
       <Industries/>
       <AIRevolution/>
-    </>
+    </div>
   );
 };
 

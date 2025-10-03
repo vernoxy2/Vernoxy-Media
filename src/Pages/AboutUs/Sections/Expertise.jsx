@@ -64,16 +64,16 @@ const Expertise = () => {
           className="mx-auto h-full -mb-20 z-20 relative animate-float pointer-events-none"
         />
 
-        <div className=" bg-gradient-to-b from-primary/30 to-vernoxy border-[2px] border-vernoxy hover:border-primary/40 duration-500 transform text-white rounded-lg py-12 container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 font-Bai_Jamjuree backdrop-blur-sm bg-white/10">
+        <div className=" bg-gradient-to-b from-primary/30 to-vernoxy border-[2px] border-vernoxy hover:border-primary/40 duration-500 transform text-white rounded-lg py-12 container grid grid-cols-1 md:grid-cols-3 gap-7 font-Bai_Jamjuree backdrop-blur-sm bg-white/10">
           {data.map((item) => (
             <div key={item.id} className="text-center">
-              <h2 className="text-6xl font-bold">{item.Count}</h2>
-              <p className="text-3xl font-semibold">{item.text}</p>
+              <h2 className="text-5xl lg:text-6xl font-bold">{item.Count}</h2>
+              <p className="text-2xl lg:text-3xl font-semibold">{item.text}</p>
             </div>
           ))}
         </div>
         <PrimaryBg className="bottom-20 " />
-        <PrimaryObject src={src} className="bottom-24 left-0 " />
+        <PrimaryObject src={src} className="bottom-24 -left-32 lg:left-0 " />
         <PrimaryObject src={src1} className="-top-12 right-0 " />
       </div>
      

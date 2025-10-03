@@ -9,7 +9,7 @@ import PrimaryHero from "../../Components/PrimaryHead";
 
 const AboutUs = () => {
   return (
-    <div>
+    <div className="overflow-hidden">
       <div className="pb-0">
       <PrimaryHero title={"About"} subtitle={"Our Journey & purpose"} />
       </div>
