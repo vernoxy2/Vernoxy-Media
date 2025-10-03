@@ -4,6 +4,9 @@ import Img1 from "../../../assets/AboutPageImg/Future.webp";
 import Img2 from "../../../assets/AboutPageImg/Future.webp";
 import Img3 from "../../../assets/AboutPageImg/Future.webp";
 import BottomLine from "../../../Components/BottomLine";
+import PrimaryObject from "../../../Components/PrimaryObject";
+import src from "../../../assets/Obj2.svg";
+import PrimaryBg from "../../../Components/PrimaryBg";
 
 const InnovatingData = [
     {
@@ -34,7 +37,7 @@ const Future = () => {
         normalText={"With Vernoxy"}
         className={"container gap-4 flex justify-start"}
       ></Heading>
-      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-7">
+      <div className="container relative -z-0 grid grid-cols-1 lg:grid-cols-2 gap-7">
         <div className="py-0 p-6 space-y-6 ">
             {InnovatingData.map((item) => (
                 <div key={item.id} className="text-left space-y-4">
@@ -47,6 +50,8 @@ const Future = () => {
         <div className="">
             <img src={Img1} alt=""  className="mx-auto my-auto"/>
         </div>
+        <PrimaryObject src={src} className="right-0 -bottom-52  " />
+        <PrimaryBg className="-top-20"/>
       </div>
     </section>
   );

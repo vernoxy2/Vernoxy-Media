@@ -3,6 +3,9 @@ import Heading from "../../../Components/Heading";
 import VR_Man from "../../../assets/AboutPageImg/VR_man.webp";
 import PrimaryBg from "../../../Components/PrimaryBg";
 import Globally_Preferred from "../../../assets/AboutPageImg/Globally_Preferred.png";
+import PrimaryObject from "../../../Components/PrimaryObject";
+import src from "../../../assets/Obj2.svg";
+import src1 from "../../../assets/Obj1.svg";
 
 const data = [
   {
@@ -70,14 +73,10 @@ const Expertise = () => {
           ))}
         </div>
         <PrimaryBg className="bottom-20 " />
+        <PrimaryObject src={src} className="bottom-24 left-0 " />
+        <PrimaryObject src={src1} className="-top-12 right-0 " />
       </div>
-      <PrimaryBg className="top-20" />
-      {/* Background Image */}
-      {/* <img
-        src={bg}
-        alt="Background Blur"
-        className="absolute top-28 left-1/2 transform -translate-x-1/2  z-0"
-      /> */}
+     
     </section>
   );
 };

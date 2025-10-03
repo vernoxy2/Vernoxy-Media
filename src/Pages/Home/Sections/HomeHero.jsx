@@ -1,10 +1,12 @@
 import React from "react";
 import Video from "../../../assets/HomePageImgs/HeroV.mp4";
 import BottomLine from "../../../Components/BottomLine";
+import PrimaryObject from "../../../Components/PrimaryObject";
+import src from "../../../assets/Obj1.svg";
 
 const HomeHero = () => {
   return (
-    <div className="relative w-full h-[600px] 2xl:h-[660px] overflow-hidden">
+    <div className="relative w-full h-[600px] 2xl:h-[600px] overflow-hidden">
       {/* Background Video */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover"
@@ -36,6 +38,7 @@ const HomeHero = () => {
           modern digital design
         </p>
         <BottomLine />
+        <PrimaryObject  src={src} className="right-80 bottom-36 animate-roted-Home" />
       </div>
     </div>
   );

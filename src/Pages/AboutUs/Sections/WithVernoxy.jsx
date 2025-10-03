@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 
 const WithVernoxy = () => {
   return (
-    <section>
-      <div className="container ">
+    <div>
+      <div className="container pb-12">
         <img
           src={Puxxle2}
           alt=""
@@ -38,7 +38,7 @@ const WithVernoxy = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

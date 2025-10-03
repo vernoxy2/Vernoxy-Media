@@ -5,6 +5,8 @@ import ActionV from "../../../assets/HomePageImgs/ActionV.mp4";
 import PrimaryBg from "../../../Components/PrimaryBg";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer"; // ✅ better for scroll detection
+import src from "../../../assets/Obj2.svg";
+import PrimaryObject from "../../../Components/PrimaryObject";
 
 // Data
 const Count = [
@@ -85,6 +87,7 @@ const Action = () => {
           <StatCard key={item.id} count={item.Count} text={item.text} />
         ))}
       </div>
+      <PrimaryObject src={src} className="bottom-0 "/>
     </section>
   );
 };

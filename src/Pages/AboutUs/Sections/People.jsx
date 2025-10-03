@@ -1,6 +1,9 @@
 import React from "react";
 import Heading from "../../../Components/Heading";
 import PeopleImg from "../../../assets/AboutPageImg/People.webp";
+import src from "../../../assets/Obj2.svg";
+import PrimaryObject from "../../../Components/PrimaryObject";
+import PrimaryBg from "../../../Components/PrimaryBg";
 
 const PeopleData = [
   {
@@ -43,7 +46,7 @@ const PeopleData = [
 
 const People = () => {
   return (
-    <section>
+    <section className="relative z-0 container">
       <div className="container">
         <Heading
           boldText={"Fueling the Future "}
@@ -51,7 +54,7 @@ const People = () => {
           className={"text-start flex justify-start"}
         ></Heading>
       </div>
-      <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
         {PeopleData.map((item) => (
           <div
             key={item.id}
@@ -65,6 +68,9 @@ const People = () => {
           </div>
         ))}
       </div>
+      <PrimaryObject src={src} className="left-0 -bottom-10  " />
+      <PrimaryBg className="-top-32 -left-40" />
+      <PrimaryBg className="-bottom-44 " />
     </section>
   );
 };

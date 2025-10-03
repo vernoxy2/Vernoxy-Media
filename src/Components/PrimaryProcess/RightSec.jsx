@@ -4,6 +4,8 @@ import { GoArrowRight } from "react-icons/go";
 import PrimaryBtn from "../PrimartyBtn";
 import questions from "../../assets/ServicePageImg/questions.svg";
 import PrimaryBg from "../PrimaryBg";
+import PrimaryObject from "../PrimaryObject";
+import src from "../../assets/Obj3.svg";
 
 const Category = [
   {
@@ -80,6 +82,7 @@ const RightSec = () => {
         </a>
       </div>
       <PrimaryBg className="top-1/3 right-40 w-full" />
+      <PrimaryObject src={src} className="-right-40 -bottom-96" />
     </div>
   );
 };

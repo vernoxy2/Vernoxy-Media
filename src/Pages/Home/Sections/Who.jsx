@@ -42,18 +42,18 @@ const Who = () => {
         <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
 
         {/* Content */}
-        <div className="absolute top-0 left-0 w-full h-full grid grid-cols-1 md:grid-cols-2 items-center text-white px-6 md:px-24">
+        <div className="absolute top-0 left-0 w-full h-full grid grid-cols-1 md:grid-cols-2 items-center text-white ">
           {/* Left column (empty for spacing) */}
           <div></div>
 
           {/* Right column */}
-          <div className="space-y-4 md:space-y-6 text-left">
+          <div className="space-y-4 md:space-y-5 text-left mb-auto">
             <Heading
               boldText="Who"
               normalText="We Are"
               className="text-left flex gap-4"
             />
-            <p className="max-w-lg leading-relaxed text-gray-300">
+            <p className="max-w-xl leading-tight text-gray-300">
               At Vernoxy Media, we empower brands with data-driven creativity,
               transforming ideas into impactful strategies. Through design,
               analytics, and modern digital tools, we craft customized branding

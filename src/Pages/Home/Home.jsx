@@ -9,6 +9,7 @@ import Review from "./Sections/Review";
 import Industries from "./Sections/Industries";
 import AIRevolution from "../../Components/AIRevolution";
 import Work from "./Sections/Work";
+import PrimaryObject from "../../Components/PrimaryObject";
 
 const Home = () => {
   return (

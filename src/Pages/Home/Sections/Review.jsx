@@ -4,12 +4,14 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import src from "../../../assets/Obj1.svg";
 
 import BottomLine from "../../../Components/BottomLine";
 import Men from "../../../assets/HomePageImgs/Review/Men.png";
 import Women from "../../../assets/HomePageImgs/Review/Women.png";
 import BlenkStar from "../../../assets/HomePageImgs/Review/BlenkStar.svg";
 import FillStar from "../../../assets/HomePageImgs/Review/FillStar.svg";
+import PrimaryObject from "../../../Components/PrimaryObject";
 
 const ReviewData = [
   {
@@ -74,7 +76,7 @@ const ReviewCard = ({ item }) => {
 const Review = () => {
   return (
     <section>
-      <div className="container pr-0 py-10 lg:flex gap-12 items-center">
+      <div className="container pr-0 py-10 lg:flex gap-12 items-center relative z-10">
         {/* Left column */}
         <div className=" md:w-9/12 lg:w-4/12 w-full space-y-6 mb-8">
           <div className="flex flex-row items-center gap-2 max-w-sm">
@@ -123,6 +125,7 @@ const Review = () => {
             ))}
           </Swiper>
         </div>
+        <PrimaryObject className="left-80 bottom-0" src={src} />
       </div>
     </section>
   );

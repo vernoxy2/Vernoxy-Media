@@ -11,6 +11,8 @@ import RightTop from "../../../assets/ContactPageImg/RightTop.svg";
 import RightBottom from "../../../assets/ContactPageImg//RightBottom.svg";
 import LeftTop from "../../../assets/ContactPageImg/LeftTop.svg";
 import PrimaryBg from "../../../Components/PrimaryBg";
+import PrimaryObject from "../../../Components/PrimaryObject";
+import src from "../../../assets/Obj2.svg";
 
 const Soical = [
   {
@@ -152,6 +154,7 @@ const Form = () => {
             </form>
           </div>
         </div>
+        <PrimaryObject src={src} className="-top-14 right-0" />
       </div>
     </section>
   );

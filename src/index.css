@@ -42,4 +42,49 @@
   animation: marquee 25s linear infinite;
 }
 
+@keyframes rotate-scale-translate {
+  0% {
+    transform: rotate(0deg) scale(1) translateX(0%);
+  }
+  /* 25% {
+    transform: rotate(90deg) scale(1.2) translateX(20%);
+  } */
+  50% {
+    transform: rotate(180deg) scale(1.5) translateX(10%);
+  }
+  /* 75% {
+    transform: rotate(270deg) scale(1.2) translateX(-20%);
+  } */
+  100% {
+    transform: rotate(360deg) scale(1) translateX(0%);
+  }
+}
+
+.animate-roted {
+  animation: rotate-scale-translate 20s linear infinite;
+}
+
+
+/* For Hero Section */
+@keyframes rotate-scale-translate-hero {
+  0% {
+    transform: rotate(0deg) scale(1) translateX(0%);
+  }
+  /* 25% {
+    transform: rotate(90deg) scale(1.5) translateX(20%);
+  } */
+  50% {
+    transform: rotate(180deg) scale(22) ;
+  }
+  /* 75% {
+    transform: rotate(90deg) scale(1.5) -translateX(60%);
+  } */
+  100% {
+    transform: rotate(0deg) scale(1) translateX(0%);
+  }
+}
+
+.animate-roted-Home {
+  animation: rotate-scale-translate-hero 30s linear infinite;
+}
 

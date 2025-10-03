@@ -1,10 +1,12 @@
 import React from "react";
 import Heading from "../Heading";
 import BottomLine from "../BottomLine";
+import PrimaryObject from "../PrimaryObject";
+import src from "../../assets/Obj2.svg";
 
 const LeftSec = ({ planning }) => {
   return (
-    <div className="space-y-24">
+    <div className="space-y-24 ">
       {/* Heading Section */}
       <div className="text-start space-y-5">
         <Heading
@@ -23,7 +25,7 @@ const LeftSec = ({ planning }) => {
       </div>
 
       {/* Steps Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-8 lg:pr-32">
+      <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-8 lg:pr-32 relative z-0">
         {planning.map((item, index) => {
           const isStep = item.Step;
           return (
@@ -60,6 +62,7 @@ const LeftSec = ({ planning }) => {
             </div>
           );
         })}
+      <PrimaryObject src={src} className="-left-20 -top-20  " />
       </div>
     </div>
   );
