@@ -17,7 +17,7 @@ const AboutUs = () => {
       <Expertise />  
       <div className="bg-gradient-to-r from-vernoxy via-primary/50 to-vernoxy text-white h-[1px] -mt-5"></div>
       <Future />
-      <People />
+      {/* <People /> */}
       <WithVernoxy/>
     </div>
   );

@@ -13,7 +13,7 @@ import PrimaryBg from "./PrimaryBg";
 const Links = [
   { id: 1, name: "Home", Link: "/" },
   { id: 2, name: "About us", Link: "/about-us" },
-  { id: 3, name: "Projects", Link: "/projects" },
+  // { id: 3, name: "Projects", Link: "/projects" },
 ];
 
 const SerLinkd = [

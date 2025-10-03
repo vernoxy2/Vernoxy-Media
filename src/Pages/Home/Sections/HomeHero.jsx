@@ -2,7 +2,7 @@ import React from "react";
 import Video from "../../../assets/HomePageImgs/HeroV.mp4";
 import BottomLine from "../../../Components/BottomLine";
 import PrimaryObject from "../../../Components/PrimaryObject";
-import src from "../../../assets/Obj1.svg";
+import src from "../../../assets/Obj2.svg";
 
 const HomeHero = () => {
   return (
@@ -38,7 +38,7 @@ const HomeHero = () => {
           modern digital design
         </p>
         <BottomLine />
-        <PrimaryObject  src={src} className="right-80 bottom-36 animate-roted-Home" />
+        <PrimaryObject  src={src} className="right-80 bottom-36" />
       </div>
     </div>
   );

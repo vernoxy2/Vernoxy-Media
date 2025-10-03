@@ -17,7 +17,7 @@ const navitems = [
       { name: "Video Editing", path: "/services/video_editing" },
     ],
   },
-  { name: "Products", path: "/products" },
+  // { name: "Products", path: "/products" },
   { name: "Contact Us", path: "/contact-us" },
 ];
 
@@ -105,19 +105,19 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:block border border-primary py-2 px-3 lg:px-5 rounded-md bg-white/20 backdrop-blur-md">
+        <div className="hidden xl:block border border-primary py-2 px-3 lg:px-5 rounded-md bg-white/20 backdrop-blur-md">
           <ul className="flex gap-5 lg:gap-10 uppercase">{renderNavItems()}</ul>
         </div>
 
         {/* Desktop Button */}
-        <Link to="/contact-us" className="hidden lg:block">
+        <Link to="/contact-us" className="hidden xl:block">
           <PrimaryBtn>Get in Touch</PrimaryBtn>
         </Link>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-3xl text-primary focus:outline-none"
+          className="xl:hidden text-3xl text-primary focus:outline-none"
           aria-label="Toggle Mobile Menu"
         >
           {isOpen ? <HiX /> : <HiMenu />}

@@ -11,8 +11,8 @@ const ContactUs = () => {
       <div className="pb-0">
         <PrimaryHero title={"Contacts"} subtitle={"Get in Touch with us"} />
       </div>
-      <Form />
-      <Video />
+      {/* <Form /> */}
+      {/* <Video /> */}
       <Map />
     </div>
   );

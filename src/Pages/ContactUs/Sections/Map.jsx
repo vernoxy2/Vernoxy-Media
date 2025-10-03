@@ -1,15 +1,17 @@
 import React from "react";
 import LeftTop from "../../../assets/ContactPageImg/LeftTop.svg";
 import LeftBottom from "../../../assets/ContactPageImg/RightBottom.svg";
+import src from "../../../assets/Obj2.svg";
+import PrimaryObject from "../../../Components/PrimaryObject";
 
 const Map = () => {
   return (
     <section className="container">
-      <div className=" p-10 mx-auto flex flex-col lg:flex-row space-y-0 relative">
-        <img src={LeftTop} alt="" className="absolute top-0 left-0 " />
-        <img src={LeftBottom} alt="" className="absolute bottom-0 right-0 " />
+      <div className="  mx-auto flex flex-col lg:flex-row space-y-0 relative z-0">
+        {/* <img src={LeftTop} alt="" className="absolute top-0 left-0 " />
+        <img src={LeftBottom} alt="" className="absolute bottom-0 right-0 " /> */}
         {/* Left background/placeholder */}
-        <div className="w-full md:p-9 lg:w-5/12 h-[320px] lg:h-auto bg-[#464646]/50 flex flex-col justify-center items-start text-start">
+        <div className="w-full z-0 md:p-9 lg:w-5/12 h-[320px] lg:h-auto bg-[#464646]/50 flex flex-col justify-center items-start text-start">
           <h1 className="uppercase font-bold lg:text-6xl font-Bai_Jamjuree">
             Find Your Way To Us
           </h1>
@@ -30,6 +32,7 @@ const Map = () => {
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
+        <PrimaryObject src={src} className="-top-80 -left-20" />
       </div>
     </section>
   );

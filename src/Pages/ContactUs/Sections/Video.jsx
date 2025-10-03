@@ -1,7 +1,6 @@
 import React from "react";
 import ContVideo from "../../../assets/ContactPageImg/ContVideo.mp4";
 import PrimaryObject from "../../../Components/PrimaryObject";
-import src from "../../../assets/Obj3.svg";
 
 const Video = () => {
   return (
@@ -17,7 +16,6 @@ const Video = () => {
           aria-label="Promotional video"
         />
       </div>
-      <PrimaryObject src={src} className="-top-80 -left-20"/>
     </section>
   );
 };
