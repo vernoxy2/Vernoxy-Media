@@ -44,119 +44,88 @@ const Soical = [
 
 const Form = () => {
   return (
-    <section className="relative z-0 ">
-      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-y-28 ">
-        <PrimaryBg className="pr-[65rem] -top-52"/>
-        <PrimaryBg className="pl-[60rem] -bottom-48"/>
-        {/* Contact Details */}
-        <div className="text-start md:w-[86%] lg:w-[75%] space-y-6">
-          <p>
-            Have questions or want to elevate your brand’s digital presence? Our
-            team at [Vernoxy Media] is here to help. Whether it’s creative
-            design, strategic marketing, or innovative digital solutions, we’re
-            ready to listen and craft a plan tailored to your goals.
-          </p>
-          <BottomLine />
-          {/* icons and text */}
-          <div className=" py-5 space-y-6">
-            {/* Call */}
-            <div className=" flex gap-4  items-center">
-              {/* Icon */}
-              <div className="">
-                <MdAddCall className="border-2 border-primary rounded-full p-4 text-7xl" />
-              </div>
-              {/* text */}
-              <div>
-                <p>GIVE US A CALL</p>
-                <h1 className="text-2xl md:text-3xl font-Bai_Jamjuree font-extrabold">
-                  + 91 96241 50967
-                </h1>
-              </div>
-            </div>
-            {/* Email */}
-            <div className=" flex gap-4  items-center">
-              {/* Icon */}
-              <div className="">
-                <MdEmail className="border-2 border-primary rounded-full p-4 text-7xl" />
-              </div>
-              {/* text */}
-              <div>
-                <p>SEND US A MESSAGE</p>
-                <h1 className="text-2xl md:text-3xl font-Bai_Jamjuree font-extrabold">
-                  vernoxy2@gmail.com
-                </h1>
-              </div>
-            </div>
-          </div>
-          {/* Soical Network */}
+    <section className="relative overflow-hidden">
+  <div className="container grid grid-cols-1 lg:grid-cols-2 gap-y-28 relative z-10">
+    {/* Background elements */}
+    <PrimaryBg className="pr-[65rem] -top-52 z-0" />
+    <PrimaryBg className="pl-[60rem] -bottom-48 z-0" />
+
+    {/* Contact Details (always above background) */}
+    <div className="text-start md:w-[86%] lg:w-[75%] space-y-6 relative z-20">
+      <p>
+        Have questions or want to elevate your brand’s digital presence? Our
+        team at [Vernoxy Media] is here to help. Whether it’s creative
+        design, strategic marketing, or innovative digital solutions, we’re
+        ready to listen and craft a plan tailored to your goals.
+      </p>
+      <BottomLine />
+
+      {/* icons and text */}
+      <div className="py-5 space-y-6">
+        {/* Call */}
+        <div className="flex gap-4 items-center">
+          <MdAddCall className="border-2 border-primary rounded-full p-4 text-7xl" />
           <div>
-            <p className="font-bold mb-3">SOCIAL NETWORK</p>
-            <div className="flex gap-6">
-              {Soical.map((item) => (
-                <Link
-                  to={item.Link}
-                  key={item.id}
-                  className="text-3xl text-primary hover:text-white duration-300  text-start transition-colors"
-                  aria-label={item.name}
-                >
-                  {item.icon}
-                </Link>
-              ))}
-            </div>
+            <p>GIVE US A CALL</p>
+            <h1 className="text-2xl md:text-3xl font-Bai_Jamjuree font-extrabold">
+              + 91 96241 50967
+            </h1>
           </div>
         </div>
-        {/* Contact Form */}
-        <div className="p-6 md:p-12 relative ">
-          <img
-            src={LeftTop}
-            alt=""
-            className="absolute left-0 top-0 object-contain"
-          />
-          <img
-            src={LeftBottom}
-            alt=""
-            className="absolute left-0 bottom-0 object-contain"
-          />
-          <img
-            src={RightTop}
-            alt=""
-            className="absolute right-0 top-0 object-contain"
-          />
-          <img
-            src={RightBottom}
-            alt=""
-            className="absolute right-0 bottom-0 object-contain"
-          />
-          <div className="h-full bg-[#464646]/50 p-5 md:p-10 rounded-sm relative backdrop-blur-md">
-            <p className=" font-Bai_Jamjuree text-2xl md:text-3xl">
-              Contact Form
-            </p>
-            <form action="submit" className="flex flex-col gap-5 pt-5">
-              <input
-                type="text"
-                placeholder="Name"
-                className="input-style"
-              ></input>
-              <input
-                type="email"
-                placeholder="Email"
-                className="input-style"
-              ></input>
-              <textarea
-                name=""
-                id=""
-                cols="30"
-                rows="5"
-                placeholder="Message"
-                className="input-style"
-              ></textarea>
-              <PrimaryBtn>Send Message</PrimaryBtn>
-            </form>
+
+        {/* Email */}
+        <div className="flex gap-4 items-center">
+          <MdEmail className="border-2 border-primary rounded-full p-4 text-7xl" />
+          <div>
+            <p>SEND US A MESSAGE</p>
+            <h1 className="text-2xl md:text-3xl font-Bai_Jamjuree font-extrabold">
+              vernoxy2@gmail.com
+            </h1>
           </div>
         </div>
       </div>
-        <PrimaryObject src={src} className="-top-14 right-0" />
-    </section>
+
+      {/* Social Network */}
+      <div>
+        <p className="font-bold mb-3">SOCIAL NETWORK</p>
+        <div className="flex gap-6">
+          {Soical.map((item) => (
+            <Link
+              to={item.Link}
+              key={item.id}
+              className="text-3xl text-primary hover:text-white duration-300 transition-colors"
+            >
+              {item.icon}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {/* Contact Form */}
+    <div className="p-6 md:p-12 relative z-20">
+      {/* Decorative corners */}
+      <img src={LeftTop} alt="" className="absolute left-0 top-0 object-contain z-0" />
+      <img src={LeftBottom} alt="" className="absolute left-0 bottom-0 object-contain z-0" />
+      <img src={RightTop} alt="" className="absolute right-0 top-0 object-contain z-0" />
+      <img src={RightBottom} alt="" className="absolute right-0 bottom-0 object-contain z-0" />
+
+      <div className="h-full bg-[#464646]/50 p-5 md:p-10 rounded-sm relative z-10 backdrop-blur-md">
+        <p className="font-Bai_Jamjuree text-2xl md:text-3xl">Contact Form</p>
+        <form className="flex flex-col gap-5 pt-5">
+          <input type="text" placeholder="Name" className="input-style" />
+          <input type="email" placeholder="Email" className="input-style" />
+          <textarea rows="5" placeholder="Message" className="input-style"></textarea>
+          <PrimaryBtn>Send Message</PrimaryBtn>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {/* Floating decorative object */}
+  <PrimaryObject src={src} className="-top-14 right-0 z-0" />
+</section>
+
   );
 };
 
