@@ -5,6 +5,7 @@ import AvatarsImg from "../assets/HomePageImgs/Avatars.png";
 import Earth from "../assets/HomePageImgs/Earth.svg";
 import Right from "../assets/HomePageImgs/Right.svg";
 import Left from "../assets/HomePageImgs/Left.svg";
+import PrimaryBg from "./PrimaryBg";
 
 const avatars = [
   { id: 1, src: AvatarsImg, alt: "Customer 1" },
@@ -56,22 +57,20 @@ const AIRevolution = () => {
           </div>
         </div>
       </div>
-      <div className="relative border">
+      {/* Orbit */}
+      <div className="relative container z-10 ">
         <img src={Earth} alt="Earth" className="mx-auto pointer-events-none" />
 
-        <div className="mx-auto border ">
-          <img
-          src={Right}
-          alt="Right Orbit"
-          className="absolute top-0 right-1/2 animate-Efloat"
-        />
+        <div className="mx-auto absolute top-14  right-1/2 translate-x-1/2 ">
+          <img src={Right} alt="Right Orbit" className="animate-Efloat" />
 
-        <img
-          src={Left}
-          alt="Left Orbit"
-          className="absolute top-0 right-1/2 animate-Efloat"
-        />
+          <img
+            src={Left}
+            alt="Left Orbit"
+            className="absolute top-0  animate-Efloat"
+          />
         </div>
+        <PrimaryBg className="top-0" />
       </div>
     </section>
   );
