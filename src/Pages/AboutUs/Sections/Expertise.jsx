@@ -2,6 +2,7 @@ import React from "react";
 import Heading from "../../../Components/Heading";
 import VR_Man from "../../../assets/AboutPageImg/VR_man.webp";
 import PrimaryBg from "../../../Components/PrimaryBg";
+import Globally_Preferred from "../../../assets/AboutPageImg/Globally_Preferred.png";
 
 const data = [
   {
@@ -24,7 +25,7 @@ const data = [
 const Expertise = () => {
   return (
     <section className="relative">
-      <div className="container relative z-10">
+      <div className="container relative z-0">
         <Heading
           boldText={
             <>
@@ -34,14 +35,30 @@ const Expertise = () => {
           }
           className="text-center flex justify-center"
         />
-        <div className="text-center justify-start text-white/10 md:text-7xl font-bold font-bai-jamjuree leading-[137.91px] absolute opacity-65 -translate-x-1/2 left-1/2 text-stroke">
-          Globally Preferred
+        <div className=" w-full overflow-hidden pointer-events-none pt-9 absolute">
+          <div className="flex gap-x-24 animate-marquee">
+            <img
+              src={Globally_Preferred}
+              alt="Globally Preferred"
+              className=""
+            />
+            <img
+              src={Globally_Preferred}
+              alt="Globally Preferred"
+              className=""
+            />
+            <img
+              src={Globally_Preferred}
+              alt="Globally Preferred"
+              className=""
+            />
+          </div>
         </div>
 
         <img
           src={VR_Man}
           alt="VR Man"
-          className="mx-auto h-full -mb-20 z-0 relative animate-float pointer-events-none"
+          className="mx-auto h-full -mb-20 z-20 relative animate-float pointer-events-none"
         />
 
         <div className=" bg-gradient-to-b from-primary/30 to-vernoxy border-[2px] border-vernoxy hover:border-primary/40 duration-500 transform text-white rounded-lg py-12 container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 font-Bai_Jamjuree backdrop-blur-sm bg-white/10">
@@ -52,6 +69,7 @@ const Expertise = () => {
             </div>
           ))}
         </div>
+        <PrimaryBg className="bottom-20 " />
       </div>
       <PrimaryBg className="top-20" />
       {/* Background Image */}
