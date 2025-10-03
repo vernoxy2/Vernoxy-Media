@@ -49,6 +49,7 @@ const Action = () => {
   return (
     <section className="container space-y-10 relative -z-0">
       <PrimaryBg className="bottom-40 pr-80" />
+      <PrimaryBg className="-top-28 -pr-40" />
       
       {/* Heading */}
       <Heading

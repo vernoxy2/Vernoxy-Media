@@ -14,6 +14,7 @@ import Post2 from "../../../assets/HomePageImgs/Work/Post/TW.svg";
 import Post3 from "../../../assets/HomePageImgs/Work/Post/E.svg";
 import Post4 from "../../../assets/HomePageImgs/Work/Post/DB.svg";
 import PrimaryBtn from "../../../Components/PrimartyBtn";
+import PrimaryBg from "../../../Components/PrimaryBg";
 
 const WorkData = [
   {
@@ -78,9 +79,11 @@ const ProjectCard = ({ item }) => {
   }, [item.img.length]);
 
   return (
-    <div className="relative overflow-hidden rounded-xl shadow-lg group">
+    <div className="relative z-0 overflow-hidden rounded-xl shadow-lg group">
+      <PrimaryBg className="-top-28 -pr-40" />
+
       {/* Image */}
-      <div className="relative w-full bg-[#A4A7AC]">
+      <div className="relative z-0 w-full bg-[#A4A7AC]">
         <AnimatePresence mode="wait">
           <motion.img
             key={index}

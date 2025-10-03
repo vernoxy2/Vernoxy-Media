@@ -6,6 +6,7 @@ import Earth from "../assets/HomePageImgs/Earth.svg";
 import Right from "../assets/HomePageImgs/Right.svg";
 import Left from "../assets/HomePageImgs/Left.svg";
 import PrimaryBg from "./PrimaryBg";
+import { Link } from "react-router-dom";
 
 const avatars = [
   { id: 1, src: AvatarsImg, alt: "Customer 1" },
@@ -17,9 +18,9 @@ const avatars = [
 const AIRevolution = () => {
   return (
     <section className="-space-y-16">
-      <div className="container grid grid-cols-1 md:grid-cols-2 gap-7">
+      <div className="container grid grid-cols-1 md:grid-cols-2 gap-7 relative z-20">
         {/* Left column */}
-        <div className="flex flex-col items-start space-y-4">
+        <div className="flex flex-col items-start space-y-4 ">
           <Heading
             boldText={"join the"}
             normalText={"AI Revolution"}
@@ -30,7 +31,11 @@ const AIRevolution = () => {
             solutions can help you harness the true power of AI to drive your
             business forward.
           </p>
-          <PrimaryBtn>Learn More</PrimaryBtn>
+          <div>
+            <Link to="/contact-us">
+              <PrimaryBtn className="flex-none">Get a Consultation</PrimaryBtn>
+            </Link>
+          </div>
         </div>
 
         {/* Right column */}
