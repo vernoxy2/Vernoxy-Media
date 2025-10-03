@@ -6,7 +6,7 @@ import PrimaryObject from "../../../Components/PrimaryObject";
 
 const Map = () => {
   return (
-    <section className="container">
+    <section className="container relative z-10">
       <div className="  mx-auto flex flex-col lg:flex-row space-y-0 relative z-0">
         {/* <img src={LeftTop} alt="" className="absolute top-0 left-0 " />
         <img src={LeftBottom} alt="" className="absolute bottom-0 right-0 " /> */}

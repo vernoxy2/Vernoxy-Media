@@ -1,7 +1,4 @@
-import React from "react";
-import ContHero from "./Sections/ContHero";
 import Form from "./Sections/Form";
-import Video from "./Sections/Video";
 import Map from "./Sections/Map";
 import PrimaryHero from "../../Components/PrimaryHead";
 
@@ -12,7 +9,6 @@ const ContactUs = () => {
         <PrimaryHero title={"Contacts"} subtitle={"Get in Touch with us"} />
       </div>
       <Form />
-      {/* <Video /> */}
       <Map />
     </div>
   );

@@ -56,7 +56,7 @@ const Planning = stepData.map((item) => {
 
 const DigitalMarketing = () => {
   return (
-    <div>
+    <div className="overflow-hidden">
       <PrimaryHead
         title={"Service"}
         subtitle={"Dedital marketing & Branding"}
@@ -77,7 +77,6 @@ const DigitalMarketing = () => {
         KeyList={KeyItems}
       />
       <PrimaryProcess Planning={Planning} />
-      {/* <LeftSec planning={Planning} /> */}
       <AIRevolution />
     </div>
   );
