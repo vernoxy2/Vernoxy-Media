@@ -57,7 +57,7 @@ const Planning = stepData.map((item) => {
 
 const WebDevelopment = () => {
   return (
-    <div>
+    <div className="overflow-hidden">
       <PrimaryHero title={"Service"} subtitle={"Web Design & Development"} />
       <ServiceSlider/>
       <PrimaryBanner
