@@ -4,7 +4,7 @@ const PrimaryBtn = ({ children, className = "" }) => {
   return (
     <button
       onClick={() => console.log({ children })}
-      className={`bg-gradient-to-r from-primary to-white text-[#1168B5] font-bold px-7 py-2 rounded-md hover:scale-90 duration-300  md:text-lg ${className}`}
+      className={`bg-gradient-to-r from-primary to-white text-[#1168B5] font-bold px-7 py-2 rounded-md hover:scale-90 duration-300  text-base md:text-lg ${className}`}
       type="button"
     >
       {children}

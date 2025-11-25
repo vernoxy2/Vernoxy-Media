@@ -15,31 +15,44 @@ import Img from "../../../assets/ServicePageImg/Process/Digital/Plan2.webp";
 import Img2 from "../../../assets/ServicePageImg/Process/Digital/Plan2.webp";
 import Img3 from "../../../assets/ServicePageImg/Process/Digital/Plan3.webp";
 import Img4 from "../../../assets/ServicePageImg/Process/Digital/Plan4.webp";
-import { text } from "framer-motion/client";
 
 const KeyItems = [
-  "Content Marketing That Tells Your Brand's Story",
-  "Personalized Email Marketing To Nurture Leads",
-  "Social Media Marketing That Engages And Converts",
-  "Comprehensive SEO Services For Visibility",
-  "Performance Analytics & Reporting",
-  "Conversion Rate Optimization To Boost Sales",
+  "User-Friendly Interface",
+  "Fast Performance",
+  "Strong Security",
+  "Cross-Platform Support",
+  "Scalable & Flexible",
+  "Push Notifications",
 ];
 
 const stepData = [
-  { icon: Icon, title: "Identity", text: "Define identity through visuals, logo, design." },
+  {
+    icon: Icon,
+    title: "Identity",
+    text: "Define identity through visuals, logo, design.",
+  },
   { icon: Img },
   { icon: Img2 },
-  { icon: Icon2, title: "Presence", text: "Showcase brand via website, social media." },
-  { icon: Icon3, title: "Engagement", text: "Engage audience with creative content, campaigns." },
+  {
+    icon: Icon2,
+    title: "Presence",
+    text: "Showcase brand via website, social media.",
+  },
+  {
+    icon: Icon3,
+    title: "Engagement",
+    text: "Engage audience with creative content, campaigns.",
+  },
   { icon: Img3 },
   { icon: Img4 },
-  { icon: Icon4, title: "Growth ", text: "Track results, refine strategies, scale impact." },
+  {
+    icon: Icon4,
+    title: "Growth ",
+    text: "Track results, refine strategies, scale impact.",
+  },
 ];
 
 let stepCount = 0;
-// const description1 = [{text: "abc"}]
-
 const Planning = stepData.map((item) => {
   if (item.title && item.text) {
     stepCount += 1;
@@ -49,7 +62,9 @@ const Planning = stepData.map((item) => {
         <>
           <span className="text-white font-bold">step</span>
           <br />
-          <span className="text-primary font-bold">{String(stepCount).padStart(2, "0")}</span>
+          <span className="text-primary font-bold">
+            {String(stepCount).padStart(2, "0")}
+          </span>
         </>
       ),
     };
@@ -57,30 +72,32 @@ const Planning = stepData.map((item) => {
   return item;
 });
 
-const DigitalMarketing = () => {
+const CustomizedApp = () => {
   return (
     <div className="overflow-hidden">
       <PrimaryHead
-        title={"Service"}
-        subtitle={"Digital marketing & Branding"}
+        title={"Customized App"}
+        subtitle={"Customized App"}
       />
       <ServiceSlider />
       <PrimaryBanner
         boldText={"Driving Growth Through"}
         normalText={"Data-Driven Marketing Solutions"}
         bannerImg={bannerImg}
+       
       />
       <FatureKey
         boldText={"Key Feature of "}
-        normalText={"Digital Marketing"}
+        normalText={"App Development"}
         Keybanner={keyBanner}
         KeyList={KeyItems}
       />
-
-      <PrimaryProcess Planning={Planning}  description={"Our digital marketing process begins with discovery and research to understand your goals. We then develop a tailored strategy and implement campaigns across various channels. Continuous monitoring and optimization ensure effectiveness, followed by regular reporting to track performance. Finally, we refine and scale efforts for sustained growth and success."}  boldText={"Our process of"} normalText={"Digital Marketing"} />
+      <PrimaryProcess Planning={Planning}  description={
+          "We follow a structured approach to turn ideas into high-quality apps. From planning and design to development, testing, launch, and ongoing support, our process ensures a seamless, user-friendly, and reliable experience. Our team combines creativity, technical expertise, and attention to detail to deliver apps that delight users and drive results."
+        } boldText={"Our process of"} normalText={"App Development"} />
       <AIRevolution />
     </div>
   );
 };
 
-export default DigitalMarketing;
+export default CustomizedApp;

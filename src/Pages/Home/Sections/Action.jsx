@@ -11,9 +11,9 @@ import PrimaryObject from "../../../Components/PrimaryObject";
 // Data
 const Count = [
   { id: 1, Count: "150+", text: "Projects Completed" },
-  { id: 2, Count: "10M+", text: "Leads Generated" },
+  { id: 2, Count: "10000+", text: "Leads Generated" },
   { id: 3, Count: "120+", text: "Happy Clients" },
-  { id: 4, Count: "10+", text: "Years of Experience" },
+  { id: 4, Count: "5+", text: "Years of Experience" },
 ];
 
 // Single Card Component

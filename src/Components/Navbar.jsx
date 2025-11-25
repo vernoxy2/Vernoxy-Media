@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Logo from "../assets/Logo.svg";
 import PrimaryBtn from "./PrimartyBtn";
 import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
@@ -11,19 +11,20 @@ const navitems = [
     name: "Services",
     path: "/services",
     dropdown: [
-      { name: "Digital Marketing", path: "/services/digital_marketing" },
+      { name: "Customized App", path: "/services/customized_app" },
       { name: "Web Development", path: "/services/web_development" },
-      { name: "Graphics Designer", path: "/services/graphics_design" },
+      { name: "Digital Marketing", path: "/services/digital_marketing" },
       { name: "Video Editing", path: "/services/video_editing" },
     ],
   },
-  // { name: "Products", path: "/products" },
   { name: "Contact Us", path: "/contact-us" },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null); // mobile dropdown toggle
+  const [openDropdown, setOpenDropdown] = useState(null); // mobile dropdown
+  const [hoverDropdown, setHoverDropdown] = useState(null); // desktop hover control
+  const hoverTimeout = useRef(null);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
@@ -34,7 +35,23 @@ const Navbar = () => {
 
   const renderNavItems = (isMobile = false, onClickHandler = () => {}) =>
     navitems.map((item, i) => (
-      <li key={i} className="relative group">
+      <li
+        key={i}
+        className="relative group"
+        onMouseEnter={() => {
+          if (!isMobile) {
+            clearTimeout(hoverTimeout.current);
+            setHoverDropdown(i);
+          }
+        }}
+        onMouseLeave={() => {
+          if (!isMobile) {
+            hoverTimeout.current = setTimeout(() => {
+              setHoverDropdown(null);
+            }, 200); // delay fixes quick-close flicker
+          }
+        }}
+      >
         {!item.dropdown ? (
           <NavLink
             to={item.path}
@@ -57,7 +74,9 @@ const Navbar = () => {
                 isMobile ? "text-white" : "text-white group-hover:text-primary"
               }`}
               onClick={() =>
-                isMobile ? setOpenDropdown(openDropdown === i ? null : i) : null
+                isMobile
+                  ? setOpenDropdown(openDropdown === i ? null : i)
+                  : null
               }
             >
               {item.name} <HiChevronDown className="text-lg" />
@@ -70,7 +89,9 @@ const Navbar = () => {
                   ? openDropdown === i
                     ? "block pl-4 mt-2"
                     : "hidden"
-                  : "absolute left-0 mt-2 w-48 bg-white/20 border border-primary border-t-0 backdrop-blur-md rounded-md shadow-lg transition-all duration-300 hidden group-hover:block group-focus-within:block"
+                  : `absolute left-0 mt-2 w-48 bg-white/20 border border-primary border-t-0 
+                     backdrop-blur-md rounded-md shadow-lg transition-all duration-300 
+                     ${hoverDropdown === i ? "block" : "hidden"}`
               }`}
             >
               {item.dropdown.map((drop, idx) => (
@@ -99,6 +120,7 @@ const Navbar = () => {
   return (
     <div className="absolute top-0 left-0 w-full z-50 bg-transparent font-alumni">
       <nav className="container mx-auto flex justify-between items-center py-6 relative">
+        
         {/* Logo */}
         <Link to="/">
           <img src={Logo} alt="Logo" className="h-10 w-auto" />
@@ -106,7 +128,9 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden xl:block border border-primary py-2 px-3 lg:px-5 rounded-md bg-white/20 backdrop-blur-md">
-          <ul className="flex gap-5 lg:gap-10 uppercase">{renderNavItems()}</ul>
+          <ul className="flex gap-5 lg:gap-10 uppercase">
+            {renderNavItems()}
+          </ul>
         </div>
 
         {/* Desktop Button */}
@@ -123,7 +147,7 @@ const Navbar = () => {
           {isOpen ? <HiX /> : <HiMenu />}
         </button>
 
-        {/* Mobile Menu Sidebar */}
+        {/* Mobile Sidebar */}
         <div
           className={`fixed top-0 left-0 h-full w-[80%] bg-black/90 backdrop-blur-md shadow-lg z-50 transform transition-transform duration-500 ease-in-out
             ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
@@ -142,6 +166,7 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
+
       </nav>
     </div>
   );
