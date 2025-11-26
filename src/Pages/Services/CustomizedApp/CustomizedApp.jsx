@@ -2,19 +2,19 @@ import React from "react";
 import PrimaryHead from "../../../Components/PrimaryHead";
 import AIRevolution from "../../../Components/AIRevolution";
 import PrimaryBanner from "../../../Components/PrimaryBanner";
-import bannerImg from "../../../assets/ServicePageImg/BannerImg/DM.webp";
+import bannerImg from "../../../assets/ServicePageImg/BannerImg/AD.webp";
 import FatureKey from "../../../Components/FatureKey";
-import keyBanner from "../../../assets/ServicePageImg/FatureKey/Key1.webp";
+import keyBanner from "../../../assets/ServicePageImg/FatureKey/AppDKey.webp";
 import ServiceSlider from "../../../Components/ServiceSlider";
 import PrimaryProcess from "../../../Components/PrimaryProcess/PrimaryProcess";
-import Icon from "../../../assets/ServicePageImg/Process/Digital/identity1.svg";
-import Icon2 from "../../../assets/ServicePageImg/Process/Digital/Presence1.svg";
-import Icon3 from "../../../assets/ServicePageImg/Process/Digital/Engagement2.svg";
-import Icon4 from "../../../assets/ServicePageImg/Process/Digital/growth1.svg";
-import Img from "../../../assets/ServicePageImg/Process/Digital/Plan2.webp";
-import Img2 from "../../../assets/ServicePageImg/Process/Digital/Plan2.webp";
-import Img3 from "../../../assets/ServicePageImg/Process/Digital/Plan3.webp";
-import Img4 from "../../../assets/ServicePageImg/Process/Digital/Plan4.webp";
+import Icon from "../../../assets/ServicePageImg/Process/App/Plan1.svg";
+import Icon2 from "../../../assets/ServicePageImg/Process/App/Plan2.svg";
+import Icon3 from "../../../assets/ServicePageImg/Process/App/Plan3.svg";
+import Icon4 from "../../../assets/ServicePageImg/Process/App/Plan4.svg";
+import Img from "../../../assets/ServicePageImg/Process/App/Plan1.webp";
+import Img2 from "../../../assets/ServicePageImg/Process/App/Plan2.webp";
+import Img3 from "../../../assets/ServicePageImg/Process/App/Plan3.webp";
+import Img4 from "../../../assets/ServicePageImg/Process/App/Plan4.webp";
 
 const KeyItems = [
   "User-Friendly Interface",
@@ -26,30 +26,14 @@ const KeyItems = [
 ];
 
 const stepData = [
-  {
-    icon: Icon,
-    title: "Identity",
-    text: "Define identity through visuals, logo, design.",
-  },
+  { icon: Icon, title: "Plan", text: "Strategize goals, features, and user flow." },
   { icon: Img },
   { icon: Img2 },
-  {
-    icon: Icon2,
-    title: "Presence",
-    text: "Showcase brand via website, social media.",
-  },
-  {
-    icon: Icon3,
-    title: "Engagement",
-    text: "Engage audience with creative content, campaigns.",
-  },
+  { icon: Icon2, title: "Design ", text: "Create UI/UX, wireframes, and visual identity." },
+  { icon: Icon3, title: "Develop", text: "Build the app, integrate backend & frontend." },
   { icon: Img3 },
   { icon: Img4 },
-  {
-    icon: Icon4,
-    title: "Growth ",
-    text: "Track results, refine strategies, scale impact.",
-  },
+  { icon: Icon4, title: "Launch", text: "Test, deploy, and optimize for users." },
 ];
 
 let stepCount = 0;
@@ -81,9 +65,10 @@ const CustomizedApp = () => {
       />
       <ServiceSlider />
       <PrimaryBanner
-        boldText={"Driving Growth Through"}
-        normalText={"Data-Driven Marketing Solutions"}
+        boldText={"Designing the Future,"}
+        normalText={"One App at a Time"}
         bannerImg={bannerImg}
+        description={"We specialize in designing and developing applications that combine intuitive user experiences with powerful functionality. From initial planning to final deployment, we ensure each app is tailored to meet user needs, streamline workflows, and deliver measurable results."}
        
       />
       <FatureKey
