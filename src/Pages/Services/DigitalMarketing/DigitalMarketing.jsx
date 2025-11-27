@@ -15,6 +15,7 @@ import Img from "../../../assets/ServicePageImg/Process/Digital/Plan2.webp";
 import Img2 from "../../../assets/ServicePageImg/Process/Digital/Plan2.webp";
 import Img3 from "../../../assets/ServicePageImg/Process/Digital/Plan3.webp";
 import Img4 from "../../../assets/ServicePageImg/Process/Digital/Plan4.webp";
+import { text } from "framer-motion/client";
 
 const KeyItems = [
   "Content Marketing That Tells Your Brand's Story",
@@ -22,7 +23,7 @@ const KeyItems = [
   "Social Media Marketing That Engages And Converts",
   "Comprehensive SEO Services For Visibility",
   "Performance Analytics & Reporting",
-  "Performance Analytics & Reporting",
+  "Conversion Rate Optimization To Boost Sales",
 ];
 
 const stepData = [
@@ -37,6 +38,8 @@ const stepData = [
 ];
 
 let stepCount = 0;
+// const description1 = [{text: "abc"}]
+
 const Planning = stepData.map((item) => {
   if (item.title && item.text) {
     stepCount += 1;
@@ -59,16 +62,13 @@ const DigitalMarketing = () => {
     <div className="overflow-hidden">
       <PrimaryHead
         title={"Service"}
-        subtitle={"Dedital marketing & Branding"}
+        subtitle={"Digital marketing & Branding"}
       />
       <ServiceSlider />
       <PrimaryBanner
         boldText={"Driving Growth Through"}
         normalText={"Data-Driven Marketing Solutions"}
         bannerImg={bannerImg}
-        description={
-          "Our digital marketing services are designed to elevate your brand and reach your target audience effectively. We develop customized strategies that include SEO, PPC advertising, social media marketing, content marketing, and email campaigns. By leveraging data-driven insights and the latest trends, we maximize engagement, drive traffic, and boost conversions, ensuring a measurable return on your investment. Let us help you grow your digital presence and achieve your business goals."
-        }
       />
       <FatureKey
         boldText={"Key Feature of "}
@@ -76,7 +76,8 @@ const DigitalMarketing = () => {
         Keybanner={keyBanner}
         KeyList={KeyItems}
       />
-      <PrimaryProcess Planning={Planning} />
+
+      <PrimaryProcess Planning={Planning}  description={"Our digital marketing process begins with discovery and research to understand your goals. We then develop a tailored strategy and implement campaigns across various channels. Continuous monitoring and optimization ensure effectiveness, followed by regular reporting to track performance. Finally, we refine and scale efforts for sustained growth and success."}  boldText={"Our process of"} normalText={"Digital Marketing"} />
       <AIRevolution />
     </div>
   );

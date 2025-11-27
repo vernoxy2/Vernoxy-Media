@@ -18,12 +18,12 @@ import Img4 from "../../../assets/ServicePageImg/Process/Web/Plan4.webp";
 
 // 
 const KeyItems = [
-  "Responsive and Mobile-Friendly Websites",
-  "Customizable and Interactive User Interfaces",
-  "Fast & Optimized Performance for Speedy Loading",
-  "Optimized Search Engine Optimization (SEO)",
-  "Dynamic and Interactive Web Applications",
-  "Website Maintenance and Support",
+  "Responsive & Mobile-Friendly",
+  "User-Centric Design",
+  "Fast & Optimized Performance",
+  "SEO-Ready Structure",
+  "Custom Functionality",
+  "Secure & Reliable",
 ];
 
 const stepData = [
@@ -74,7 +74,9 @@ const WebDevelopment = () => {
         Keybanner={keyBanner}
         KeyList={KeyItems}
       />
-      <PrimaryProcess Planning={Planning}/>
+      <PrimaryProcess Planning={Planning} boldText={'Our process of'} normalText={'Web Design & Develop'}
+    
+      description={"We understand your goals, design a user-friendly interface, develop a responsive and functional website, and provide testing, launch, and ongoing support for lasting excellence."}/>
       <AIRevolution />
     </div>
   );

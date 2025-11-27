@@ -16,6 +16,7 @@ import Post4 from "../../../assets/HomePageImgs/Work/Post/DB.svg";
 import PrimaryBtn from "../../../Components/PrimartyBtn";
 import PrimaryBg from "../../../Components/PrimaryBg";
 import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 
 const WorkData = [
   {
@@ -55,7 +56,7 @@ const Work = () => {
         <Heading
           boldText={"Our Work"}
           normalText={"in Action"}
-          className="text-center flex gap-3 justify-start"
+          className="text-center flex justify-start "
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 mt-10">
@@ -71,7 +72,6 @@ const Work = () => {
 const ProjectCard = React.memo(({ item }) => {
   const [index, setIndex] = React.useState(0);
 
-  // Preload images
   React.useEffect(() => {
     item.img.forEach((src) => {
       const img = new Image();
@@ -79,7 +79,6 @@ const ProjectCard = React.memo(({ item }) => {
     });
   }, [item.img]);
 
-  // Loop images every 3 seconds
   React.useEffect(() => {
     if (item.img.length === 0) return;
     const interval = setInterval(() => {
@@ -91,8 +90,6 @@ const ProjectCard = React.memo(({ item }) => {
   return (
     <div className="relative z-0 overflow-hidden rounded-xl shadow-lg group">
       <PrimaryBg className="-top-28 -pr-40" />
-
-      {/* Image Container */}
       <div className="relative z-0 w-full bg-[#A4A7AC] h-80 md:h-96">
         {item.img.map((src, i) => (
           <motion.img
@@ -106,21 +103,28 @@ const ProjectCard = React.memo(({ item }) => {
           />
         ))}
 
-        {/* Overlay */}
-        <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black flex flex-row items-end justify-between p-3 md:p-6 text-white text-start font-Bai_Jamjuree group ">
-          <div className="max-w-xs md:max-w-md ">
-            <h2 className="text-xl md:text-3xl font-bold transform transition-all duration-500 group-hover:-translate-y-4">
+        {/* Overlay Responsive Layout */}
+        <div
+          className=" text-start absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col lg:flex-row items-start lg:items-end justify-end lg:justify-between p-5 text-white font-Bai_Jamjuree gap-4">
+         
+          {/* LEFT SIDE — Title + Text */}
+          <div className="w-[357px] gap-2">
+            <h2 className="text-lg md:text-2xl lg:text-3xl font-bold">
               {item.title}
             </h2>
-            <p className="md:text-xl md:mt-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-200">
+
+            <p className="text-sm md:text-base lg:text-lg mt-1 opacity-90">
               {item.text}
             </p>
           </div>
 
-          <div className="mt-1  min-w-max opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-200">
+          {/* RIGHT SIDE — Button (moves bottom on mobile) */}
+          <div className="w-full lg:w-auto">
             <Link to={item.Link}>
-              {" "}
-              <PrimaryBtn className="text-sm ">Learn More</PrimaryBtn>
+              <PrimaryBtn className="items-center gap-2 flex ">
+                Learn More
+                <FaArrowRight className="" />
+              </PrimaryBtn>
             </Link>
           </div>
         </div>

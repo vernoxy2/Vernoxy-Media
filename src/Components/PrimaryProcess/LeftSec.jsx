@@ -4,22 +4,18 @@ import BottomLine from "../BottomLine";
 import PrimaryObject from "../PrimaryObject";
 import src from "../../assets/Obj2.svg";
 
-const LeftSec = ({ planning }) => {
+const LeftSec = ({ planning, description, boldText, normalText }) => {
   return (
     <div className="space-y-24 ">
       {/* Heading Section */}
       <div className="text-start space-y-5">
         <Heading
-          boldText={"Our process of"}
-          normalText={"Customized CRM"}
+          boldText={boldText}
+          normalText={normalText}
           className={"text-start"}
         />
-        <p className="md:w-[82%]">
-          We follow a structured process to deliver customized CRM solutions.
-          From understanding your business needs and designing tailored
-          workflows to integrating features, testing, and providing ongoing
-          support, our approach ensures a CRM that fits your goals and drives
-          growth.
+        <p className="w-[82%]">
+          {description}
         </p>
         <BottomLine />
       </div>

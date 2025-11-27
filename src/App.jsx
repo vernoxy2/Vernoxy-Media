@@ -13,9 +13,10 @@ import Projects from "./Pages/Projects/Projects";
 
 // Services inner pages
 import WebDevelopment from "./Pages/Services/WebDevelopment/WebDevelopment";
-import GraphicsDesign from "./Pages/Services/GraphicsDesign/GraphicsDesign";
+// import GraphicsDesign from "./Pages/Services/GraphicsDesign/GraphicsDesign";
 import VideoEditing from "./Pages/Services/VideoEditing/VideoEditing";
 import DigitalMarketing from "./Pages/Services/DigitalMarketing/DigitalMarketing";
+import CustomizedApp from "./Pages/Services/CustomizedApp/CustomizedApp";
 
 const App = () => {
   return (
@@ -31,7 +32,8 @@ const App = () => {
           {/* Service inner pages */}
           <Route path="/services/digital_marketing" element={<DigitalMarketing />} />
           <Route path="/services/web_development" element={<WebDevelopment />} />
-          <Route path="/services/graphics_design" element={<GraphicsDesign />} />
+          <Route path="/services/customized_app" element={<CustomizedApp />} />
+          {/* <Route path="/services/graphics_design" element={<GraphicsDesign />} /> */}
           <Route path="/services/video_editing" element={<VideoEditing />} />
 
           <Route path="/products" element={<Projects />} />
