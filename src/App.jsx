@@ -13,10 +13,10 @@ import Projects from "./Pages/Projects/Projects";
 
 // Services inner pages
 import WebDevelopment from "./Pages/Services/WebDevelopment/WebDevelopment";
-import GraphicsDesign from "./Pages/Services/GraphicsDesign/GraphicsDesign";
+// import GraphicsDesign from "./Pages/Services/GraphicsDesign/GraphicsDesign";
 import VideoEditing from "./Pages/Services/VideoEditing/VideoEditing";
 import DigitalMarketing from "./Pages/Services/DigitalMarketing/DigitalMarketing";
-import CustomizedApp from "./Pages/Services/CustomizedApp/customizedApp";
+import CustomizedApp from "./Pages/Services/CustomizedApp/CustomizedApp";
 
 const App = () => {
   return (
