@@ -21,7 +21,7 @@ const Category = [
   {
     id: 3,
     name: "Application Development",
-    link: "/services/graphics_design",
+    link: "/services/customized_app",
   },
   {
     id: 4,

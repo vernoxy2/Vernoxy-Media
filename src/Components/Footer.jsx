@@ -19,7 +19,7 @@ const Links = [
 const SerLinkd = [
   { id: 1, name: "Digital Marketing", Link: "/services/digital_marketing" },
   { id: 2, name: "Web Development", Link: "/services/web_development" },
-  { id: 3, name: "Graphics Designer", Link: "/services/graphics_design" },
+  { id: 3, name: "Customized App", Link: "/services/customized_app" },
   { id: 4, name: "Video Editing", Link: "/services/video_editing" },
 ];
 
