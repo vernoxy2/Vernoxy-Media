@@ -57,10 +57,10 @@ const Planning = stepData.map((item) => {
 const VideoEditing = () => {
   return (
     <div className='overflow-hidden'>
-      <PrimaryHero title={"Service"} subtitle={"Coustomer CRM "} />
+      <PrimaryHero title={"Service"} subtitle={"Customized  CRM "} />
       <ServiceSlider/>
       <PrimaryBanner boldText={"Personalized CRM"} normalText={"Solutions that Fit You"} bannerImg={BannerImg} description={"A customized CRM solution designed to fit your unique business needs. It streamlines workflows, enhances customer management, and boosts team productivity. With flexible features and tailored modules, it adapts to your goals and drives long-term growth. Empower your business with a CRM that works the way you do, ensuring efficiency, scalability, and stronger customer relationships."}/>
-      <FatureKey boldText={"Key Feature of "} normalText={"Coustomer CRM"} Keybanner={keyBanner} KeyList={KeyItems}/>
+      <FatureKey boldText={"Key Feature of "} normalText={"Customized CRM"} Keybanner={keyBanner} KeyList={KeyItems}/>
       <PrimaryProcess Planning={Planning}/>
       <AIRevolution/>
     </div>

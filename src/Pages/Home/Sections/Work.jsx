@@ -29,27 +29,27 @@ const WorkData = [
   {
     id: 2,
     img: [Post1, Post2, Post3, Post4],
-    title: "Social Media Post Projects",
+    title: "Lead-Generating Digital Ad Campaign",
     text: "Discover our creative social media projects designed for innovation, growth, and success.",
     Link: "services/web_development",
   },
   {
     id: 3,
     img: [APro1, APro1],
-    title: "Our Application Projects",
+    title: "Mobile App for Retail Automation",
     text: "Discover our creative application projects designed for innovation, growth, and success.",
     Link: "services/web_development",
   },
   {
     id: 4,
-    img: [Vid1, Vid2, Vid3],
-    title: "Our Video Projects",
+    img: [ Vid2, Vid3],
+    title: "Custom CRM for Streamlined Sales Flow",
     text: "Discover our creative video projects designed for innovation, growth, and success.",
     Link: "services/video_editing",
   },
 ];
 
-const Work = () => {
+const   Work = () => {
   return (
     <section>
       <div className="container">

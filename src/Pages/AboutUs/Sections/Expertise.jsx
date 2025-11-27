@@ -10,7 +10,7 @@ import src1 from "../../../assets/Obj1.svg";
 const data = [
   {
     id: 1,
-    Count: "15+",
+    Count: "20+",
     text: "Industries Served Globally",
   },
   {
@@ -32,7 +32,7 @@ const Expertise = () => {
         <Heading
           boldText={
             <>
-              Over 15+ Clients Trust <br />
+              Over 100+ Clients Trust <br />
               <span className="font-normal">Our Expertise</span>
             </>
           }

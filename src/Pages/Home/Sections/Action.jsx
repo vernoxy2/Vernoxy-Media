@@ -10,10 +10,10 @@ import PrimaryObject from "../../../Components/PrimaryObject";
 
 // Data
 const Count = [
-  { id: 1, Count: "150+", text: "Projects Completed" },
-  { id: 2, Count: "10000+", text: "Leads Generated" },
-  { id: 3, Count: "120+", text: "Happy Clients" },
-  { id: 4, Count: "5+", text: "Years of Experience" },
+  { id: 1, Count: "100+", text: "Active Clients Worldwide" },
+  { id: 2, Count: "20+", text: "Industries Served" },
+  { id: 3, Count: "15+", text: "Countries Worked With" },
+  { id: 4, Count: "4x", text: "Boost Team Efficiency with CRM" },
 ];
 
 // Single Card Component

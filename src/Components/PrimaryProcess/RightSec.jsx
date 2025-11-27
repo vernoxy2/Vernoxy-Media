@@ -10,9 +10,10 @@ import src from "../../assets/Obj3.svg";
 const Category = [
   {
     id: 1,
-    name: "Digital Marketing & Branding",
-    link: "/services/digital_marketing",
+    name: "Application Development",
+    link: "/services/customized_app",
   },
+
   {
     id: 2,
     name: "Website Design & Development",
@@ -20,12 +21,12 @@ const Category = [
   },
   {
     id: 3,
-    name: "Application Development",
-    link: "/services/customized_app",
+    name: "Digital Marketing & Branding",
+    link: "/services/digital_marketing",
   },
   {
     id: 4,
-    name: "Customise CRM System",
+    name: "Customized CRM System",
     link: "/services/video_editing",
   },
 ];

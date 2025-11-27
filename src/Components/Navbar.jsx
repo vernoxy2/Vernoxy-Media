@@ -14,7 +14,7 @@ const navitems = [
       { name: "Customized App", path: "/services/customized_app" },
       { name: "Web Development", path: "/services/web_development" },
       { name: "Digital Marketing", path: "/services/digital_marketing" },
-      { name: "Video Editing", path: "/services/video_editing" },
+      { name: "Customized CRM", path: "/services/video_editing" },
     ],
   },
   { name: "Contact Us", path: "/contact-us" },

@@ -17,10 +17,10 @@ const Links = [
 ];
 
 const SerLinkd = [
-  { id: 1, name: "Digital Marketing", Link: "/services/digital_marketing" },
+  { id: 1, name: "Application Development", Link: "/services/customized_app" },
   { id: 2, name: "Web Development", Link: "/services/web_development" },
-  { id: 3, name: "Customized App", Link: "/services/customized_app" },
-  { id: 4, name: "Video Editing", Link: "/services/video_editing" },
+  { id: 3, name: "Digital Marketing", Link: "/services/digital_marketing" },
+  { id: 4, name: "Customized CRM", Link: "/services/video_editing" },
 ];
 
 const Soical = [
@@ -64,6 +64,14 @@ const Footer = () => {
             <h1 className="font-bold text-xl lg:text-2xl font-Bai_Jamjuree">
               +91 96241 50967
             </h1>
+            
+          </div>
+          <div className="flex gap-3">
+            <MdAddCall className="text-5xl text-primary" />
+            <h1 className="font-bold text-xl lg:text-2xl font-Bai_Jamjuree">
+              +1 (437) 559-8317
+            </h1>
+            
           </div>
           <div className="flex gap-3">
             <HiOutlineMail className="text-5xl text-primary" />
@@ -121,13 +129,18 @@ const Footer = () => {
             placeholder="Enter your email"
             className="bg-[#D9D9D9]/10 p-4 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-primary"
           />
-          <PrimaryBtn type="submit" className="w-full">Subscribe</PrimaryBtn>
+          <PrimaryBtn type="submit" className="w-full">
+            Subscribe
+          </PrimaryBtn>
           <div className="flex items-center gap-3">
-            <LuMapPin className="text-[180px] text-primary " />
+            <LuMapPin className="text-7xl text-primary " />
             <p className="font-Mulish ">
-              Kalaji Business Center, Dharampur Chokdi, NH8, near Saurashtra
-              Kadva Patidar Samaj Vadi, Abrama Village, Valsad, Gujarat 396001
+              513, KBC Complex , Dharampur Chokdi, Valsad, Gujarat 396001
             </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <LuMapPin className="text-6xl text-primary " />
+            <p className="font-Mulish ">London, Ontario, Canada</p>
           </div>
         </div>
       </div>
@@ -153,7 +166,11 @@ const Footer = () => {
 
         {/* Background image centered at bottom */}
         <div className="absolute -bottom-[460px] left-1/2 -translate-x-1/2 z-0">
-          <img src={bg} alt="Background Blur" className="object-cover rotate-180" />
+          <img
+            src={bg}
+            alt="Background Blur"
+            className="object-cover rotate-180"
+          />
         </div>
       </div>
     </section>
