@@ -35,22 +35,22 @@ const Future = () => {
       <Heading
         boldText={"Innovating the Future"}
         normalText={"With Vernoxy"}
-        className={"container gap-4 flex justify-start"}
+        className={"container gap-4 flex-row justify-start text-start"}
       ></Heading>
-      <div className="container relative -z-0 grid grid-cols-1 lg:grid-cols-2 gap-7">
-        <div className="py-0 p-6 space-y-6 ">
+      <div className="container relative -z-0 grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="py-0 p-3 md:p-6 space-y-3 md:space-y-6 ">
             {InnovatingData.map((item) => (
                 <div key={item.id} className="text-left space-y-4">
-                    <h2 className="text-3xl font-semibold">{item.title}</h2>
+                    <h2 className="text-2xl md:text-3xl font-semibold">{item.title}</h2>
                     <BottomLine className=""/>
-                    <p className="text-xl font-semibold w-[92%]">{item.text}</p>
+                    <p className=" md:text-xl font-semibold md:w-[92%]">{item.text}</p>
                 </div>
             ))}
         </div>
         <div className="">
             <img src={Img1} alt=""  className="mx-auto my-auto"/>
         </div>
-        <PrimaryObject src={src} className="right-0 -bottom-52  " />
+        <PrimaryObject src={src} className="right-0 -bottom-40 md:-bottom-52 -z-[9999] " />
         <PrimaryBg className="-top-20"/>
       </div>
     </section>

@@ -31,7 +31,7 @@ const Who = () => {
               key={index}
               src={src}
               alt="Who We Are"
-              className={`absolute top-0 left-0  h-full object-cover transition-opacity duration-1000 ${
+              className={`absolute top-0 left-0  lg:h-full object-cover transition-opacity duration-1000 ${
                 index === currentIndex ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -47,7 +47,7 @@ const Who = () => {
           <div></div>
 
           {/* Right column */}
-          <div className="space-y-4 md:space-y-5 text-left mb-auto">
+          <div className="space-y-4 md:space-y-5 text-left mb-auto container">
             <Heading
               boldText="Who"
               normalText="We Are"

@@ -14,7 +14,7 @@ const LeftSec = ({ planning }) => {
           normalText={"Customized CRM"}
           className={"text-start"}
         />
-        <p className="w-[82%]">
+        <p className="md:w-[82%]">
           We follow a structured process to deliver customized CRM solutions.
           From understanding your business needs and designing tailored
           workflows to integrating features, testing, and providing ongoing

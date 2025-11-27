@@ -9,7 +9,7 @@ const Offer = () => {
       <Heading
         boldText={"What"}
         normalText={"We Offer"}
-        className={"text-center flex gap-4 justify-center "}
+        className={"text-center flex gap-3 justify-center "}
       ></Heading>
       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
         <div className="bg-gradient-to-b from-primary/20 hover:from-primary/40  to-vernoxy border-[2px] border-vernoxy hover:border-primary/40 duration-500 transform text-white h-[275px] rounded-lg  md:col-span-2"></div>

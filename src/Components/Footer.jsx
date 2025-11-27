@@ -121,7 +121,7 @@ const Footer = () => {
             placeholder="Enter your email"
             className="bg-[#D9D9D9]/10 p-4 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-primary"
           />
-          <PrimaryBtn className="w-full">Subscribe</PrimaryBtn>
+          <PrimaryBtn type="submit" className="w-full">Subscribe</PrimaryBtn>
           <div className="flex items-center gap-3">
             <LuMapPin className="text-[180px] text-primary " />
             <p className="font-Mulish ">
@@ -133,18 +133,18 @@ const Footer = () => {
       </div>
       <div className="relative z-10">
         {/* Gradient divider line */}
-        <div className="bg-gradient-to-r from-primary via-black to-primary h-[3px]" />
+        <div className="bg-gradient-to-r from-primary/50 via-black to-primary/50 h-[3px]" />
 
         {/* Floating social icons */}
         <div
-          className="flex gap-5 justify-center absolute w-full -top-6 left-1/2 -translate-x-1/2 
+          className="flex gap-5 justify-center absolute w-full -top-[18px] md:-top-6 left-1/2 -translate-x-1/2 
                 px-4 py-2 rounded-lg z-20"
         >
           {Soical.map((item) => (
             <Link
               to={item.Link}
               key={item.id}
-              className="text-4xl text-primary hover:text-white duration-300 transition-colors"
+              className=" text-2xl md:text-4xl text-primary hover:text-white duration-300 transition-colors"
             >
               {item.icon}
             </Link>

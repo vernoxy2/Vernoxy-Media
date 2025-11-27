@@ -18,7 +18,7 @@ const avatars = [
 
 const AIRevolution = () => {
   return (
-    <section className="-space-y-16">
+    <section className="-space-y-3 md:-space-y-16">
       <div className="container grid grid-cols-1 md:grid-cols-2 gap-7 relative z-20">
         {/* Left column */}
         <div className="flex flex-col items-start space-y-4 ">
@@ -69,12 +69,12 @@ const AIRevolution = () => {
         <img src={Earth} alt="Earth" className="mx-auto pointer-events-none" />
 
         {/* Orbit Images */}
-        <div className="mx-auto absolute top-14 right-1/2 translate-x-1/2 pointer-events-none">
+        <div className="mx-auto absolute top-20 md:top-16 right-1/2 translate-x-1/2 pointer-events-none w-[85%] md:w-[70%] lg:w-auto">
           <img src={Right} alt="Right Orbit" className="animate-Efloat" />
           <img
             src={Left}
             alt="Left Orbit"
-            className="absolute top-0 animate-Efloat"
+            className="absolute top-0 animate-Efloat "
           />
         </div>
 

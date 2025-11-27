@@ -45,13 +45,14 @@ const Soical = [
 const Form = () => {
   return (
     <section className="relative overflow-hidden">
-  <div className="container grid grid-cols-1 lg:grid-cols-2 gap-y-28 relative z-10">
+  <div className="container grid grid-cols-1 lg:grid-cols-2 gap-y-28 relative">
+
     {/* Background elements */}
-    <PrimaryBg className="pr-[65rem] -top-52 z-0" />
-    <PrimaryBg className="pl-[60rem] -bottom-48 z-0" />
+    <PrimaryBg className="absolute pr-[65rem] -top-52 -z-20" />
+    <PrimaryBg className="absolute pl-[60rem] -bottom-48 -z-20" />
 
     {/* Contact Details (always above background) */}
-    <div className="text-start md:w-[86%] lg:w-[75%] space-y-6 relative z-20">
+    <div className="text-start md:w-[86%] lg:w-[75%] space-y-6 relative z-10">
       <p>
         Have questions or want to elevate your brand’s digital presence? Our
         team at [Vernoxy Media] is here to help. Whether it’s creative
@@ -103,12 +104,12 @@ const Form = () => {
     </div>
 
     {/* Contact Form */}
-    <div className="p-6 md:p-12 relative z-20">
+    <div className="p-6 md:p-12 relative z-10">
       {/* Decorative corners */}
-      <img src={LeftTop} alt="" className="absolute left-0 top-0 object-contain z-0" />
-      <img src={LeftBottom} alt="" className="absolute left-0 bottom-0 object-contain z-0" />
-      <img src={RightTop} alt="" className="absolute right-0 top-0 object-contain z-0" />
-      <img src={RightBottom} alt="" className="absolute right-0 bottom-0 object-contain z-0" />
+      <img src={LeftTop} alt="" className="absolute left-0 top-0 object-contain -z-10" />
+      <img src={LeftBottom} alt="" className="absolute left-0 bottom-0 object-contain -z-10" />
+      <img src={RightTop} alt="" className="absolute right-0 top-0 object-contain -z-10" />
+      <img src={RightBottom} alt="" className="absolute right-0 bottom-0 object-contain -z-10" />
 
       <div className="h-full bg-[#464646]/50 p-5 md:p-10 rounded-sm relative z-10 backdrop-blur-md">
         <p className="font-Bai_Jamjuree text-2xl md:text-3xl">Contact Form</p>
@@ -123,8 +124,9 @@ const Form = () => {
   </div>
 
   {/* Floating decorative object */}
-  <PrimaryObject src={src} className="-top-14 right-0 z-0" />
+  <PrimaryObject src={src} className="absolute -top-14 right-0 -z-20" />
 </section>
+
 
   );
 };

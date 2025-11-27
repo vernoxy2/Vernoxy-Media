@@ -57,7 +57,7 @@ const Action = () => {
       <Heading
         boldText={"See Vernoxy"}
         normalText={" in Action"}
-        className="text-start flex justify-start"
+        className="text-start flex-col justify-start"
       />
 
       {/* Video */}

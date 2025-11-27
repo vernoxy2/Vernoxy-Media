@@ -55,7 +55,7 @@ const Work = () => {
         <Heading
           boldText={"Our Work"}
           normalText={"in Action"}
-          className="text-center flex justify-start"
+          className="text-center flex gap-3 justify-start"
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 mt-10">
@@ -107,20 +107,20 @@ const ProjectCard = React.memo(({ item }) => {
         ))}
 
         {/* Overlay */}
-        <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black flex flex-row items-end justify-between p-6 text-white text-start font-Bai_Jamjuree group ">
-          <div className="max-w-md ">
-            <h2 className="text-3xl font-bold transform transition-all duration-500 group-hover:-translate-y-4">
+        <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black flex flex-row items-end justify-between p-3 md:p-6 text-white text-start font-Bai_Jamjuree group ">
+          <div className="max-w-xs md:max-w-md ">
+            <h2 className="text-xl md:text-3xl font-bold transform transition-all duration-500 group-hover:-translate-y-4">
               {item.title}
             </h2>
-            <p className="text-xl mt-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-200">
+            <p className="md:text-xl md:mt-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-200">
               {item.text}
             </p>
           </div>
 
-          <div className="mt-1 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-200">
+          <div className="mt-1  min-w-max opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-200">
             <Link to={item.Link}>
               {" "}
-              <PrimaryBtn>Learn More</PrimaryBtn>
+              <PrimaryBtn className="text-sm ">Learn More</PrimaryBtn>
             </Link>
           </div>
         </div>

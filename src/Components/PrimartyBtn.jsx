@@ -1,11 +1,12 @@
 import React from "react";
 
-const PrimaryBtn = ({ children, className = "" }) => {
+const PrimaryBtn = ({ children, className = "", onClick, type = "button", ...props }) => {
   return (
     <button
-      onClick={() => console.log({ children })}
-      className={`bg-gradient-to-r from-primary to-white text-[#1168B5] font-bold px-7 py-2 rounded-md hover:scale-90 duration-300  md:text-lg ${className}`}
-      type="button"
+      type={type}
+      onClick={onClick}
+      className={`bg-gradient-to-r from-primary to-white text-[#1168B5] font-bold px-7 py-2 rounded-md hover:scale-95 duration-300 md:text-lg ${className}`}
+      {...props}
     >
       {children}
     </button>
