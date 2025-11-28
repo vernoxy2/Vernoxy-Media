@@ -33,7 +33,7 @@ const Social  = [
   {
     id: 4,
     icon: <TiSocialInstagram />,
-    Link: "https://www.instagram.com/",
+    Link: "https://www.instagram.com/vernoxy_media/",
   },
   {
     id: 5,
@@ -157,13 +157,15 @@ React.useEffect(() => {
             <p className="font-bold mb-3">SOCIAL NETWORK</p>
             <div className="flex gap-6">
               {Social .map((item) => (
-                <Link
-                  to={item.Link}
+                <a
+                  href={item.Link}
+                  target="_blank"
+                  rel="noreferrer noopenner"
                   key={item.id}
                   className="text-3xl text-primary hover:text-white duration-300 transition-colors"
                 >
                   {item.icon}
-                </Link>
+                </a>
               ))}
             </div>
           </div>
