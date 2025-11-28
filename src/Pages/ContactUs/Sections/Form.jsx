@@ -14,7 +14,7 @@ import PrimaryBg from "../../../Components/PrimaryBg";
 import PrimaryObject from "../../../Components/PrimaryObject";
 import src from "../../../assets/Obj2.svg";
 
-const Soical = [
+const Social  = [
   {
     id: 1,
     icon: <FaFacebookF />,
@@ -43,91 +43,200 @@ const Soical = [
 ];
 
 const Form = () => {
+  // Capture Form Data
+  const [formData, setFormData] = React.useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  // Capture Form Data Change
+  
+
+  // Error Message
+  const [errors, setErrors] = React.useState({});
+
+  // Reset Form
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+    });
+  };
+
+  // Update State When User Types
+ const handleChange = (e) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
+  });
+};
+
+// useEffect at the top level of your component
+React.useEffect(() => {
+  // console.log("Form data changed:", formData); // ✅ logs latest values
+}, [formData]);
+
+
+  // Add Error Handling
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newErrors = {};
+
+    // Validate form data here
+    if (!formData.name) newErrors.name = "Name is required";
+    if (!formData.email) newErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      newErrors.email = "Invalid email format";
+    if (!formData.message) newErrors.message = "Message is required";
+
+    // Set errors
+    setErrors(newErrors);
+
+    // If there are errors, stop submission
+    if (Object.keys(newErrors).length > 0) return;
+
+    // Submit data
+    console.log("✅ Form Submitted:", formData);
+
+    // Clear form
+    resetForm();
+  };
+
   return (
     <section className="relative overflow-hidden">
-  <div className="container grid grid-cols-1 lg:grid-cols-2 gap-y-28 relative">
+      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-y-28 relative">
+        {/* Background elements */}
+        <PrimaryBg className="absolute pr-[65rem] -top-52 -z-20" />
+        <PrimaryBg className="absolute pl-[60rem] -bottom-48 -z-20" />
 
-    {/* Background elements */}
-    <PrimaryBg className="absolute pr-[65rem] -top-52 -z-20" />
-    <PrimaryBg className="absolute pl-[60rem] -bottom-48 -z-20" />
+        {/* Contact Details (always above background) */}
+        <div className="text-start md:w-[86%] lg:w-[75%] space-y-6 relative z-10">
+          <p>
+            Have questions or want to elevate your brand’s digital presence? Our
+            team at [Vernoxy Media] is here to help. Whether it’s creative
+            design, strategic marketing, or innovative digital solutions, we’re
+            ready to listen and craft a plan tailored to your goals.
+          </p>
+          <BottomLine />
 
-    {/* Contact Details (always above background) */}
-    <div className="text-start md:w-[86%] lg:w-[75%] space-y-6 relative z-10">
-      <p>
-        Have questions or want to elevate your brand’s digital presence? Our
-        team at [Vernoxy Media] is here to help. Whether it’s creative
-        design, strategic marketing, or innovative digital solutions, we’re
-        ready to listen and craft a plan tailored to your goals.
-      </p>
-      <BottomLine />
+          {/* icons and text */}
+          <div className="py-5 space-y-6">
+            {/* Call */}
+            <div className="flex gap-4 items-center">
+              <MdAddCall className="border-2 border-primary rounded-full p-4 text-7xl" />
+              <div>
+                <p>GIVE US A CALL</p>
+                <a
+                  href="tel:+91 96241 50967"
+                  className="text-2xl md:text-3xl font-Bai_Jamjuree font-extrabold"
+                >
+                  + 91 96241 50967
+                </a>
+              </div>
+            </div>
 
-      {/* icons and text */}
-      <div className="py-5 space-y-6">
-        {/* Call */}
-        <div className="flex gap-4 items-center">
-          <MdAddCall className="border-2 border-primary rounded-full p-4 text-7xl" />
+            {/* Email */}
+            <div className="flex gap-4 items-center">
+              <MdEmail className="border-2 border-primary rounded-full p-4 text-7xl" />
+              <div>
+                <p>SEND US A MESSAGE</p>
+                <a
+                  href="mailto:vernoxyM@gmail.com"
+                  className="text-2xl md:text-3xl font-Bai_Jamjuree font-extrabold"
+                >
+                  vernoxyM@gmail.com
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Social Network */}
           <div>
-            <p>GIVE US A CALL</p>
-            <Link to="tel:+91 96241 50967" className="text-2xl md:text-3xl font-Bai_Jamjuree font-extrabold">
-              + 91 96241 50967
-            </Link>
+            <p className="font-bold mb-3">SOCIAL NETWORK</p>
+            <div className="flex gap-6">
+              {Social .map((item) => (
+                <Link
+                  to={item.Link}
+                  key={item.id}
+                  className="text-3xl text-primary hover:text-white duration-300 transition-colors"
+                >
+                  {item.icon}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Email */}
-        <div className="flex gap-4 items-center">
-          <MdEmail className="border-2 border-primary rounded-full p-4 text-7xl" />
-          <div>
-            <p>SEND US A MESSAGE</p>
-            <Link to="mailto:vernoxyM@gmail.com" className="text-2xl md:text-3xl font-Bai_Jamjuree font-extrabold">
-              vernoxyM@gmail.com
-            </Link>
+        {/* Contact Form */}
+        <div className="p-6 md:p-12 relative z-10">
+          {/* Decorative corners */}
+          <img
+            src={LeftTop}
+            alt=""
+            className="absolute left-0 top-0 object-contain -z-10"
+          />
+          <img
+            src={LeftBottom}
+            alt=""
+            className="absolute left-0 bottom-0 object-contain -z-10"
+          />
+          <img
+            src={RightTop}
+            alt=""
+            className="absolute right-0 top-0 object-contain -z-10"
+          />
+          <img
+            src={RightBottom}
+            alt=""
+            className="absolute right-0 bottom-0 object-contain -z-10"
+          />
+
+          <div className="h-full bg-[#464646]/50 p-5 md:p-10 rounded-sm relative z-10 backdrop-blur-md">
+            <p className="font-Bai_Jamjuree text-2xl md:text-3xl">
+              Contact Form
+            </p>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5 pt-5">
+              <input
+                name="name"
+                type="text"
+                placeholder="Name"
+                className="input-style"
+                onChange={handleChange}
+                value={formData.name}
+                required
+                {...(errors.name && { "aria-invalid": true })}
+              />
+              <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                className="input-style"
+                onChange={handleChange}
+                value={formData.email}
+                required
+                {...(errors.email && { "aria-invalid": true })}
+              />
+              <textarea
+                name="message"
+                rows="5"
+                placeholder="Message"
+                className="input-style"
+                onChange={handleChange}
+                value={formData.message}
+                required
+                {...(errors.message && { "aria-invalid": true })}
+              ></textarea>
+              <PrimaryBtn type="submit">Send Message</PrimaryBtn>
+            </form>
           </div>
         </div>
       </div>
 
-      {/* Social Network */}
-      <div>
-        <p className="font-bold mb-3">SOCIAL NETWORK</p>
-        <div className="flex gap-6">
-          {Soical.map((item) => (
-            <Link
-              to={item.Link}
-              key={item.id}
-              className="text-3xl text-primary hover:text-white duration-300 transition-colors"
-            >
-              {item.icon}
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-
-    {/* Contact Form */}
-    <div className="p-6 md:p-12 relative z-10">
-      {/* Decorative corners */}
-      <img src={LeftTop} alt="" className="absolute left-0 top-0 object-contain -z-10" />
-      <img src={LeftBottom} alt="" className="absolute left-0 bottom-0 object-contain -z-10" />
-      <img src={RightTop} alt="" className="absolute right-0 top-0 object-contain -z-10" />
-      <img src={RightBottom} alt="" className="absolute right-0 bottom-0 object-contain -z-10" />
-
-      <div className="h-full bg-[#464646]/50 p-5 md:p-10 rounded-sm relative z-10 backdrop-blur-md">
-        <p className="font-Bai_Jamjuree text-2xl md:text-3xl">Contact Form</p>
-        <form className="flex flex-col gap-5 pt-5">
-          <input type="text" placeholder="Name" className="input-style" />
-          <input type="email" placeholder="Email" className="input-style" />
-          <textarea rows="5" placeholder="Message" className="input-style"></textarea>
-          <PrimaryBtn>Send Message</PrimaryBtn>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  {/* Floating decorative object */}
-  <PrimaryObject src={src} className="absolute -top-14 right-0 -z-20" />
-</section>
-
-
+      {/* Floating decorative object */}
+      <PrimaryObject src={src} className="absolute -top-14 right-0 -z-20" />
+    </section>
   );
 };
 
