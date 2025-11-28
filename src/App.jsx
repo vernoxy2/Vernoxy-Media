@@ -17,6 +17,7 @@ import WebDevelopment from "./Pages/Services/WebDevelopment/WebDevelopment";
 import VideoEditing from "./Pages/Services/VideoEditing/VideoEditing";
 import DigitalMarketing from "./Pages/Services/DigitalMarketing/DigitalMarketing";
 import CustomizedApp from "./Pages/Services/CustomizedApp/CustomizedApp";
+import NotFound from "./Pages/NotFound";
 
 const App = () => {
   return (
@@ -42,7 +43,7 @@ const App = () => {
           {/* 404 fallback */}
           <Route
             path="*"
-            element={<div className="p-8 text-3xl text-center">404 - Page Not Found</div>}
+            element={<NotFound />}
           />
         </Routes>
         <Footer />

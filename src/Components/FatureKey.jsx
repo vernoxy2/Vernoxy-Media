@@ -18,11 +18,11 @@ const FatureKey = ({ boldText, normalText, KeyList, Keybanner }) => {
           />
           <BottomLine className="mx-auto lg:mx-0" />
 
-          <div className="mx-auto text-center lg:text-left">
+          <div className="mx-auto text-left">
             <ul className="mt-10 space-y-4 md:space-y-6">
               {KeyList?.map((item, index) => (
                 <li
-                  className="flex items-center justify-center lg:justify-start gap-3"
+                  className="flex items-center justify-start gap-3"
                   key={index}
                 >
                   <img src={icon} alt="list-icon" className="" />
@@ -34,7 +34,7 @@ const FatureKey = ({ boldText, normalText, KeyList, Keybanner }) => {
         </div>
 
         {/* Right Content */}
-        <div className="mx-auto">
+        <div className="flex items-center justify-center">
           <img
             src={Keybanner}
             alt="feature-banner"
