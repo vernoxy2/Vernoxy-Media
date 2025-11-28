@@ -47,7 +47,7 @@ const Future = () => {
                 </div>
             ))}
         </div>
-        <div className="">
+        <div className="flex items-center justify-center">
             <img src={Img1} alt=""  className="mx-auto my-auto"/>
         </div>
         <PrimaryObject src={src} className="right-0 -bottom-40 md:-bottom-52 -z-[9999] " />

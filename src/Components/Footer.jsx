@@ -9,6 +9,7 @@ import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
 import { TiSocialInstagram } from "react-icons/ti";
 import { RiTwitterXFill } from "react-icons/ri";
 import PrimaryBg from "./PrimaryBg";
+import { IoLocationOutline } from "react-icons/io5";
 
 const Links = [
   { id: 1, name: "Home", Link: "/" },
@@ -17,7 +18,7 @@ const Links = [
 ];
 
 const SerLinkd = [
-  { id: 1, name: "Application Development", Link: "/services/customized_app" },
+  { id: 1, name: "Application Development", Link: "/services/app_development" },
   { id: 2, name: "Web Development", Link: "/services/web_development" },
   { id: 3, name: "Digital Marketing", Link: "/services/digital_marketing" },
   { id: 4, name: "Customized CRM", Link: "/services/video_editing" },
@@ -27,12 +28,12 @@ const Soical = [
   {
     id: 1,
     icon: <FaWhatsapp />,
-    Link: "https://www.whatsapp.com/",
+    Link: "https://api.whatsapp.com/send/?phone=919624150967&text&type=phone_number&app_absent=0",
   },
   {
     id: 2,
     icon: <FaFacebookF />,
-    Link: "https://www.facebook.com/",
+    Link: "https://www.facebook.com/profile.php?id=61577085965987",
   },
   {
     id: 3,
@@ -64,14 +65,12 @@ const Footer = () => {
             <h1 className="font-bold text-xl lg:text-2xl font-Bai_Jamjuree">
               +91 96241 50967
             </h1>
-            
           </div>
           <div className="flex gap-3">
             <MdAddCall className="text-5xl text-primary" />
             <h1 className="font-bold text-xl lg:text-2xl font-Bai_Jamjuree">
               +1 (437) 559-8317
             </h1>
-            
           </div>
           <div className="flex gap-3">
             <HiOutlineMail className="text-5xl text-primary" />
@@ -120,8 +119,8 @@ const Footer = () => {
         </div>
 
         {/* Fourth column */}
-        <div className="text-start space-y-5 lg:w-[90%] lg:ml-auto col-span-2">
-          <h1 className="font-extrabold text-3xl text-primary font-Bai_Jamjuree">
+        <div className="text-start space-y-4 lg:w-[90%] lg:ml-auto col-span-2">
+          <h1 className="font-extrabold text-3xl  md:text-2xl text-primary font-Bai_Jamjuree">
             Subscribe Our Newsletter
           </h1>
           <input
@@ -132,15 +131,19 @@ const Footer = () => {
           <PrimaryBtn type="submit" className="w-full">
             Subscribe
           </PrimaryBtn>
-          <div className="flex items-center gap-3">
-            <LuMapPin className="text-7xl text-primary " />
+          <div className="flex items-start gap-1 md:gap-3 ">
+            <LuMapPin
+              className="min-h-12 min-w-12 text-primary flex items-center  "
+            />
             <p className="font-Mulish ">
               513, KBC Complex , Dharampur Chokdi, Valsad, Gujarat 396001
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            <LuMapPin className="text-6xl text-primary " />
-            <p className="font-Mulish ">London, Ontario, Canada</p>
+          <div className="flex items-center justify-start gap-1 md:gap-3 ">
+            <LuMapPin
+              className="min-w-12 min-h-12 text-primary flex items-center  justify-center "
+            />
+            <p className="font-Mulish ">London, Ontario, Canada.</p>
           </div>
         </div>
       </div>

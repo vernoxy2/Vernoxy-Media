@@ -32,7 +32,7 @@ const App = () => {
           {/* Service inner pages */}
           <Route path="/services/digital_marketing" element={<DigitalMarketing />} />
           <Route path="/services/web_development" element={<WebDevelopment />} />
-          <Route path="/services/customized_app" element={<CustomizedApp />} />
+          <Route path="/services/app_development" element={<CustomizedApp />} />
           {/* <Route path="/services/graphics_design" element={<GraphicsDesign />} /> */}
           <Route path="/services/video_editing" element={<VideoEditing />} />
 

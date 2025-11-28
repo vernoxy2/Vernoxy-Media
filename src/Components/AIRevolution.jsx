@@ -1,7 +1,11 @@
 import React from "react";
 import Heading from "./Heading";
 import PrimaryBtn from "./PrimartyBtn";
-import AvatarsImg from "../assets/HomePageImgs/Avatars.png";
+import AvatarsImg1 from "../assets/HomePageImgs/Avatar1.svg";
+import AvatarsImg2 from "../assets/HomePageImgs/Avatar2.svg";
+import AvatarsImg3 from "../assets/HomePageImgs/Avatar3.svg";
+import AvatarsImg4 from "../assets/HomePageImgs/Avatar5.svg";
+import AvatarsImg5 from "../assets/HomePageImgs/Avatar5.svg";
 import Earth from "../assets/HomePageImgs/Earth.svg";
 import Right from "../assets/HomePageImgs/Right.svg";
 import Left from "../assets/HomePageImgs/Left.svg";
@@ -10,10 +14,10 @@ import Ttusted_Globally from "../assets/HomePageImgs/Ttusted_Globally.png";
 import { Link } from "react-router-dom";
 
 const avatars = [
-  { id: 1, src: AvatarsImg, alt: "Customer 1" },
-  { id: 2, src: AvatarsImg, alt: "Customer 2" },
-  { id: 3, src: AvatarsImg, alt: "Customer 3" },
-  { id: 4, src: AvatarsImg, alt: "Customer 3" },
+  { id: 1, src: AvatarsImg1, alt: "Customer 1" },
+  { id: 2, src: AvatarsImg2, alt: "Customer 2" },
+  { id: 3, src: AvatarsImg3, alt: "Customer 3" },
+  { id: 4, src: AvatarsImg4, alt: "Customer 3" },
 ];
 
 const AIRevolution = () => {
@@ -23,14 +27,12 @@ const AIRevolution = () => {
         {/* Left column */}
         <div className="flex flex-col items-start space-y-4 ">
           <Heading
-            boldText={"join the"}
-            normalText={"AI Revolution"}
+            boldText={"Empower Your "}
+            normalText={"Digital Future"}
             className="text-start"
           />
           <p className="text-start max-w-xl">
-            Step into the AI era. Let’s connect today and explore how our
-            solutions can help you harness the true power of AI to drive your
-            business forward.
+            Unlock the full potential of your business with cutting-edge Website design, Custom Applications, Digital marketing, and CRM solutions tailored to your growth.
           </p>
           <div>
             <Link to="/contact-us">

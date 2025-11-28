@@ -11,7 +11,7 @@ const Category = [
   {
     id: 1,
     name: "Application Development",
-    link: "/services/customized_app",
+    link: "/services/app_development",
   },
 
   {
@@ -36,13 +36,13 @@ const RightSec = () => {
     <div className="relative z-10 ">
       {/* Services Category with Links */}
       <div className="my-20 rounded-3xl bg-[#464646]/30 backdrop-blur-md text-start">
-        <div className="px-10 py-8">
+        <div className="px-6 md:px-10  py-8">
           <h1 className="text-3xl font-bold font-Bai_Jamjuree">
             Services Category
           </h1>
         </div>
         <hr className="border border-[#464646]" />
-        <div className="px-10 py-7 pb-14">
+        <div className=" px-6 md:px-10 py-4 md:py-7 pb-7 md:pb-14">
           <div>
             {Category.map((item, index) => (
               <NavLink

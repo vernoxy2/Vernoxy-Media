@@ -6,7 +6,7 @@ const ContactUs = () => {
   return (
     <div>
       <div className="pb-0">
-        <PrimaryHero title={"Contacts"} subtitle={"Get in Touch with us"} />
+        <PrimaryHero title={"Contact Us"} subtitle={"Get in Touch with us"} />
       </div>
       <Form />
       <Map />

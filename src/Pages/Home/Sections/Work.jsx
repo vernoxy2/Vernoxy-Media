@@ -22,7 +22,7 @@ const WorkData = [
   {
     id: 1,
     img: [WPro1, WPro2, WPro3, WPro4],
-    title: "Our Website Projects",
+    title: "Innovative Website Solutions",
     text: "Discover our creative website projects designed for innovation, growth, and success.",
     Link: "services/web_development",
   },
@@ -42,21 +42,21 @@ const WorkData = [
   },
   {
     id: 4,
-    img: [ Vid2, Vid3],
+    img: [Vid2, Vid3],
     title: "Custom CRM for Streamlined Sales Flow",
     text: "Discover our creative video projects designed for innovation, growth, and success.",
     Link: "services/video_editing",
   },
 ];
 
-const   Work = () => {
+const Work = () => {
   return (
     <section>
       <div className="container">
         <Heading
           boldText={"Our Work"}
           normalText={"in Action"}
-          className="text-center flex justify-start "
+          className="text-center flex justify-start w-full gap-4"
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 mt-10">
@@ -104,28 +104,29 @@ const ProjectCard = React.memo(({ item }) => {
         ))}
 
         {/* Overlay Responsive Layout */}
-        <div
-          className=" text-start absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col lg:flex-row items-start lg:items-end justify-end lg:justify-between p-5 text-white font-Bai_Jamjuree gap-4">
-         
-          {/* LEFT SIDE — Title + Text */}
-          <div className="w-[357px] gap-2">
-            <h2 className="text-lg md:text-2xl lg:text-3xl font-bold">
-              {item.title}
-            </h2>
+        <div className=" text-start absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col lg:flex-row items-start lg:items-end justify-end lg:justify-between p-5 text-white font-Bai_Jamjuree gap-y-4">
+        {/* sides */}
+          <div className=" flex flex-col xl:flex-row gap-y-4">
+            {/* LEFT SIDE — Title + Text */}
+            <div className="w-fit gap-2">
+              <h2 className="text-lg md:text-2xl lg:text-3xl font-bold">
+                {item.title}
+              </h2>
 
-            <p className="text-sm md:text-base lg:text-lg mt-1 opacity-90">
-              {item.text}
-            </p>
-          </div>
+              <p className="text-sm md:text-base lg:text-lg mt-1 opacity-90">
+                {item.text}
+              </p>
+            </div>
 
-          {/* RIGHT SIDE — Button (moves bottom on mobile) */}
-          <div className="w-full lg:w-auto">
-            <Link to={item.Link}>
-              <PrimaryBtn className="items-center gap-2 flex ">
-                Learn More
-                <FaArrowRight className="" />
-              </PrimaryBtn>
-            </Link>
+            {/* RIGHT SIDE — Button (moves bottom on mobile) */}
+            <div className=" flex items-end xl:justify-end">
+              <Link to={item.Link}>
+                <PrimaryBtn className="items-center gap-2 flex ">
+                  Learn More
+                  <FaArrowRight className="" />
+                </PrimaryBtn>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

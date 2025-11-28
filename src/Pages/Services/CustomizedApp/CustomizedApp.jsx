@@ -61,7 +61,7 @@ const CustomizedApp = () => {
     <div className="overflow-hidden">
       <PrimaryHead
         title={"Customized App"}
-        subtitle={"Customized App"}
+        subtitle={"Your vision, precisely engineered"}
       />
       <ServiceSlider />
       <PrimaryBanner

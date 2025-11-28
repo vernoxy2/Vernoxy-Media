@@ -14,20 +14,20 @@ const LeftSec = ({ planning, description, boldText, normalText }) => {
           normalText={normalText}
           className={"text-start"}
         />
-        <p className="w-[82%]">
+        <p className="xl:w-[82%]">
           {description}
         </p>
         <BottomLine />
       </div>
 
       {/* Steps Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-8 lg:pr-32 relative z-0">
+      <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-8 xl:pr-32 relative z-0">
         {planning.map((item, index) => {
           const isStep = item.Step;
           return (
             <div
               key={index}
-              className="bg-[#464646]/30 backdrop-blur-md rounded-xl border border-primary/30 flex flex-col items-center text-center hover:scale-110 duration-500 hover:shadow-2xl shadow-primary"
+              className="bg-[#464646]/30 backdrop-blur-md rounded-xl border border-primary/30 flex flex-col items-center text-center hover:scale-105 duration-300 hover:shadow-[0_0_12px_3px] hover:shadow-primary/70"
             >
               {isStep ? (
                 <div className=" p-3 md:p-7 h-full flex flex-col justify-between text-start">

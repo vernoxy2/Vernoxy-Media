@@ -18,7 +18,7 @@ const Soical = [
   {
     id: 1,
     icon: <FaFacebookF />,
-    Link: "https://www.facebook.com/",
+    Link: "https://www.facebook.com/profile.php?id=61577085965987",
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const Soical = [
   {
     id: 3,
     icon: <FaWhatsapp />,
-    Link: "https://www.whatsapp.com/",
+    Link: "https://api.whatsapp.com/send/?phone=919624150967&text&type=phone_number&app_absent=0",
   },
   {
     id: 4,
@@ -68,9 +68,9 @@ const Form = () => {
           <MdAddCall className="border-2 border-primary rounded-full p-4 text-7xl" />
           <div>
             <p>GIVE US A CALL</p>
-            <h1 className="text-2xl md:text-3xl font-Bai_Jamjuree font-extrabold">
+            <Link to="tel:+91 96241 50967" className="text-2xl md:text-3xl font-Bai_Jamjuree font-extrabold">
               + 91 96241 50967
-            </h1>
+            </Link>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ const Form = () => {
           <MdEmail className="border-2 border-primary rounded-full p-4 text-7xl" />
           <div>
             <p>SEND US A MESSAGE</p>
-            <h1 className="text-2xl md:text-3xl font-Bai_Jamjuree font-extrabold">
-              vernoxy2@gmail.com
-            </h1>
+            <Link to="mailto:vernoxyM@gmail.com" className="text-2xl md:text-3xl font-Bai_Jamjuree font-extrabold">
+              vernoxyM@gmail.com
+            </Link>
           </div>
         </div>
       </div>

@@ -9,10 +9,10 @@ const PrimaryHero = ({ title, subtitle }) => {
       </div>
 
       <div className="w-full flex flex-col justify-center items-start container">
-        <h1 className="text-[10vw] sm:text-[8vw] md:text-[6vw] font-light text-stroke text-start w-full font-Bai_Jamjuree m-0">
+        <h1 className="text-[10vw] sm:text-[8vw] md:text-[5vw] font-light text-stroke text-start w-full font-Bai_Jamjuree m-0">
           {title}
         </h1>
-        <h2 className="font-Bai_Jamjuree text-xl md:text-6xl uppercase font-semibold text-start w-full md:w-1/2 mt-0">
+        <h2 className="font-Bai_Jamjuree text-xl md:text-5xl uppercase font-semibold text-start w-full md:w-2/3 mt-0">
           {subtitle}
         </h2>
       </div>

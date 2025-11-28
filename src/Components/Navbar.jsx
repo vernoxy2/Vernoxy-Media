@@ -11,7 +11,7 @@ const navitems = [
     name: "Services",
     path: "/services",
     dropdown: [
-      { name: "Customized App", path: "/services/customized_app" },
+      { name: "App Development", path: "/services/app_development" },
       { name: "Web Development", path: "/services/web_development" },
       { name: "Digital Marketing", path: "/services/digital_marketing" },
       { name: "Customized CRM", path: "/services/video_editing" },
@@ -144,7 +144,7 @@ const Navbar = () => {
           className="xl:hidden text-3xl text-primary focus:outline-none"
           aria-label="Toggle Mobile Menu"
         >
-          {isOpen ? <HiX /> : <HiMenu />}
+          {isOpen ? "" : <HiMenu />}
         </button>
 
         {/* Mobile Sidebar */}

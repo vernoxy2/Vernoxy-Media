@@ -5,7 +5,7 @@ const PrimaryBtn = ({ children, className = "", onClick, type = "button", ...pro
     <button
       type={type}
       onClick={onClick}
-      className={`bg-gradient-to-r from-primary to-white text-[#1168B5] font-bold px-7 py-2 rounded-md hover:scale-95 duration-300 md:text-lg ${className}`}
+      className={`bg-gradient-to-r from-primary to-white text-[#1168B5] font-bold px-7 py-2 rounded-md hover:scale-95 duration-300 md:text-lg min-w-[175px] ${className}`}
       {...props}
     >
       {children}

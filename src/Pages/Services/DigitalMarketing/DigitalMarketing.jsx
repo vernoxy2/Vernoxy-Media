@@ -11,11 +11,10 @@ import Icon from "../../../assets/ServicePageImg/Process/Digital/identity1.svg";
 import Icon2 from "../../../assets/ServicePageImg/Process/Digital/Presence1.svg";
 import Icon3 from "../../../assets/ServicePageImg/Process/Digital/Engagement2.svg";
 import Icon4 from "../../../assets/ServicePageImg/Process/Digital/growth1.svg";
-import Img from "../../../assets/ServicePageImg/Process/Digital/Plan2.webp";
-import Img2 from "../../../assets/ServicePageImg/Process/Digital/Plan2.webp";
+import Img from "../../../assets/ServicePageImg/Process/Digital/Plan1.jpg";
+import Img2 from "../../../assets/ServicePageImg/Process/Digital/Plan2.png";
 import Img3 from "../../../assets/ServicePageImg/Process/Digital/Plan3.webp";
 import Img4 from "../../../assets/ServicePageImg/Process/Digital/Plan4.webp";
-import { text } from "framer-motion/client";
 
 const KeyItems = [
   "Content Marketing That Tells Your Brand's Story",
@@ -61,8 +60,8 @@ const DigitalMarketing = () => {
   return (
     <div className="overflow-hidden">
       <PrimaryHead
-        title={"Service"}
-        subtitle={"Digital marketing & Branding"}
+        title={"Digital marketing & Branding"}
+        subtitle={"Building brands that resonate and endure"}
       />
       <ServiceSlider />
       <PrimaryBanner

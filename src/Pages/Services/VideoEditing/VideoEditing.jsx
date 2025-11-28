@@ -12,7 +12,7 @@ import Icon2 from "../../../assets/ServicePageImg/Process/CRM/Plan2.svg";
 import Icon3 from "../../../assets/ServicePageImg/Process/CRM/Plan3.svg";
 import Icon4 from "../../../assets/ServicePageImg/Process/CRM/Plan4.svg";
 import Img from "../../../assets/ServicePageImg/Process/CRM/Plan1.webp";
-import Img2 from "../../../assets/ServicePageImg/Process/CRM/Plan2.webp";
+import Img2 from "../../../assets/ServicePageImg/Process/CRM/Plan2.png";
 import Img3 from "../../../assets/ServicePageImg/Process/CRM/Plan3.webp";
 import Img4 from "../../../assets/ServicePageImg/Process/CRM/Plan4.webp";
 
@@ -57,7 +57,7 @@ const Planning = stepData.map((item) => {
 const VideoEditing = () => {
   return (
     <div className='overflow-hidden'>
-      <PrimaryHero title={"Service"} subtitle={"Customized  CRM "} />
+      <PrimaryHero title={"Customized CRM"} subtitle={"Transform chaos into coordinated, efficient workflows"} />
       <ServiceSlider/>
       <PrimaryBanner boldText={"Personalized CRM"} normalText={"Solutions that Fit You"} bannerImg={BannerImg} description={"A customized CRM solution designed to fit your unique business needs. It streamlines workflows, enhances customer management, and boosts team productivity. With flexible features and tailored modules, it adapts to your goals and drives long-term growth. Empower your business with a CRM that works the way you do, ensuring efficiency, scalability, and stronger customer relationships."}/>
       <FatureKey boldText={"Key Feature of "} normalText={"Customized CRM"} Keybanner={keyBanner} KeyList={KeyItems}/>

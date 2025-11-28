@@ -4,19 +4,14 @@ import PrimaryObject from "../../../Components/PrimaryObject";
 import src from "../../../assets/Obj1.svg";
 import DigitalMarketing from "../../../assets/ServicePageImg/FatureKey/Key1.webp";
 import Application from "../../../assets/ServicePageImg/FatureKey/AppDKey.webp";
-import CRM from "../../../assets/ServicePageImg/FatureKey/CRM.webp";
-import WebDevlope from "../../../assets/ServicePageImg/FatureKey/WebDKey.webp";
-
-
-
-
-import { title } from "framer-motion/client";
+import WebDevlope from "../../../assets/ServicePageImg/FatureKey/CRM.webp";
+import CRM from "../../../assets/ServicePageImg/FatureKey/WebDKey.webp";
 import PrimaryBtn from "../../../Components/PrimartyBtn";
 
 const data = [
   {
     id: 1,
-    title: "Customized Application Development",
+    title: "Application Development",
     sub: "Tailored, high-performance apps built around your business needs.",
     img: Application,
   },
@@ -48,14 +43,16 @@ const Offer = () => {
         normalText={"We Offer"}
         className={"text-center flex gap-3 justify-center "}
       ></Heading>
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
+      <div className=" grid grid-cols-1 xl:grid-cols-2  gap-7">
         {data.map((item) => (
           <div
             key={item.id}
-            className="text-left space-y-4 bg-gradient-to-b from-primary/20 hover:from-primary/40  to-vernoxy rounded-xl relative grid grid-cols-2"
+            className="text-left space-y-4 bg-gradient-to-t md:bg-gradient-to-l from-primary/40 hover:from-primary/40  to-vernoxy rounded-xl relative grid md:grid-cols-3  xl:grid-cols-2"
           >
-            <div><img src={item.img} alt="" /></div>
-            <div className="space-y-6 p-4 flex flex-col justify-center">
+            <div className="flex justify-center items-center">
+              <img src={item.img} alt="" />
+            </div>
+            <div className="space-y-4 p-4 flex flex-col justify-center md:col-span-2 xl:col-span-1">
               <h2 className="text-2xl font-semibold">{item.title}</h2>
               <p className="text-lg">{item.sub}</p>
               <PrimaryBtn className="w-fit">Learn More</PrimaryBtn>

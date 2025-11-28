@@ -4,7 +4,7 @@ const data = [
   { id: 1, name: "Health Care", img: "" },
   { id: 2, name: "Manufacturing", img: "" },
   { id: 3, name: "Retail & eCommerce", img: "" },
-  { id: 4, name: "E-leatring", img: "" },
+  { id: 4, name: "Education", img: "" },
   { id: 5, name: "Financial Institutions", img: "" },
   { id: 6, name: "Real Estate", img: "" },
 ];
