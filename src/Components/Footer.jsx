@@ -81,7 +81,7 @@ const Footer = () => {
         </div>
 
         {/* Second column */}
-        <div className="text-start space-y-5 lg:mx-auto  ">
+        <div className="text-start space-y-5 lg:mx-auto  col-span-2 lg:col-span-1 ">
           <h1 className="font-extrabold text-3xl text-primary font-Bai_Jamjuree">
             Quick Links
           </h1>
