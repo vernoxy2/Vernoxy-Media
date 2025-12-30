@@ -18,6 +18,7 @@ import VideoEditing from "./Pages/Services/VideoEditing/VideoEditing";
 import DigitalMarketing from "./Pages/Services/DigitalMarketing/DigitalMarketing";
 import CustomizedApp from "./Pages/Services/CustomizedApp/CustomizedApp";
 import NotFound from "./Pages/NotFound";
+import ERPCapture from "./Pages/ERPCapture/ERPCapture";
 
 const App = () => {
   return (
@@ -39,6 +40,8 @@ const App = () => {
 
           <Route path="/products" element={<Projects />} />
           <Route path="/contact-us" element={<ContactUs />} />
+
+          <Route path="/erp-capture" element={<ERPCapture />} />
           
           {/* 404 fallback */}
           <Route

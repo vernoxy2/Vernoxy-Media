@@ -90,8 +90,8 @@ const Navbar = () => {
                     ? "block pl-4 mt-2"
                     : "hidden"
                   : `absolute left-0 mt-2 w-48 bg-white/20 border border-primary border-t-0 
-                     backdrop-blur-md rounded-md shadow-lg transition-all duration-300 
-                     ${hoverDropdown === i ? "block" : "hidden"}`
+                    backdrop-blur-md rounded-md shadow-lg transition-all duration-300 
+                    ${hoverDropdown === i ? "block" : "hidden"}`
               }`}
             >
               {item.dropdown.map((drop, idx) => (
