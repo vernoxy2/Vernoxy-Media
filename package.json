@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "firebase": "^12.7.0",
     "framer-motion": "^12.23.14",
+    "lucide-react": "^0.562.0",
     "react": "^19.1.1",
     "react-countup": "^6.5.3",
     "react-dom": "^19.1.1",

@@ -18,6 +18,11 @@ import VideoEditing from "./Pages/Services/VideoEditing/VideoEditing";
 import DigitalMarketing from "./Pages/Services/DigitalMarketing/DigitalMarketing";
 import CustomizedApp from "./Pages/Services/CustomizedApp/CustomizedApp";
 import NotFound from "./Pages/NotFound";
+import ERPCapture from "./Pages/ERPCapture/ERPCapture";
+// Admin Pages
+import AdminLogin from "./Pages/Admin/AdminLogin";
+import AdminDashboard from "./Pages/Admin/AdminDashboard";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -31,20 +36,34 @@ const App = () => {
           <Route path="/services" element={<Services />} />
 
           {/* Service inner pages */}
-          <Route path="/services/digital_marketing" element={<DigitalMarketing />} />
-          <Route path="/services/web_development" element={<WebDevelopment />} />
+          <Route
+            path="/services/digital_marketing"
+            element={<DigitalMarketing />}
+          />
+          <Route
+            path="/services/web_development"
+            element={<WebDevelopment />}
+          />
           <Route path="/services/app_development" element={<CustomizedApp />} />
           {/* <Route path="/services/graphics_design" element={<GraphicsDesign />} /> */}
           <Route path="/services/video_editing" element={<VideoEditing />} />
 
           <Route path="/products" element={<Projects />} />
           <Route path="/contact-us" element={<ContactUs />} />
-          
-          {/* 404 fallback */}
+
+          <Route path="/erp-capture" element={<ERPCapture />} />
+
+          <Route path="/admin/login" element={<AdminLogin />} />
           <Route
-            path="*"
-            element={<NotFound />}
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
           />
+          {/* 404 fallback */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>
