@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import PrimaryBtn from "../../../Components/PrimartyBtn";
 import BottomLine from "../../../Components/BottomLine";
+import { db } from "../../../firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export default function ERPForm() {
   const [currentStage, setCurrentStage] = useState(1);
@@ -66,20 +68,6 @@ export default function ERPForm() {
   if (typeof window !== "undefined" && window.emailjs) {
     window.emailjs.init("cLTlOnc9Qs3zghUUK");
   }
-
-  // const handleInputChange = (field, value) => {
-  //   setFormData((prev) => ({ ...prev, [field]: value }));
-  // };
-
-  // const handleNext = () => {
-  //   if (currentStage === 1) {
-  //     if (validateStage1()) {
-  //       setCurrentStage(currentStage + 1);
-  //     }
-  //   } else {
-  //     setCurrentStage(currentStage + 1);
-  //   }
-  // };
 
   const handleCheckboxChange = (field, value) => {
     setFormData((prev) => ({
@@ -276,91 +264,212 @@ export default function ERPForm() {
     return doc;
   };
 
-  const downloadPDF = () => {
+  // const downloadPDF = () => {
+  //   const doc = generatePDF();
+  //   doc.save(`${formData.companyName || "customer"}_ERP_requirements.pdf`);
+  // };
+
+
+const submitAndEmail = async () => { 
+    if (!validateStage1()) {
+    setSubmitStatus({
+      type: "error",
+      message: "⚠️ Please complete all required fields in Stage 1 (Basic Information) before submitting.",
+    });
+    setCurrentStage(1); // Navigate user back to Stage 1
+    return; // Exit early if validation fails
+  }
+  setIsSubmitting(true);
+  setSubmitStatus(null);
+  try {
+    // Step 1: Save to Firestore FIRST
+    const submissionData = {
+      // Basic Information
+      companyName: formData.companyName,
+      plantLocations: formData.plantLocations,
+      industryType: formData.industryType,
+      contactPerson: formData.contactPerson,
+      designation: formData.designation,
+      phone: formData.phone,
+      email: formData.email,
+      
+      // Manufacturing Details
+      manufacturingType: formData.manufacturingType,
+      numberOfMachines: formData.numberOfMachines,
+      numberOfShifts: formData.numberOfShifts,
+      approxManpower: formData.approxManpower,
+      
+      // Current System
+      currentSystem: formData.currentSystem,
+      otherERP: formData.otherERP,
+      painPoints: formData.painPoints,
+      otherPainPoint: formData.otherPainPoint,
+      
+      // Module Requirements
+      productionJobCards: formData.productionJobCards,
+      productionType: formData.productionType,
+      rejectionTracking: formData.rejectionTracking,
+      rawMaterialTracking: formData.rawMaterialTracking,
+      barcodeRequired: formData.barcodeRequired,
+      lotTracking: formData.lotTracking,
+      orderTracking: formData.orderTracking,
+      deliverySchedule: formData.deliverySchedule,
+      invoiceIntegration: formData.invoiceIntegration,
+      
+      // Reports
+      dailyReport: formData.dailyReport,
+      shiftReport: formData.shiftReport,
+      machineEfficiency: formData.machineEfficiency,
+      dashboard: formData.dashboard,
+      
+      // Commercial Details
+      numberOfUsers: formData.numberOfUsers,
+      numberOfPlants: formData.numberOfPlants,
+      deployment: formData.deployment,
+      customFeatures: formData.customFeatures,
+      goLiveTimeline: formData.goLiveTimeline,
+      
+      // Lead Management
+      leadStatus: formData.leadStatus,
+      priority: formData.priority,
+      
+      // Timestamps
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+      submissionStatus: "new",
+    };
+   
+    // Add document to Firestore
+    const docRef = await addDoc(collection(db, "erpSubmissions"), submissionData);
+    console.log("✅ Saved to Firestore with ID:", docRef.id);
+
+    // Step 2: Generate PDF
+    console.log("📄 Generating PDF...");
     const doc = generatePDF();
-    doc.save(`${formData.companyName || "customer"}_ERP_requirements.pdf`);
-  };
+    const pdfBase64 = doc.output("datauristring").split(",")[1];
+    console.log("✅ PDF generated");
 
-  const submitAndEmail = async () => {
-    setIsSubmitting(true);
-    setSubmitStatus(null);
+    // Step 3: Prepare form data for email
+    console.log("📧 Preparing email data...");
+    const formDataToSend = new FormData();
+    formDataToSend.append("pdfData", pdfBase64);
+    formDataToSend.append("firestoreId", docRef.id);
+    formDataToSend.append("companyName", formData.companyName);
+    formDataToSend.append("plantLocations", formData.plantLocations);
+    formDataToSend.append("industryType", formData.industryType);
+    formDataToSend.append("contactPerson", formData.contactPerson);
+    formDataToSend.append("designation", formData.designation);
+    formDataToSend.append("phone", formData.phone);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append(
+      "manufacturingType",
+      formData.manufacturingType.join(", ")
+    );
+    formDataToSend.append("numberOfMachines", formData.numberOfMachines);
+    formDataToSend.append("numberOfShifts", formData.numberOfShifts);
+    formDataToSend.append("approxManpower", formData.approxManpower);
+    formDataToSend.append("currentSystem", formData.currentSystem.join(", "));
+    formDataToSend.append("otherERP", formData.otherERP);
+    formDataToSend.append("painPoints", formData.painPoints.join(", "));
+    formDataToSend.append("otherPainPoint", formData.otherPainPoint);
+    formDataToSend.append("productionJobCards", formData.productionJobCards);
+    formDataToSend.append("productionType", formData.productionType);
+    formDataToSend.append("rejectionTracking", formData.rejectionTracking);
+    formDataToSend.append(
+      "rawMaterialTracking",
+      formData.rawMaterialTracking
+    );
+    formDataToSend.append("barcodeRequired", formData.barcodeRequired);
+    formDataToSend.append("lotTracking", formData.lotTracking);
+    formDataToSend.append("orderTracking", formData.orderTracking);
+    formDataToSend.append("deliverySchedule", formData.deliverySchedule);
+    formDataToSend.append("invoiceIntegration", formData.invoiceIntegration);
+    formDataToSend.append("numberOfUsers", formData.numberOfUsers);
+    formDataToSend.append("numberOfPlants", formData.numberOfPlants);
+    formDataToSend.append("deployment", formData.deployment);
+    formDataToSend.append("customFeatures", formData.customFeatures);
+    formDataToSend.append("goLiveTimeline", formData.goLiveTimeline);
+    formDataToSend.append("leadStatus", formData.leadStatus);
+    formDataToSend.append("priority", formData.priority);
 
-    try {
-      // Step 1: Generate PDF
-      const doc = generatePDF();
-      const pdfBase64 = doc.output("datauristring").split(",")[1];
+    // Step 4: Send to Google Apps Script
+    console.log("📮 Sending email...");
+    const GOOGLE_SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbxbiVFSZoz2to_AfZJtDgJ5ecaj90NhKWDTJOHOjPUYJAWb7Pswy6JMeZ0u3v4uRWqc/exec";
 
-      // Step 2: Prepare form data
-      const formDataToSend = new FormData();
-      formDataToSend.append("pdfData", pdfBase64);
-      formDataToSend.append("companyName", formData.companyName);
-      formDataToSend.append("plantLocations", formData.plantLocations);
-      formDataToSend.append("industryType", formData.industryType);
-      formDataToSend.append("contactPerson", formData.contactPerson);
-      formDataToSend.append("designation", formData.designation);
-      formDataToSend.append("phone", formData.phone);
-      formDataToSend.append("email", formData.email);
-      formDataToSend.append(
-        "manufacturingType",
-        formData.manufacturingType.join(", ")
-      );
-      formDataToSend.append("numberOfMachines", formData.numberOfMachines);
-      formDataToSend.append("numberOfShifts", formData.numberOfShifts);
-      formDataToSend.append("approxManpower", formData.approxManpower);
-      formDataToSend.append("currentSystem", formData.currentSystem.join(", "));
-      formDataToSend.append("otherERP", formData.otherERP);
-      formDataToSend.append("painPoints", formData.painPoints.join(", "));
-      formDataToSend.append("otherPainPoint", formData.otherPainPoint);
-      formDataToSend.append("productionJobCards", formData.productionJobCards);
-      formDataToSend.append("productionType", formData.productionType);
-      formDataToSend.append("rejectionTracking", formData.rejectionTracking);
-      formDataToSend.append(
-        "rawMaterialTracking",
-        formData.rawMaterialTracking
-      );
-      formDataToSend.append("barcodeRequired", formData.barcodeRequired);
-      formDataToSend.append("lotTracking", formData.lotTracking);
-      formDataToSend.append("orderTracking", formData.orderTracking);
-      formDataToSend.append("deliverySchedule", formData.deliverySchedule);
-      formDataToSend.append("invoiceIntegration", formData.invoiceIntegration);
-      formDataToSend.append("numberOfUsers", formData.numberOfUsers);
-      formDataToSend.append("numberOfPlants", formData.numberOfPlants);
-      formDataToSend.append("deployment", formData.deployment);
-      formDataToSend.append("customFeatures", formData.customFeatures);
-      formDataToSend.append("goLiveTimeline", formData.goLiveTimeline);
-      formDataToSend.append("leadStatus", formData.leadStatus);
-      formDataToSend.append("priority", formData.priority);
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      body: formDataToSend,
+      mode: "no-cors",
+    }).catch(err => console.log("❌ Email notification failed (non-critical):", err));
 
-      // Step 3: Send to Google Apps Script
-      const GOOGLE_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbxbiVFSZoz2to_AfZJtDgJ5ecaj90NhKWDTJOHOjPUYJAWb7Pswy6JMeZ0u3v4uRWqc/exec";
+    console.log("✅ All operations completed");
 
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        body: formDataToSend,
-        mode: "no-cors",
-      });
+    // Show success
+    setSubmitStatus({
+      type: "success",
+      message:
+        "✅ Thank you! Your requirements have been submitted successfully. Our team will contact you shortly.",
+    });
+    setFormData({
+    companyName: "",
+    plantLocations: "",
+    industryType: "",
+    contactPerson: "",
+    designation: "",
+    phone: "",
+    email: "",
+    manufacturingType: [],
+    numberOfMachines: "",
+    numberOfShifts: "",
+    approxManpower: "",
+    currentSystem: [],
+    otherERP: "",
+    painPoints: [],
+    otherPainPoint: "",
+    productionJobCards: "",
+    productionType: "",
+    rejectionTracking: "",
+    rawMaterialTracking: "",
+    barcodeRequired: "",
+    lotTracking: "",
+    orderTracking: "",
+    deliverySchedule: "",
+    invoiceIntegration: "",
+    dailyReport: false,
+    shiftReport: false,
+    machineEfficiency: false,
+    dashboard: false,
+    numberOfUsers: "",
+    numberOfPlants: "",
+    deployment: "",
+    customFeatures: "",
+    goLiveTimeline: "",
+    leadStatus: "New",
+    priority: "Medium",
+  })
+    setIsSubmitting(false);
 
-      // Show success after 2 seconds (time for email to process)
-      setTimeout(() => {
-        setSubmitStatus({
-          type: "success",
-          message:
-            "✅ Thank you! Your requirements have been submitted successfully with PDF attachment. Our team will contact you shortly.",
-        });
-        setIsSubmitting(false);
-      }, 2000);
-    } catch (error) {
-      console.error("Submission Error:", error);
-      setSubmitStatus({
-        type: "error",
-        message:
-          "❌ There was an error submitting your data. Please try downloading the PDF instead or contact us directly at vernoxy3@gmail.com",
-      });
-      setIsSubmitting(false);
-    }
-  };
-  const validateRequired = (value, fieldName) => {
+  } catch (error) {
+    console.error("❌ Submission Error:", error);
+    console.error("❌ Error name:", error.name);
+    console.error("❌ Error message:", error.message);
+    console.error("❌ Error stack:", error.stack);
+    
+    setSubmitStatus({
+      type: "error",
+      message:
+        `❌ There was an error submitting your data: ${error.message}. Please try downloading the PDF instead or contact us directly at vernoxy3@gmail.com`,
+    });
+    setIsSubmitting(false);
+  }
+};
+
+
+
+
+
+const validateRequired = (value, fieldName) => {
     if (!value || !value.trim()) {
       return `${fieldName} is required`;
     }
@@ -1287,13 +1396,13 @@ export default function ERPForm() {
                   </>
                 )}
               </button>
-              <button
+              {/* <button
                 onClick={downloadPDF}
                 className="flex items-center space-x-2 px-6 py-3 bg-primary text-black rounded-lg font-bold font-Bai_Jamjuree hover:bg-primary/80 transition-all duration-300"
               >
                 <Download className="w-5 h-5" />
                 <span>Download Copy</span>
-              </button>
+              </button> */}
             </>
           )}
         </div>
