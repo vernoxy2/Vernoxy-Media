@@ -128,7 +128,7 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden xl:block border border-primary py-2 px-3 lg:px-5 rounded-md bg-white/20 backdrop-blur-md">
-          <ul className="flex gap-5 lg:gap-10 uppercase">
+          <ul className="flex gap-5 lg:gap-10 uppercase ">
             {renderNavItems()}
           </ul>
         </div>
