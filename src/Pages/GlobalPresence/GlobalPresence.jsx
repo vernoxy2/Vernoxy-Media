@@ -6,8 +6,7 @@ const GlobalPresence = () => {
   return (
     <div>
       <ProductsCard />
-      <StateComponent  
-      />
+      {/* <StateComponent/> */}
     </div>
   )
 }
