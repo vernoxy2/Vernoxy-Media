@@ -17,6 +17,7 @@
   p {
     @apply text-white text-sm md:text-xl font-Mulish;
   }
+  
   section {
     @apply py-10 md:py-24 space-y-8 md:space-y-16;
   }

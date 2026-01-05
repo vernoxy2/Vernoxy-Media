@@ -14,7 +14,8 @@ import { IoLocationOutline } from "react-icons/io5";
 const Links = [
   { id: 1, name: "Home", Link: "/" },
   { id: 2, name: "About us", Link: "/about-us" },
-  // { id: 3, name: "Projects", Link: "/projects" },
+  // { id: 3, name: "Products", Link: "/products" },
+  { id: 4, name: "Global Presence", Link: "/global-presence" },
 ];
 
 const SerLinkd = [
@@ -132,17 +133,13 @@ const Footer = () => {
             Subscribe
           </PrimaryBtn>
           <div className="flex items-start gap-1 md:gap-3 ">
-            <LuMapPin
-              className="min-h-12 min-w-12 text-primary flex items-center  "
-            />
+            <LuMapPin className="min-h-12 min-w-12 text-primary flex items-center  " />
             <p className="font-Mulish ">
               513, KBC Complex , Dharampur Chokdi, Valsad, Gujarat 396001
             </p>
           </div>
           <div className="flex items-center justify-start gap-1 md:gap-3 ">
-            <LuMapPin
-              className="min-w-12 min-h-12 text-primary flex items-center  justify-center "
-            />
+            <LuMapPin className="min-w-12 min-h-12 text-primary flex items-center  justify-center " />
             <p className="font-Mulish ">London, Ontario, Canada.</p>
           </div>
         </div>
