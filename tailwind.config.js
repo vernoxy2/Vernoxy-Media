@@ -25,6 +25,8 @@ export default {
       colors: {
         vernoxy: "#000000",
         primary: "#4ED5E2",
+        secondary: "#1168B5",
+        textcolor: "#D1D5DB"
       },
       fontFamily: {
         Bai_Jamjuree: ["Bai_Jamjuree", "sans-serif"],

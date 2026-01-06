@@ -363,7 +363,7 @@ export default function AdminDashboard() {
     const colors = {
       New: "bg-blue-500/20 text-blue-400 border-blue-500",
       "Demo Done": "bg-purple-500/20 text-purple-400 border-purple-500",
-      "Proposal Sent": "bg-yellow-500/20 text-yellow-400 border-yellow-500",
+      "Proposal Sent": "bg-yellow-500/5 text-yellow-400 border-yellow-500",
       Negotiation: "bg-orange-500/20 text-orange-400 border-orange-500",
       "Closed Won": "bg-green-500/20 text-green-400 border-green-500",
       "Closed Lost": "bg-red-500/20 text-red-400 border-red-500",
@@ -383,8 +383,8 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
       {/* Header */}
-      <header className="bg-gray-900/50 backdrop-blur-md border-b border-primary/20 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <header className="bg-primary/10 backdrop-blur-md border-b border-primary/20 sticky top-0 z-50">
+        <div className="container mx-auto  py-4 flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-primary font-Bai_Jamjuree">
               Admin Dashboard
@@ -393,7 +393,7 @@ export default function AdminDashboard() {
           </div>
           <button
             onClick={handleLogout}
-            className="flex items-center space-x-2 px-4 py-2 bg-red-500/20 text-red-400 rounded-lg hover:bg-red-500/30 transition-all duration-300 border border-red-500/50"
+            className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-primary to-white text-[#1168B5] font-bold rounded-lg hover:scale-95 transition-all duration-300 "
           >
             <LogOut className="w-4 h-4" />
             <span>Logout</span>
@@ -402,7 +402,7 @@ export default function AdminDashboard() {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto  py-10">
         {/* Filters and Search */}
         <div className="bg-gray-900/50 backdrop-blur-md rounded-lg p-6 mb-6 border border-primary/20">
           <div className="flex flex-col gap-4">
@@ -423,35 +423,31 @@ export default function AdminDashboard() {
             {/* Date Filters */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
               <div>
-                <label className="text-xs text-gray-400 mb-1 block">
-                  From Date
-                </label>
+                <label className=" text-gray-400 mb-1 block">From Date</label>
                 <input
                   type="date"
                   value={dateFrom}
                   onChange={(e) => setDateFrom(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-2.5 bg-gray-800 border text-lg border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div>
-                <label className="text-xs text-gray-400 mb-1 block">
-                  To Date
-                </label>
+                <label className=" text-gray-400 mb-1 block">To Date</label>
                 <input
                   type="date"
                   value={dateTo}
                   onChange={(e) => setDateTo(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-2.5 bg-gray-800 text-lg border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div>
-                <label className="text-xs text-gray-400 mb-1 block">
+                <label className=" text-gray-400 mb-1 block">
                   Status Filter
                 </label>
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white text-xl focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="all">All Status</option>
                   <option value="New">New</option>
@@ -466,7 +462,7 @@ export default function AdminDashboard() {
                 <button
                   onClick={fetchSubmissions}
                   disabled={loading}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-black rounded-lg hover:bg-primary/80 transition-all duration-300 font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex items-center justify-center gap-2 px-7 py-2.5 bg-gradient-to-r from-primary to-white text-lg text-[#1168B5] rounded-lg hover:bg-primary/80 transition-all duration-300 font-bold disabled:opacity-50 disabled:cursor-not-allowed mt-4 md:mt-0"
                 >
                   <RefreshCw
                     className={`w-4 h-4 ${loading ? "animate-spin" : ""}`}
@@ -477,7 +473,7 @@ export default function AdminDashboard() {
             </div>
           </div>
 
-          <div className="mt-4 flex items-center justify-between text-sm text-gray-400">
+          <div className="mt-4 gap-y-1 flex flex-col md:flex-row items-center justify-between text-sm text-gray-400">
             <div className="flex items-center gap-4">
               <span>
                 Total Submissions:{" "}
@@ -535,8 +531,8 @@ export default function AdminDashboard() {
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     {/* Left Section - Company Info */}
                     <div className="lg:col-span-4">
-                      <div className="flex justify-between items-start mb-3">
-                        <div className="flex-1">
+                      <div className="flex flex-col-reverse  justify-between items-center mb-3">
+                        <div className="flex-1 ">
                           <h3 className="text-xl font-bold text-primary mb-1 font-Bai_Jamjuree">
                             {submission.companyName}
                           </h3>
@@ -545,13 +541,15 @@ export default function AdminDashboard() {
                               "Industry not specified"}
                           </p>
                         </div>
-                        <span
-                          className={`px-3 py-1 rounded-full text-xs font-bold ${getPriorityColor(
-                            submission.priority
-                          )}`}
-                        >
-                          {submission.priority}
-                        </span>
+                        <div className="flex-1 flex w-full mr-0  justify-end">
+                          <div
+                            className={`px-3 py-1 rounded-full text-xs font-bold inline-block  ${getPriorityColor(
+                              submission.priority
+                            )}`}
+                          >
+                            {submission.priority}
+                          </div>
+                        </div>
                       </div>
 
                       <div className="space-y-2">
@@ -580,7 +578,7 @@ export default function AdminDashboard() {
                     {/* Middle Section - Details */}
                     <div className="lg:col-span-5">
                       <div className="mb-4">
-                        <label className="text-xs text-gray-400 mb-1 block">
+                        <label className=" text-gray-400 mb-1 block">
                           Lead Status
                         </label>
                         <select
@@ -588,9 +586,10 @@ export default function AdminDashboard() {
                           onChange={(e) =>
                             handleStatusUpdate(submission.id, e.target.value)
                           }
-                          className={`w-full px-3 py-2 rounded-lg text-sm font-bold border ${getStatusColor(
-                            submission.leadStatus
-                          )} bg-transparent cursor-pointer`}
+                          className={`w-full px-3 py-2 rounded-lg text-sm font-bold border text-white bg-gray-700/40 cursor-pointer`}
+                          // ${getStatusColor(
+                          //   submission.leadStatus
+                          // )}
                         >
                           <option value="New">New</option>
                           <option value="Demo Done">Demo Done</option>
@@ -602,14 +601,14 @@ export default function AdminDashboard() {
                       </div>
 
                       <div className="grid grid-cols-2 gap-3 text-sm">
-                        <div className="bg-gray-800/50 rounded p-2">
-                          <p className="text-gray-400 text-xs">Timeline</p>
+                        <div className="bg-primary/50 rounded p-2">
+                          <p className="text-white/80 text-sm">Timeline</p>
                           <p className="text-white font-bold truncate">
                             {submission.goLiveTimeline || "N/A"}
                           </p>
                         </div>
-                        <div className="bg-gray-800/50 rounded p-2">
-                          <p className="text-gray-400 text-xs">Deployment</p>
+                        <div className="bg-primary/50 rounded p-2">
+                          <p className="text-white/80 text-sm">Deployment</p>
                           <p className="text-white font-bold truncate">
                             {submission.deployment || "N/A"}
                           </p>
@@ -633,14 +632,14 @@ export default function AdminDashboard() {
                     <div className="lg:col-span-3 flex flex-col gap-2">
                       <button
                         onClick={() => setSelectedSubmission(submission)}
-                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-black rounded-lg hover:bg-primary/80 transition-all duration-300 font-bold"
+                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-primary to-white text-[#1168B5] rounded-lg hover:scale-95 transition-all duration-300 font-bold text-xl"
                       >
                         <Eye className="w-4 h-4" />
                         <span className="text-sm">View Details</span>
                       </button>
                       <button
                         onClick={() => downloadPDF(submission)}
-                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-all duration-300 border border-green-500/50 font-bold"
+                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-primary/30 to-white/30 text-white rounded-lg transition-all duration-300 font-bold border border-primary/50 hover:scale-95"
                       >
                         <Download className="w-4 h-4" />
                         <span className="text-sm">Download PDF</span>
@@ -648,7 +647,7 @@ export default function AdminDashboard() {
                       <button
                         // onClick={() => handleDelete(submission.id)}
                         onClick={() => setDeleteConfirm(submission)}
-                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-red-500/20 text-red-400 rounded-lg hover:bg-red-500/30 transition-all duration-300 border border-red-500/50 font-bold"
+                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-primary/10 to-white/10 text-white rounded-lg transition-all duration-300 font-bold border border-primary/50 hover:scale-95"
                       >
                         <Trash2 className="w-4 h-4" />
                         <span className="text-sm">Delete</span>
@@ -659,7 +658,7 @@ export default function AdminDashboard() {
               ))}
               {deleteConfirm && (
                 <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                  <div className="bg-gray-900 rounded-lg max-w-md w-full border border-red-500/50 shadow-2xl">
+                  <div className="bg-white/5 backdrop-blur-lg rounded-lg max-w-md w-full  border-red-500/50 shadow-2xl">
                     <div className="p-6">
                       <div className="flex items-center justify-center w-12 h-12 rounded-full bg-red-500/20 mx-auto mb-4">
                         <Trash2 className="w-6 h-6 text-red-400" />
@@ -775,7 +774,7 @@ export default function AdminDashboard() {
       {selectedSubmission && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-gray-900 rounded-lg max-w-4xl w-full my-8 border border-primary/20">
-            <div className="sticky top-0 bg-gray-900 border-b border-primary/20 p-6 flex justify-between items-center rounded-t-lg">
+            <div className="sticky top-0 bg-gray-900 border-b border-primary/20 px-6 py-4 flex justify-between items-center rounded-t-lg">
               <h2 className="text-2xl font-bold text-primary font-Bai_Jamjuree">
                 {selectedSubmission.companyName}
               </h2>
@@ -789,73 +788,73 @@ export default function AdminDashboard() {
 
             <div className="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
               {/* Stage 1: Basic Information */}
-              <div className="border-l-4 border-primary pl-4">
+              <div className="border-l-4 border-primary bg-gradient-to-r from-primary/30 to-transparent py-5 pl-6">
                 <h3 className="text-lg font-bold text-primary mb-3 font-Bai_Jamjuree">
                   Stage 1: Basic Information
                 </h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2.5 text-sm text-start">
                   <div>
-                    <span className="text-gray-400">Company:</span>{" "}
+                    <span className="text-gray-300">Company :</span>{" "}
                     <span className="text-white font-bold">
                       {selectedSubmission.companyName}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Industry:</span>{" "}
+                    <span className="text-gray-300">Industry :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.industryType}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Contact:</span>{" "}
+                    <span className="text-gray-300">Contact :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.contactPerson}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Designation:</span>{" "}
+                    <span className="text-gray-300">Designation:</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.designation}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Phone:</span>{" "}
+                    <span className="text-gray-300">Phone :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.phone}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Email:</span>{" "}
+                    <span className="text-gray-300">Email :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.email}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Plant Locations:</span>{" "}
+                    <span className="text-gray-300">Plant Locations :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.plantLocations}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Manufacturing Type:</span>{" "}
+                    <span className="text-gray-300">Manufacturing Type :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.manufacturingType?.join(", ")}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Machines:</span>{" "}
+                    <span className="text-gray-300">Machines :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.numberOfMachines}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Shifts:</span>{" "}
+                    <span className="text-gray-300">Shifts :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.numberOfShifts}
                     </span>
                   </div>
                   <div className="col-span-2">
-                    <span className="text-gray-400">Manpower:</span>{" "}
+                    <span className="text-gray-300">Manpower :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.approxManpower}
                     </span>
@@ -864,34 +863,34 @@ export default function AdminDashboard() {
               </div>
 
               {/* Stage 2: Pain Points */}
-              <div className="border-l-4 border-yellow-500 pl-4">
+              <div className="border-l-4 border-yellow-500 bg-gradient-to-r from-yellow-500/30 to-transparent py-5 pl-4">
                 <h3 className="text-lg font-bold text-yellow-500 mb-3 font-Bai_Jamjuree">
                   Stage 2: Current System & Pain Points
                 </h3>
-                <div className="space-y-2 text-sm">
+                <div className="space-y-2 text-sm text-start">
                   <div>
-                    <span className="text-gray-400">Current System:</span>{" "}
+                    <span className="text-gray-300">Current System :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.currentSystem?.join(", ")}
                     </span>
                   </div>
                   {selectedSubmission.otherERP && (
                     <div>
-                      <span className="text-gray-400">ERP Name:</span>{" "}
+                      <span className="text-gray-300">ERP Name :</span>{" "}
                       <span className="text-white">
                         {selectedSubmission.otherERP}
                       </span>
                     </div>
                   )}
                   <div>
-                    <span className="text-gray-400">Pain Points:</span>{" "}
+                    <span className="text-gray-300">Pain Points :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.painPoints?.join(", ")}
                     </span>
                   </div>
                   {selectedSubmission.otherPainPoint && (
                     <div>
-                      <span className="text-gray-400">Other Pain Points:</span>{" "}
+                      <span className="text-gray-300">Other Pain Points :</span>{" "}
                       <span className="text-white">
                         {selectedSubmission.otherPainPoint}
                       </span>
@@ -901,69 +900,69 @@ export default function AdminDashboard() {
               </div>
 
               {/* Stage 3: Module Requirements */}
-              <div className="border-l-4 border-green-500 pl-4">
+              <div className="border-l-4 border-green-500 py-5 pl-4 bg-gradient-to-r from-green-500/30 to-transparent">
                 <h3 className="text-lg font-bold text-green-500 mb-3 font-Bai_Jamjuree">
                   Stage 3: Module Requirements
                 </h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm text-start">
                   <div>
-                    <span className="text-gray-400">Job Cards:</span>{" "}
+                    <span className="text-gray-300">Job Cards :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.productionJobCards}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Production Type:</span>{" "}
+                    <span className="text-gray-300">Production Type :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.productionType}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Rejection Tracking:</span>{" "}
+                    <span className="text-gray-300">Rejection Tracking :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.rejectionTracking}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">
-                      Raw Material Tracking:
+                    <span className="text-gray-300">
+                      Raw Material Tracking :
                     </span>{" "}
                     <span className="text-white">
                       {selectedSubmission.rawMaterialTracking}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Barcode:</span>{" "}
+                    <span className="text-gray-300">Barcode :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.barcodeRequired}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Lot Tracking:</span>{" "}
+                    <span className="text-gray-300">Lot Tracking :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.lotTracking}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Order Tracking:</span>{" "}
+                    <span className="text-gray-300">Order Tracking :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.orderTracking}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Delivery Schedule:</span>{" "}
+                    <span className="text-gray-300">Delivery Schedule :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.deliverySchedule}
                     </span>
                   </div>
                   <div className="col-span-2">
-                    <span className="text-gray-400">Invoice Integration:</span>{" "}
+                    <span className="text-gray-300">Invoice Integration :</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.invoiceIntegration}
                     </span>
                   </div>
                   <div className="col-span-2">
-                    <span className="text-gray-400">Reports:</span>
+                    <span className="text-gray-300">Reports :</span>
                     <span className="text-white ml-2">
                       {[
                         selectedSubmission.dailyReport && "Daily",
@@ -980,50 +979,50 @@ export default function AdminDashboard() {
               </div>
 
               {/* Stage 4: Commercial */}
-              <div className="border-l-4 border-blue-500 pl-4">
+              <div className="border-l-4 border-blue-500 bg-gradient-to-r from-blue-500/30 to-transparent pl-4 py-5">
                 <h3 className="text-lg font-bold text-blue-500 mb-3 font-Bai_Jamjuree">
                   Stage 4: Commercial Details
                 </h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm text-start">
                   <div>
-                    <span className="text-gray-400">Users:</span>{" "}
+                    <span className="text-gray-300">Users:</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.numberOfUsers}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Plants:</span>{" "}
+                    <span className="text-gray-300">Plants:</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.numberOfPlants}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Deployment:</span>{" "}
+                    <span className="text-gray-300">Deployment:</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.deployment}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Go-Live:</span>{" "}
+                    <span className="text-gray-300">Go-Live:</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.goLiveTimeline}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Status:</span>{" "}
+                    <span className="text-gray-300">Status:</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.leadStatus}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-400">Priority:</span>{" "}
+                    <span className="text-gray-300">Priority:</span>{" "}
                     <span className="text-white">
                       {selectedSubmission.priority}
                     </span>
                   </div>
                   {selectedSubmission.customFeatures && (
-                    <div className="col-span-2">
-                      <span className="text-gray-400">Custom Features:</span>
+                    <div className="">
+                      <span className="text-gray-300">Custom Features:</span>
                       <p className="text-white mt-1">
                         {selectedSubmission.customFeatures}
                       </p>
@@ -1036,7 +1035,7 @@ export default function AdminDashboard() {
             <div className="border-t border-primary/20 p-6">
               <button
                 onClick={() => setSelectedSubmission(null)}
-                className="w-full px-4 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-all duration-300 font-bold"
+                className="w-full px-4 py-3 bg-gradient-to-r from-primary  to-white text-secondary rounded-lg hover:bg-gray-700 transition-all duration-300 font-bold"
               >
                 Close
               </button>

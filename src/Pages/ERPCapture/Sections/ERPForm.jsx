@@ -13,6 +13,7 @@ import PrimaryBtn from "../../../Components/PrimartyBtn";
 import BottomLine from "../../../Components/BottomLine";
 import { db } from "../../../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { FaAngleDown } from "react-icons/fa";
 
 export default function ERPForm() {
   const [currentStage, setCurrentStage] = useState(1);
@@ -269,207 +270,206 @@ export default function ERPForm() {
   //   doc.save(`${formData.companyName || "customer"}_ERP_requirements.pdf`);
   // };
 
-
-const submitAndEmail = async () => { 
+  const submitAndEmail = async () => {
     if (!validateStage1()) {
-    setSubmitStatus({
-      type: "error",
-      message: "⚠️ Please complete all required fields in Stage 1 (Basic Information) before submitting.",
-    });
-    setCurrentStage(1); // Navigate user back to Stage 1
-    return; // Exit early if validation fails
-  }
-  setIsSubmitting(true);
-  setSubmitStatus(null);
-  try {
-    // Step 1: Save to Firestore FIRST
-    const submissionData = {
-      // Basic Information
-      companyName: formData.companyName,
-      plantLocations: formData.plantLocations,
-      industryType: formData.industryType,
-      contactPerson: formData.contactPerson,
-      designation: formData.designation,
-      phone: formData.phone,
-      email: formData.email,
-      
-      // Manufacturing Details
-      manufacturingType: formData.manufacturingType,
-      numberOfMachines: formData.numberOfMachines,
-      numberOfShifts: formData.numberOfShifts,
-      approxManpower: formData.approxManpower,
-      
-      // Current System
-      currentSystem: formData.currentSystem,
-      otherERP: formData.otherERP,
-      painPoints: formData.painPoints,
-      otherPainPoint: formData.otherPainPoint,
-      
-      // Module Requirements
-      productionJobCards: formData.productionJobCards,
-      productionType: formData.productionType,
-      rejectionTracking: formData.rejectionTracking,
-      rawMaterialTracking: formData.rawMaterialTracking,
-      barcodeRequired: formData.barcodeRequired,
-      lotTracking: formData.lotTracking,
-      orderTracking: formData.orderTracking,
-      deliverySchedule: formData.deliverySchedule,
-      invoiceIntegration: formData.invoiceIntegration,
-      
-      // Reports
-      dailyReport: formData.dailyReport,
-      shiftReport: formData.shiftReport,
-      machineEfficiency: formData.machineEfficiency,
-      dashboard: formData.dashboard,
-      
-      // Commercial Details
-      numberOfUsers: formData.numberOfUsers,
-      numberOfPlants: formData.numberOfPlants,
-      deployment: formData.deployment,
-      customFeatures: formData.customFeatures,
-      goLiveTimeline: formData.goLiveTimeline,
-      
-      // Lead Management
-      leadStatus: formData.leadStatus,
-      priority: formData.priority,
-      
-      // Timestamps
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-      submissionStatus: "new",
-    };
-   
-    // Add document to Firestore
-    const docRef = await addDoc(collection(db, "erpSubmissions"), submissionData);
-    console.log("✅ Saved to Firestore with ID:", docRef.id);
+      setSubmitStatus({
+        type: "error",
+        message:
+          "⚠️ Please complete all required fields in Stage 1 (Basic Information) before submitting.",
+      });
+      setCurrentStage(1); // Navigate user back to Stage 1
+      return; // Exit early if validation fails
+    }
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    try {
+      // Step 1: Save to Firestore FIRST
+      const submissionData = {
+        // Basic Information
+        companyName: formData.companyName,
+        plantLocations: formData.plantLocations,
+        industryType: formData.industryType,
+        contactPerson: formData.contactPerson,
+        designation: formData.designation,
+        phone: formData.phone,
+        email: formData.email,
 
-    // Step 2: Generate PDF
-    console.log("📄 Generating PDF...");
-    const doc = generatePDF();
-    const pdfBase64 = doc.output("datauristring").split(",")[1];
-    console.log("✅ PDF generated");
+        // Manufacturing Details
+        manufacturingType: formData.manufacturingType,
+        numberOfMachines: formData.numberOfMachines,
+        numberOfShifts: formData.numberOfShifts,
+        approxManpower: formData.approxManpower,
 
-    // Step 3: Prepare form data for email
-    console.log("📧 Preparing email data...");
-    const formDataToSend = new FormData();
-    formDataToSend.append("pdfData", pdfBase64);
-    formDataToSend.append("firestoreId", docRef.id);
-    formDataToSend.append("companyName", formData.companyName);
-    formDataToSend.append("plantLocations", formData.plantLocations);
-    formDataToSend.append("industryType", formData.industryType);
-    formDataToSend.append("contactPerson", formData.contactPerson);
-    formDataToSend.append("designation", formData.designation);
-    formDataToSend.append("phone", formData.phone);
-    formDataToSend.append("email", formData.email);
-    formDataToSend.append(
-      "manufacturingType",
-      formData.manufacturingType.join(", ")
-    );
-    formDataToSend.append("numberOfMachines", formData.numberOfMachines);
-    formDataToSend.append("numberOfShifts", formData.numberOfShifts);
-    formDataToSend.append("approxManpower", formData.approxManpower);
-    formDataToSend.append("currentSystem", formData.currentSystem.join(", "));
-    formDataToSend.append("otherERP", formData.otherERP);
-    formDataToSend.append("painPoints", formData.painPoints.join(", "));
-    formDataToSend.append("otherPainPoint", formData.otherPainPoint);
-    formDataToSend.append("productionJobCards", formData.productionJobCards);
-    formDataToSend.append("productionType", formData.productionType);
-    formDataToSend.append("rejectionTracking", formData.rejectionTracking);
-    formDataToSend.append(
-      "rawMaterialTracking",
-      formData.rawMaterialTracking
-    );
-    formDataToSend.append("barcodeRequired", formData.barcodeRequired);
-    formDataToSend.append("lotTracking", formData.lotTracking);
-    formDataToSend.append("orderTracking", formData.orderTracking);
-    formDataToSend.append("deliverySchedule", formData.deliverySchedule);
-    formDataToSend.append("invoiceIntegration", formData.invoiceIntegration);
-    formDataToSend.append("numberOfUsers", formData.numberOfUsers);
-    formDataToSend.append("numberOfPlants", formData.numberOfPlants);
-    formDataToSend.append("deployment", formData.deployment);
-    formDataToSend.append("customFeatures", formData.customFeatures);
-    formDataToSend.append("goLiveTimeline", formData.goLiveTimeline);
-    formDataToSend.append("leadStatus", formData.leadStatus);
-    formDataToSend.append("priority", formData.priority);
+        // Current System
+        currentSystem: formData.currentSystem,
+        otherERP: formData.otherERP,
+        painPoints: formData.painPoints,
+        otherPainPoint: formData.otherPainPoint,
 
-    // Step 4: Send to Google Apps Script
-    console.log("📮 Sending email...");
-    const GOOGLE_SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbxbiVFSZoz2to_AfZJtDgJ5ecaj90NhKWDTJOHOjPUYJAWb7Pswy6JMeZ0u3v4uRWqc/exec";
+        // Module Requirements
+        productionJobCards: formData.productionJobCards,
+        productionType: formData.productionType,
+        rejectionTracking: formData.rejectionTracking,
+        rawMaterialTracking: formData.rawMaterialTracking,
+        barcodeRequired: formData.barcodeRequired,
+        lotTracking: formData.lotTracking,
+        orderTracking: formData.orderTracking,
+        deliverySchedule: formData.deliverySchedule,
+        invoiceIntegration: formData.invoiceIntegration,
 
-    fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      body: formDataToSend,
-      mode: "no-cors",
-    }).catch(err => console.log("❌ Email notification failed (non-critical):", err));
+        // Reports
+        dailyReport: formData.dailyReport,
+        shiftReport: formData.shiftReport,
+        machineEfficiency: formData.machineEfficiency,
+        dashboard: formData.dashboard,
 
-    console.log("✅ All operations completed");
+        // Commercial Details
+        numberOfUsers: formData.numberOfUsers,
+        numberOfPlants: formData.numberOfPlants,
+        deployment: formData.deployment,
+        customFeatures: formData.customFeatures,
+        goLiveTimeline: formData.goLiveTimeline,
 
-    // Show success
-    setSubmitStatus({
-      type: "success",
-      message:
-        "✅ Thank you! Your requirements have been submitted successfully. Our team will contact you shortly.",
-    });
-    setFormData({
-    companyName: "",
-    plantLocations: "",
-    industryType: "",
-    contactPerson: "",
-    designation: "",
-    phone: "",
-    email: "",
-    manufacturingType: [],
-    numberOfMachines: "",
-    numberOfShifts: "",
-    approxManpower: "",
-    currentSystem: [],
-    otherERP: "",
-    painPoints: [],
-    otherPainPoint: "",
-    productionJobCards: "",
-    productionType: "",
-    rejectionTracking: "",
-    rawMaterialTracking: "",
-    barcodeRequired: "",
-    lotTracking: "",
-    orderTracking: "",
-    deliverySchedule: "",
-    invoiceIntegration: "",
-    dailyReport: false,
-    shiftReport: false,
-    machineEfficiency: false,
-    dashboard: false,
-    numberOfUsers: "",
-    numberOfPlants: "",
-    deployment: "",
-    customFeatures: "",
-    goLiveTimeline: "",
-    leadStatus: "New",
-    priority: "Medium",
-  })
-    setIsSubmitting(false);
+        // Lead Management
+        leadStatus: formData.leadStatus,
+        priority: formData.priority,
 
-  } catch (error) {
-    console.error("❌ Submission Error:", error);
-    console.error("❌ Error name:", error.name);
-    console.error("❌ Error message:", error.message);
-    console.error("❌ Error stack:", error.stack);
-    
-    setSubmitStatus({
-      type: "error",
-      message:
-        `❌ There was an error submitting your data: ${error.message}. Please try downloading the PDF instead or contact us directly at vernoxy3@gmail.com`,
-    });
-    setIsSubmitting(false);
-  }
-};
+        // Timestamps
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        submissionStatus: "new",
+      };
 
+      // Add document to Firestore
+      const docRef = await addDoc(
+        collection(db, "erpSubmissions"),
+        submissionData
+      );
+      console.log("✅ Saved to Firestore with ID:", docRef.id);
 
+      // Step 2: Generate PDF
+      console.log("📄 Generating PDF...");
+      const doc = generatePDF();
+      const pdfBase64 = doc.output("datauristring").split(",")[1];
+      console.log("✅ PDF generated");
 
+      // Step 3: Prepare form data for email
+      console.log("📧 Preparing email data...");
+      const formDataToSend = new FormData();
+      formDataToSend.append("pdfData", pdfBase64);
+      formDataToSend.append("firestoreId", docRef.id);
+      formDataToSend.append("companyName", formData.companyName);
+      formDataToSend.append("plantLocations", formData.plantLocations);
+      formDataToSend.append("industryType", formData.industryType);
+      formDataToSend.append("contactPerson", formData.contactPerson);
+      formDataToSend.append("designation", formData.designation);
+      formDataToSend.append("phone", formData.phone);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append(
+        "manufacturingType",
+        formData.manufacturingType.join(", ")
+      );
+      formDataToSend.append("numberOfMachines", formData.numberOfMachines);
+      formDataToSend.append("numberOfShifts", formData.numberOfShifts);
+      formDataToSend.append("approxManpower", formData.approxManpower);
+      formDataToSend.append("currentSystem", formData.currentSystem.join(", "));
+      formDataToSend.append("otherERP", formData.otherERP);
+      formDataToSend.append("painPoints", formData.painPoints.join(", "));
+      formDataToSend.append("otherPainPoint", formData.otherPainPoint);
+      formDataToSend.append("productionJobCards", formData.productionJobCards);
+      formDataToSend.append("productionType", formData.productionType);
+      formDataToSend.append("rejectionTracking", formData.rejectionTracking);
+      formDataToSend.append(
+        "rawMaterialTracking",
+        formData.rawMaterialTracking
+      );
+      formDataToSend.append("barcodeRequired", formData.barcodeRequired);
+      formDataToSend.append("lotTracking", formData.lotTracking);
+      formDataToSend.append("orderTracking", formData.orderTracking);
+      formDataToSend.append("deliverySchedule", formData.deliverySchedule);
+      formDataToSend.append("invoiceIntegration", formData.invoiceIntegration);
+      formDataToSend.append("numberOfUsers", formData.numberOfUsers);
+      formDataToSend.append("numberOfPlants", formData.numberOfPlants);
+      formDataToSend.append("deployment", formData.deployment);
+      formDataToSend.append("customFeatures", formData.customFeatures);
+      formDataToSend.append("goLiveTimeline", formData.goLiveTimeline);
+      formDataToSend.append("leadStatus", formData.leadStatus);
+      formDataToSend.append("priority", formData.priority);
 
+      // Step 4: Send to Google Apps Script
+      console.log("📮 Sending email...");
+      const GOOGLE_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbxbiVFSZoz2to_AfZJtDgJ5ecaj90NhKWDTJOHOjPUYJAWb7Pswy6JMeZ0u3v4uRWqc/exec";
 
-const validateRequired = (value, fieldName) => {
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: formDataToSend,
+        mode: "no-cors",
+      }).catch((err) =>
+        console.log("❌ Email notification failed (non-critical):", err)
+      );
+
+      console.log("✅ All operations completed");
+
+      // Show success
+      setSubmitStatus({
+        type: "success",
+        message:
+          "✅ Thank you! Your requirements have been submitted successfully. Our team will contact you shortly.",
+      });
+      setFormData({
+        companyName: "",
+        plantLocations: "",
+        industryType: "",
+        contactPerson: "",
+        designation: "",
+        phone: "",
+        email: "",
+        manufacturingType: [],
+        numberOfMachines: "",
+        numberOfShifts: "",
+        approxManpower: "",
+        currentSystem: [],
+        otherERP: "",
+        painPoints: [],
+        otherPainPoint: "",
+        productionJobCards: "",
+        productionType: "",
+        rejectionTracking: "",
+        rawMaterialTracking: "",
+        barcodeRequired: "",
+        lotTracking: "",
+        orderTracking: "",
+        deliverySchedule: "",
+        invoiceIntegration: "",
+        dailyReport: false,
+        shiftReport: false,
+        machineEfficiency: false,
+        dashboard: false,
+        numberOfUsers: "",
+        numberOfPlants: "",
+        deployment: "",
+        customFeatures: "",
+        goLiveTimeline: "",
+        leadStatus: "New",
+        priority: "Medium",
+      });
+      setIsSubmitting(false);
+    } catch (error) {
+      console.error("❌ Submission Error:", error);
+      console.error("❌ Error name:", error.name);
+      console.error("❌ Error message:", error.message);
+      console.error("❌ Error stack:", error.stack);
+
+      setSubmitStatus({
+        type: "error",
+        message: `❌ There was an error submitting your data: ${error.message}. Please try downloading the PDF instead or contact us directly at vernoxy3@gmail.com`,
+      });
+      setIsSubmitting(false);
+    }
+  };
+
+  const validateRequired = (value, fieldName) => {
     if (!value || !value.trim()) {
       return `${fieldName} is required`;
     }
@@ -542,7 +542,7 @@ const validateRequired = (value, fieldName) => {
   return (
     <section className="container py-20 relative">
       {/* Progress Indicator */}
-      <div className="bg-[#464646]/50 backdrop-blur-md rounded-lg p-6 mb-10 border border-primary/20">
+      <div className="bg-[#464646]/50 backdrop-blur-md rounded-lg p-6 mb-10 border border-primary/30">
         <div className="flex justify-between items-center">
           {stages.map((stage, idx) => {
             const Icon = stage.icon;
@@ -555,18 +555,18 @@ const validateRequired = (value, fieldName) => {
                   onClick={() => setCurrentStage(stage.num)}
                 >
                   <div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all duration-300 ${
+                    className={`w-6 md:w-12 h-6 md:h-12 rounded-full flex items-center justify-center mb-2 transition-all duration-300 ${
                       isCompleted
-                        ? "bg-primary text-black"
+                        ? "bg-gradient-to-r from-primary to-white text-black"
                         : isActive
-                        ? "bg-primary text-black scale-110"
+                        ? "bg-gradient-to-r from-primary to-white text-black scale-110"
                         : "bg-gray-700 text-gray-400"
                     }`}
                   >
                     {isCompleted ? (
-                      <CheckCircle className="w-6 h-6" />
+                      <CheckCircle className=" w-4 md:w-6 h-6" />
                     ) : (
-                      <Icon className="w-6 h-6" />
+                      <Icon className=" w-4 md:w-6 h-6" />
                     )}
                   </div>
                   <span
@@ -580,7 +580,9 @@ const validateRequired = (value, fieldName) => {
                 {idx < stages.length - 1 && (
                   <div
                     className={`flex-1 h-1 mx-2 rounded transition-all duration-300 ${
-                      currentStage > stage.num ? "bg-primary" : "bg-gray-700"
+                      currentStage > stage.num
+                        ? "bg-gradient-to-r from-primary to-white"
+                        : "bg-gray-700"
                     }`}
                   />
                 )}
@@ -602,11 +604,11 @@ const validateRequired = (value, fieldName) => {
               <p className="text-gray-300 mb-4">
                 Pre-qualification information to understand your business
               </p>
-              <BottomLine />
+              <BottomLine className="mx-auto" />
             </div>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6 text-start">
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block font-medium text-white/90 mb-2 ">
                   Company Name *
                 </label>
                 <input
@@ -615,7 +617,7 @@ const validateRequired = (value, fieldName) => {
                   onChange={(e) =>
                     handleInputChange("companyName", e.target.value)
                   }
-                  className={`input-style w-full ${
+                  className={`input-style placeholder-white/50 w-full ${
                     errors.companyName ? "border-red-500" : ""
                   }`}
                   placeholder="Enter company name"
@@ -627,7 +629,7 @@ const validateRequired = (value, fieldName) => {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block font-medium text-white/90 mb-2">
                   Plant Locations
                 </label>
                 <input
@@ -636,37 +638,47 @@ const validateRequired = (value, fieldName) => {
                   onChange={(e) =>
                     handleInputChange("plantLocations", e.target.value)
                   }
-                  className={`input-style w-full ${
+                  className={`input-style placeholder-white/50 w-full ${
                     errors.contactPerson ? "border-red-500" : ""
                   }`}
                   placeholder="e.g., Mumbai, Pune"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block font-medium text-white/90 mb-2">
                   Industry Type
                 </label>
-                <select
-                  value={formData.industryType}
-                  onChange={(e) =>
-                    handleInputChange("industryType", e.target.value)
-                  }
-                  className="input-style w-full bg-black "
-                >
-                  <option value="">Select industry</option>
-                  <option value="Plastic">Plastic</option>
-                  <option value="Pharma">Pharma</option>
-                  <option value="Textile">Textile</option>
-                  <option value="Engineering">Engineering</option>
-                  <option value="Food & Beverage">Food & Beverage</option>
-                  <option value="Automotive">Automotive</option>
-                  <option value="Electronics">Electronics</option>
-                  <option value="Chemical">Chemical</option>
-                  <option value="Other">Other</option>
-                </select>
+                <div className="relative w-full">
+                  <select
+                    value={formData.industryType}
+                    onChange={(e) =>
+                      handleInputChange("industryType", e.target.value)
+                    }
+                    className={`input-style w-full appearance-none pr-10 ${
+                      formData.industryType
+                        ? "text-white focus:text-black"
+                        : "text-white/50 focus:text-black"
+                    }`}
+                  >
+                    <option value="" disabled>
+                      Select industry
+                    </option>
+                    <option value="Plastic">Plastic</option>
+                    <option value="Pharma">Pharma</option>
+                    <option value="Textile">Textile</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Food & Beverage">Food & Beverage</option>
+                    <option value="Automotive">Automotive</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Chemical">Chemical</option>
+                    <option value="Other">Other</option>
+                  </select>
+
+                  <FaAngleDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white/50" />
+                </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block font-medium text-white/90 mb-2">
                   Contact Person *
                 </label>
                 <input
@@ -675,7 +687,7 @@ const validateRequired = (value, fieldName) => {
                   onChange={(e) =>
                     handleInputChange("contactPerson", e.target.value)
                   }
-                  className="input-style w-full"
+                  className="input-style w-full placeholder-white/50"
                   placeholder="Full name"
                 />
                 {errors.contactPerson && (
@@ -685,7 +697,7 @@ const validateRequired = (value, fieldName) => {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block font-medium text-text-white/90 mb-2">
                   Designation
                 </label>
                 <input
@@ -694,12 +706,12 @@ const validateRequired = (value, fieldName) => {
                   onChange={(e) =>
                     handleInputChange("designation", e.target.value)
                   }
-                  className="input-style w-full"
+                  className="input-style w-full placeholder-white/50"
                   placeholder="e.g., Production Manager"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block font-medium text-white mb-2">
                   Phone *
                 </label>
                 <input
@@ -711,7 +723,7 @@ const validateRequired = (value, fieldName) => {
                     const value = e.target.value.replace(/\D/g, "");
                     handleInputChange("phone", value);
                   }}
-                  className="input-style w-full"
+                  className="input-style w-full placeholder-white/50"
                   placeholder="+91 XXXXX XXXXX"
                 />
                 {errors.phone && (
@@ -719,26 +731,26 @@ const validateRequired = (value, fieldName) => {
                 )}
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block font-medium text-text mb-2">
                   Email *
                 </label>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
-                  className="input-style w-full"
+                  className="input-style w-full placeholder-white/50"
                   placeholder="email@company.com"
                 />
                 {errors.email && (
-                  <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                  <p className="text-red-500 mt-1">{errors.email}</p>
                 )}
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white mb-3">
+              <label className="block text-lg font-medium text-white mb-3 text-start">
                 Type of Manufacturing
               </label>
-              <div className="space-y-2">
+              <div className=" flex flex-wrap justify-between max-w-3xl">
                 {["Discrete", "Process", "Batch"].map((type) => (
                   <label
                     key={type}
@@ -750,56 +762,68 @@ const validateRequired = (value, fieldName) => {
                       onChange={() =>
                         handleCheckboxChange("manufacturingType", type)
                       }
-                      className="w-5 h-5 text-primary bg-gray-700 border-gray-600 rounded focus:ring-primary focus:ring-2"
+                      className="w-5 h-5 text-primary bg-gray-700 rounded active:bg-primary"
                     />
-                    <span className="text-white">{type}</span>
+                    <span className="text-white text-lg">{type}</span>
                   </label>
                 ))}
               </div>
             </div>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-6 text-start">
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block font-medium text-white mb-2 ">
                   Number of Machines
                 </label>
                 <input
+                  min="0"
                   type="number"
                   value={formData.numberOfMachines}
                   onChange={(e) =>
                     handleInputChange("numberOfMachines", e.target.value)
                   }
-                  className="input-style w-full"
+                  className="input-style placeholder-white/50 w-full"
                   placeholder="e.g., 15"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block  font-medium text-white mb-2">
                   Number of Shifts
                 </label>
-                <select
-                  value={formData.numberOfShifts}
-                  onChange={(e) =>
-                    handleInputChange("numberOfShifts", e.target.value)
-                  }
-                  className="input-style w-full  bg-black"
-                >
-                  <option value="">Select</option>
-                  <option value="1">1 Shift</option>
-                  <option value="2">2 Shifts</option>
-                  <option value="3">3 Shifts</option>
-                </select>
+                <div className="w-full relative">
+                  <select
+                    value={formData.numberOfShifts}
+                    onChange={(e) =>
+                      handleInputChange("numberOfShifts", e.target.value)
+                    }
+                    className={`input-style w-full appearance-none pr-10 ${
+                      formData.numberOfShifts
+                        ? "text-white focus:text-black"
+                        : "text-white/50 focus:text-black"
+                    }`}
+                  >
+                    <option value="" disabled>
+                      Select
+                    </option>
+                    <option value="1">1 Shift</option>
+                    <option value="2">2 Shifts</option>
+                    <option value="3">3 Shifts</option>
+                  </select>
+
+                  <FaAngleDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white/50" />
+                </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block font-medium text-white mb-2">
                   Approx. Manpower
                 </label>
                 <input
+                  min="0"
                   type="number"
                   value={formData.approxManpower}
                   onChange={(e) =>
                     handleInputChange("approxManpower", e.target.value)
                   }
-                  className="input-style w-full"
+                  className="input-style placeholder-white/50 w-full"
                   placeholder="e.g., 50"
                 />
               </div>
@@ -817,13 +841,13 @@ const validateRequired = (value, fieldName) => {
               <p className="text-gray-300 mb-4">
                 Help us understand your challenges to position our ERP value
               </p>
-              <BottomLine />
+              <BottomLine className="mx-auto" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white mb-3">
+              <label className="block text-lg md:text-2xl font-medium text-primary mb-3 text-start">
                 Currently Using
               </label>
-              <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {["Excel", "Tally", "Any ERP", "Fully Manual"].map((system) => (
                   <label
                     key={system}
@@ -844,7 +868,7 @@ const validateRequired = (value, fieldName) => {
             </div>
             {formData.currentSystem.includes("Any ERP") && (
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-start font-medium text-white mb-2">
                   Which ERP?
                 </label>
                 <input
@@ -853,16 +877,16 @@ const validateRequired = (value, fieldName) => {
                   onChange={(e) =>
                     handleInputChange("otherERP", e.target.value)
                   }
-                  className="input-style w-full"
+                  className="input-style w-full placeholder-white/50"
                   placeholder="ERP name"
                 />
               </div>
             )}
             <div>
-              <label className="block text-sm font-medium text-white mb-3">
+              <label className="block text-lg md:text-2xl font-medium text-primary mb-3 text-start">
                 Major Problems Facing
               </label>
-              <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
                 {[
                   "Production planning issues",
                   "Inventory mismatch",
@@ -874,7 +898,7 @@ const validateRequired = (value, fieldName) => {
                 ].map((problem) => (
                   <label
                     key={problem}
-                    className="flex items-center space-x-3 cursor-pointer"
+                    className="flex items-center space-x-3 cursor-pointer "
                   >
                     <input
                       type="checkbox"
@@ -890,7 +914,7 @@ const validateRequired = (value, fieldName) => {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
+              <label className="block text-lg md:text-2xl font-medium text-primary mb-2 text-start">
                 Other Pain Points
               </label>
               <textarea
@@ -898,7 +922,7 @@ const validateRequired = (value, fieldName) => {
                 onChange={(e) =>
                   handleInputChange("otherPainPoint", e.target.value)
                 }
-                className="input-style w-full"
+                className="input-style w-full placeholder-white/50"
                 rows="4"
                 placeholder="Describe any other challenges..."
               />
@@ -908,26 +932,26 @@ const validateRequired = (value, fieldName) => {
 
         {/* Stage 3 */}
         {currentStage === 3 && (
-          <div className="space-y-8">
-            <div>
+          <div className="space-y-8 text-start">
+            <div className="text-center">
               <h2 className="text-3xl font-bold font-Bai_Jamjuree text-primary mb-2">
                 Stage 3: Module Requirement Mapping
               </h2>
               <p className="text-gray-300 mb-4">
                 Identify specific features your business needs
               </p>
-              <BottomLine />
+              <BottomLine className="mx-auto" />
             </div>
             {/* Production Module */}
-            <div className="border-l-4 border-primary pl-6 space-y-6">
-              <h3 className="text-xl font-bold text-primary font-Bai_Jamjuree">
+            <div className=" space-y-6">
+              <h3 className="text-lg md:text-2xl font-bold text-primary font-Bai_Jamjuree">
                 Production Module
               </h3>
               <div>
-                <label className="block text-sm font-medium text-white mb-3">
+                <label className="block font-medium text-white mb-3">
                   Job Cards Required?
                 </label>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-8">
                   {["Yes", "No", "Not Sure"].map((option) => (
                     <label
                       key={option}
@@ -948,27 +972,37 @@ const validateRequired = (value, fieldName) => {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block font-medium text-white mb-2">
                   Production Type
                 </label>
-                <select
-                  value={formData.productionType}
-                  onChange={(e) =>
-                    handleInputChange("productionType", e.target.value)
-                  }
-                  className="input-style w-full  bg-black"
-                >
-                  <option value="">Select</option>
-                  <option value="Batch-wise">Batch-wise</option>
-                  <option value="Order-wise">Order-wise</option>
-                  <option value="Both">Both</option>
-                </select>
+                <div className="w-full relative">
+                  <select
+                    value={formData.productionType}
+                    onChange={(e) =>
+                      handleInputChange("productionType", e.target.value)
+                    }
+                    className={`input-style w-full appearance-none pr-10 ${
+                      formData.productionType
+                        ? "text-white focus:text-black"
+                        : "text-white/50 focus:text-black"
+                    }`}
+                  >
+                    <option value="" disabled>
+                      Select
+                    </option>
+                    <option value="Batch-wise">Batch-wise</option>
+                    <option value="Order-wise">Order-wise</option>
+                    <option value="Both">Both</option>
+                  </select>
+                  <FaAngleDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white/50" />
+                  
+                </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-3">
+                <label className="block font-medium text-white mb-3">
                   Rejection & Wastage Tracking?
                 </label>
-                <div className="flex gap-4">
+                <div className="flex gap-8">
                   {["Yes", "No"].map((option) => (
                     <label
                       key={option}
@@ -989,168 +1023,170 @@ const validateRequired = (value, fieldName) => {
                 </div>
               </div>
             </div>
-            {/* Inventory Module */}
-            <div className="border-l-4 border-primary pl-6 space-y-6">
-              <h3 className="text-xl font-bold text-primary font-Bai_Jamjuree">
-                Inventory Module
-              </h3>
-              <div>
-                <label className="block text-sm font-medium text-white mb-3">
-                  Raw Material Tracking?
-                </label>
-                <div className="flex gap-4">
-                  {["Yes", "No"].map((option) => (
-                    <label
-                      key={option}
-                      className="flex items-center space-x-2 cursor-pointer"
-                    >
-                      <input
-                        type="radio"
-                        name="rawMaterial"
-                        checked={formData.rawMaterialTracking === option}
-                        onChange={() =>
-                          handleInputChange("rawMaterialTracking", option)
-                        }
-                        className="w-5 h-5 text-primary bg-gray-700 border-gray-600 focus:ring-primary focus:ring-2"
-                      />
-                      <span className="text-white">{option}</span>
-                    </label>
-                  ))}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Inventory Module */}
+              <div className=" space-y-6">
+                <h3 className="text-lg md:text-2xl font-bold text-primary font-Bai_Jamjuree">
+                  Inventory Module
+                </h3>
+                <div>
+                  <label className="block font-medium text-white mb-3">
+                    Raw Material Tracking?
+                  </label>
+                  <div className="flex gap-8">
+                    {["Yes", "No"].map((option) => (
+                      <label
+                        key={option}
+                        className="flex items-center space-x-2 cursor-pointer"
+                      >
+                        <input
+                          type="radio"
+                          name="rawMaterial"
+                          checked={formData.rawMaterialTracking === option}
+                          onChange={() =>
+                            handleInputChange("rawMaterialTracking", option)
+                          }
+                          className="w-5 h-5 text-primary bg-gray-700 border-gray-600 focus:ring-primary focus:ring-2"
+                        />
+                        <span className="text-white">{option}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label className="block font-medium text-white mb-3">
+                    Barcode Required?
+                  </label>
+                  <div className="flex flex-wrap gap-8">
+                    {["Yes", "No", "Maybe Later"].map((option) => (
+                      <label
+                        key={option}
+                        className="flex items-center space-x-2 cursor-pointer"
+                      >
+                        <input
+                          type="radio"
+                          name="barcode"
+                          checked={formData.barcodeRequired === option}
+                          onChange={() =>
+                            handleInputChange("barcodeRequired", option)
+                          }
+                          className="w-5 h-5 text-primary bg-gray-700 border-gray-600 focus:ring-primary focus:ring-2"
+                        />
+                        <span className="text-white">{option}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label className="block font-medium text-white mb-3">
+                    Lot / Batch Tracking?
+                  </label>
+                  <div className="flex gap-8">
+                    {["Yes", "No"].map((option) => (
+                      <label
+                        key={option}
+                        className="flex items-center space-x-2 cursor-pointer"
+                      >
+                        <input
+                          type="radio"
+                          name="lotTracking"
+                          checked={formData.lotTracking === option}
+                          onChange={() =>
+                            handleInputChange("lotTracking", option)
+                          }
+                          className="w-5 h-5 text-primary bg-gray-700 border-gray-600 focus:ring-primary focus:ring-2"
+                        />
+                        <span className="text-white">{option}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-white mb-3">
-                  Barcode Required?
-                </label>
-                <div className="flex flex-wrap gap-4">
-                  {["Yes", "No", "Maybe Later"].map((option) => (
-                    <label
-                      key={option}
-                      className="flex items-center space-x-2 cursor-pointer"
-                    >
-                      <input
-                        type="radio"
-                        name="barcode"
-                        checked={formData.barcodeRequired === option}
-                        onChange={() =>
-                          handleInputChange("barcodeRequired", option)
-                        }
-                        className="w-5 h-5 text-primary bg-gray-700 border-gray-600 focus:ring-primary focus:ring-2"
-                      />
-                      <span className="text-white">{option}</span>
-                    </label>
-                  ))}
+              {/* Sales & Dispatch */}
+              <div className=" space-y-6">
+                <h3 className="text-lg md:text-2xl font-bold text-primary font-Bai_Jamjuree">
+                  Sales & Dispatch Module
+                </h3>
+                <div>
+                  <label className="block font-medium text-white mb-3">
+                    Order Tracking?
+                  </label>
+                  <div className="flex gap-8">
+                    {["Yes", "No"].map((option) => (
+                      <label
+                        key={option}
+                        className="flex items-center space-x-2 cursor-pointer"
+                      >
+                        <input
+                          type="radio"
+                          name="orderTracking"
+                          checked={formData.orderTracking === option}
+                          onChange={() =>
+                            handleInputChange("orderTracking", option)
+                          }
+                          className="w-5 h-5 text-primary bg-gray-700 border-gray-600 focus:ring-primary focus:ring-2"
+                        />
+                        <span className="text-white">{option}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-white mb-3">
-                  Lot / Batch Tracking?
-                </label>
-                <div className="flex gap-4">
-                  {["Yes", "No"].map((option) => (
-                    <label
-                      key={option}
-                      className="flex items-center space-x-2 cursor-pointer"
-                    >
-                      <input
-                        type="radio"
-                        name="lotTracking"
-                        checked={formData.lotTracking === option}
-                        onChange={() =>
-                          handleInputChange("lotTracking", option)
-                        }
-                        className="w-5 h-5 text-primary bg-gray-700 border-gray-600 focus:ring-primary focus:ring-2"
-                      />
-                      <span className="text-white">{option}</span>
-                    </label>
-                  ))}
+                <div>
+                  <label className="block font-medium text-white mb-3">
+                    Delivery Schedule?
+                  </label>
+                  <div className="flex gap-8">
+                    {["Yes", "No"].map((option) => (
+                      <label
+                        key={option}
+                        className="flex items-center space-x-2 cursor-pointer"
+                      >
+                        <input
+                          type="radio"
+                          name="deliverySchedule"
+                          checked={formData.deliverySchedule === option}
+                          onChange={() =>
+                            handleInputChange("deliverySchedule", option)
+                          }
+                          className="w-5 h-5 text-primary bg-gray-700 border-gray-600 focus:ring-primary focus:ring-2"
+                        />
+                        <span className="text-white">{option}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </div>
-            {/* Sales & Dispatch */}
-            <div className="border-l-4 border-primary pl-6 space-y-6">
-              <h3 className="text-xl font-bold text-primary font-Bai_Jamjuree">
-                Sales & Dispatch Module
-              </h3>
-              <div>
-                <label className="block text-sm font-medium text-white mb-3">
-                  Order Tracking?
-                </label>
-                <div className="flex gap-4">
-                  {["Yes", "No"].map((option) => (
-                    <label
-                      key={option}
-                      className="flex items-center space-x-2 cursor-pointer"
-                    >
-                      <input
-                        type="radio"
-                        name="orderTracking"
-                        checked={formData.orderTracking === option}
-                        onChange={() =>
-                          handleInputChange("orderTracking", option)
-                        }
-                        className="w-5 h-5 text-primary bg-gray-700 border-gray-600 focus:ring-primary focus:ring-2"
-                      />
-                      <span className="text-white">{option}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-white mb-3">
-                  Delivery Schedule?
-                </label>
-                <div className="flex gap-4">
-                  {["Yes", "No"].map((option) => (
-                    <label
-                      key={option}
-                      className="flex items-center space-x-2 cursor-pointer"
-                    >
-                      <input
-                        type="radio"
-                        name="deliverySchedule"
-                        checked={formData.deliverySchedule === option}
-                        onChange={() =>
-                          handleInputChange("deliverySchedule", option)
-                        }
-                        className="w-5 h-5 text-primary bg-gray-700 border-gray-600 focus:ring-primary focus:ring-2"
-                      />
-                      <span className="text-white">{option}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-white mb-3">
-                  Invoice Integration?
-                </label>
-                <div className="flex gap-4">
-                  {["Yes", "No"].map((option) => (
-                    <label
-                      key={option}
-                      className="flex items-center space-x-2 cursor-pointer"
-                    >
-                      <input
-                        type="radio"
-                        name="invoiceIntegration"
-                        checked={formData.invoiceIntegration === option}
-                        onChange={() =>
-                          handleInputChange("invoiceIntegration", option)
-                        }
-                        className="w-5 h-5 text-primary bg-gray-700 border-gray-600 focus:ring-primary focus:ring-2"
-                      />
-                      <span className="text-white">{option}</span>
-                    </label>
-                  ))}
+                <div>
+                  <label className="block font-medium text-white mb-3">
+                    Invoice Integration?
+                  </label>
+                  <div className="flex gap-8">
+                    {["Yes", "No"].map((option) => (
+                      <label
+                        key={option}
+                        className="flex items-center space-x-2 cursor-pointer"
+                      >
+                        <input
+                          type="radio"
+                          name="invoiceIntegration"
+                          checked={formData.invoiceIntegration === option}
+                          onChange={() =>
+                            handleInputChange("invoiceIntegration", option)
+                          }
+                          className="w-5 h-5 text-primary bg-gray-700 border-gray-600 focus:ring-primary focus:ring-2"
+                        />
+                        <span className="text-white">{option}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
             {/* Reports */}
-            <div className="border-l-4 border-primary pl-6">
-              <h3 className="text-xl font-bold text-primary font-Bai_Jamjuree mb-4">
+            <div className="">
+              <h3 className="text-2xl md:text-3xl font-bold text-primary font-Bai_Jamjuree mb-4">
                 Reports Required
               </h3>
-              <div className="space-y-2">
+              <div className="grid md:grid-cols-2 gap-4">
                 {[
                   { key: "dailyReport", label: "Daily Production Report" },
                   { key: "shiftReport", label: "Shift-wise Report" },
@@ -1182,48 +1218,50 @@ const validateRequired = (value, fieldName) => {
 
         {/* Stage 4 */}
         {currentStage === 4 && (
-          <div className="space-y-8">
-            <div>
+          <div className="space-y-8 text-start">
+            <div className="text-center">
               <h2 className="text-3xl font-bold font-Bai_Jamjuree text-primary mb-2">
                 Stage 4: Commercial & Customization
               </h2>
               <p className="text-gray-300 mb-4">
                 Final details for accurate proposal and pricing
               </p>
-              <BottomLine />
+              <BottomLine className="mx-auto" />
             </div>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block font-medium text-white/90 mb-2">
                   Number of Users
                 </label>
                 <input
+                  min="0"
                   type="number"
                   value={formData.numberOfUsers}
                   onChange={(e) =>
                     handleInputChange("numberOfUsers", e.target.value)
                   }
-                  className="input-style w-full"
+                  className="input-style w-full placeholder-white/50"
                   placeholder="e.g., 10"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block font-medium text-white/90 mb-2">
                   Number of Plants
                 </label>
                 <input
+                  min="0"
                   type="number"
                   value={formData.numberOfPlants}
                   onChange={(e) =>
                     handleInputChange("numberOfPlants", e.target.value)
                   }
-                  className="input-style w-full"
+                  className="input-style w-full placeholder-white/50"
                   placeholder="e.g., 2"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white mb-3">
+              <label className="block text-xl md:text-3xl font-medium text-white mb-5">
                 Deployment Preference
               </label>
               <div className="space-y-2">
@@ -1247,7 +1285,7 @@ const validateRequired = (value, fieldName) => {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
+              <label className="block text-xl md:text-3xl font-medium text-white mb-3">
                 Custom Features Required
               </label>
               <textarea
@@ -1255,23 +1293,29 @@ const validateRequired = (value, fieldName) => {
                 onChange={(e) =>
                   handleInputChange("customFeatures", e.target.value)
                 }
-                className="input-style w-full"
+                className="input-style w-full placeholder-white/50"
                 rows="4"
                 placeholder="Describe any specific customizations or special requirements..."
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
+              <label className="block textlg: md:text-2xl font-medium text-white/90 mb-2">
                 Expected Go-Live Timeline
               </label>
+              <div className="w-full relative">
+                
               <select
                 value={formData.goLiveTimeline}
                 onChange={(e) =>
                   handleInputChange("goLiveTimeline", e.target.value)
                 }
-                className="input-style w-full  bg-black"
-              >
-                <option value="">Select timeline</option>
+                className={`input-style w-full appearance-none pr-10 ${
+                      formData.goLiveTimeline
+                        ? "text-white focus:text-black"
+                        : "text-white/50 focus:text-black"
+                    }`}
+                >
+                <option value="" disabled>Select timeline</option>
                 <option value="Immediate (Within 1 month)">
                   Immediate (Within 1 month)
                 </option>
@@ -1280,23 +1324,32 @@ const validateRequired = (value, fieldName) => {
                 <option value="6+ months">6+ months</option>
                 <option value="Just exploring">Just exploring</option>
               </select>
+                  <FaAngleDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white/50" />
+
+                </div>
             </div>
             <div className="border-t border-primary/30 pt-6">
-              <h3 className="text-xl font-bold text-primary font-Bai_Jamjuree mb-4">
+              <h3 className="text-xl md:text-3xl font-bold text-primary font-Bai_Jamjuree mb-4">
                 Lead Management
               </h3>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-white mb-2">
+                  <label className="block font-medium text-white mb-2">
                     Lead Status
                   </label>
+                  <div className="w-full relative">
+
                   <select
                     value={formData.leadStatus}
                     onChange={(e) =>
                       handleInputChange("leadStatus", e.target.value)
                     }
-                    className="input-style w-full  bg-black"
-                  >
+                    className={`input-style w-full appearance-none pr-10 ${
+                      formData.leadStatus
+                        ? "text-white focus:text-black"
+                        : "text-white/50 focus:text-black"
+                    }`}
+                    >
                     <option value="New">New</option>
                     <option value="Demo Done">Demo Done</option>
                     <option value="Proposal Sent">Proposal Sent</option>
@@ -1304,27 +1357,39 @@ const validateRequired = (value, fieldName) => {
                     <option value="Closed Won">Closed Won</option>
                     <option value="Closed Lost">Closed Lost</option>
                   </select>
+                  <FaAngleDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white/50" />
+
+                    </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-white mb-2">
+                  <label className="block font-medium text-white mb-2">
                     Priority
                   </label>
+                  <div className="w-full relative">
+
                   <select
                     value={formData.priority}
                     onChange={(e) =>
                       handleInputChange("priority", e.target.value)
                     }
-                    className="input-style w-full  bg-black"
-                  >
+                    className={`input-style w-full appearance-none pr-10 ${
+                      formData.priority
+                        ? "text-white focus:text-black"
+                        : "text-white/50 focus:text-black"
+                    }`}
+                    >
                     <option value="High">High</option>
                     <option value="Medium">Medium</option>
                     <option value="Low">Low</option>
                   </select>
+                  <FaAngleDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white/50" />
+
+                    </div>
                 </div>
               </div>
             </div>
             <div className="bg-primary/20 border border-primary rounded-lg p-4 mb-6">
-              <p className="text-primary text-sm">
+              <p className="text-primary text-sm text-start">
                 ✅ <strong>All stages completed!</strong> Click "Submit to Get
                 Started" to send us your requirements.
               </p>
@@ -1353,13 +1418,13 @@ const validateRequired = (value, fieldName) => {
       </div>
 
       {/* Navigation Buttons */}
-      <div className="bg-[#464646]/50 backdrop-blur-md rounded-lg p-6 flex justify-between items-center border border-primary/20">
+      <div className="bg-[#464646]/50 backdrop-blur-md rounded-lg p-6 flex  justify-between items-center border border-primary/20">
         <button
           onClick={prevStage}
           disabled={currentStage === 1}
-          className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-bold font-Bai_Jamjuree transition-all duration-300 ${
+          className={`flex items-center space-x-2 px-4 md:px-6 py-3 rounded-lg font-bold font-Bai_Jamjuree transition-all duration-300 ${
             currentStage === 1
-              ? "bg-gray-700 text-gray-500 cursor-not-allowed"
+              ? "bg-gray-700 text-gray-500 cursor-not-allowed hidden"
               : "bg-gray-700 text-white hover:bg-gray-600"
           }`}
         >
@@ -1373,10 +1438,10 @@ const validateRequired = (value, fieldName) => {
               <button
                 onClick={submitAndEmail}
                 disabled={isSubmitting || submitStatus?.type === "success"}
-                className={`flex items-center space-x-2 px-8 py-3 rounded-lg font-bold font-Bai_Jamjuree transition-all duration-300 ${
+                className={`flex items-center gap-2 md:space-x-2 px-2 md:px-8 py-3 rounded-lg font-bold font-Bai_Jamjuree transition-all duration-300 ${
                   isSubmitting || submitStatus?.type === "success"
                     ? "bg-gray-600 text-gray-400 cursor-not-allowed"
-                    : "bg-primary text-black hover:bg-primary/80 shadow-lg"
+                    : "bg-gradient-to-r from-primary to-white text-secondary shadow-lg transition-all duration-1000 hover:bg-gradient-to-r hover:from-primary hover:to-primary"
                 }`}
               >
                 {isSubmitting ? (
@@ -1392,7 +1457,8 @@ const validateRequired = (value, fieldName) => {
                 ) : (
                   <>
                     <CheckCircle className="w-5 h-5" />
-                    <span>Submit to Get Started</span>
+                    <span className="hidden md:block">Submit to Get Started</span>
+                    <span className="md:hidden">Get Started </span>
                   </>
                 )}
               </button>
@@ -1412,8 +1478,8 @@ const validateRequired = (value, fieldName) => {
           disabled={currentStage === 4}
           className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-bold font-Bai_Jamjuree transition-all duration-300 ${
             currentStage === 4
-              ? "bg-gray-700 text-gray-500 cursor-not-allowed"
-              : "bg-primary text-black hover:bg-primary/80"
+              ? "bg-gray-700 text-gray-500 cursor-not-allowed hidden"
+              : "bg-gradient-to-r from-primary to-white text-secondary hover:bg-primary/80"
           }`}
         >
           <span>Next</span>
@@ -1426,7 +1492,7 @@ const validateRequired = (value, fieldName) => {
         <h3 className="text-lg font-bold text-primary mb-2 font-Bai_Jamjuree">
           💡 Pro Tip
         </h3>
-        <p className="text-gray-300 text-sm">
+        <p className="text-gray-300 text-sm max-w-2xl mx-auto">
           Send this to your prospects: "To understand your manufacturing process
           properly and suggest the right ERP configuration, we request you to
           share some basic details. This helps us avoid unnecessary features and
