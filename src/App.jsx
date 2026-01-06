@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import ScrollToTop from "./Components/ScrollToTop";
@@ -26,13 +26,31 @@ import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import UserPageLogin from "./Pages/Admin/UserPageLogin";
 import AdminPageLogin from "./Pages/Admin/AdminPageLogin";
+import ERP_Requirement from "./Components/ERP_Requirement";
+
+// Layout wrapper to conditionally show Navbar/Footer
+const Layout = ({ children }) => {
+  const location = useLocation();
+
+  // List of paths where Navbar/Footer should NOT appear
+  const hideNavbarFooterPaths = ["/admin/dashboard"];
+
+  const hideLayout = hideNavbarFooterPaths.includes(location.pathname);
+
+  return (
+    <div className="bg-vernoxy text-white min-h-screen text-center">
+      {!hideLayout && <Navbar />}
+      {children}
+      {!hideLayout && <Footer />}
+    </div>
+  );
+};
 
 const App = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="bg-vernoxy text-white min-h-screen text-center">
-        <Navbar />
+      <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
@@ -70,8 +88,8 @@ const App = () => {
           {/* 404 fallback */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Footer />
-      </div>
+      </Layout>
+      {/* <ERP_Requirement/> */}
     </Router>
   );
 };

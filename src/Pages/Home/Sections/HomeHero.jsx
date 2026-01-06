@@ -18,7 +18,7 @@ const HomeHero = () => {
       />
 
       {/* Dark Overlay */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-vernoxy to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-vernoxy to-transparent pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col justify-center h-full mt-16 container">

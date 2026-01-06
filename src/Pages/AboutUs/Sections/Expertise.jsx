@@ -73,7 +73,7 @@ const Expertise = () => {
           }
           className="text-center flex justify-center"
         />
-        <div className="w-full overflow-hidden pointer-events-none pt-9 absolute">
+        <div className="w-full px-20  pointer-events-none pt-9 absolute">
           <div className="flex gap-x-24 w-full animate-marquee">
             <img src={Globally_Preferred} alt="Globally Preferred" />
             <img src={Globally_Preferred} alt="Globally Preferred" />

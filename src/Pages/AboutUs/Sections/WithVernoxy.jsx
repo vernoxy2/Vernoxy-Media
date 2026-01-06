@@ -13,7 +13,7 @@ const WithVernoxy = () => {
         <img
           src={Puxxle2}
           alt=""
-          className="mx-auto translate-x-20 pl-12 h-full animate-float -mb-16 pointer-events-none z-20"
+          className="mx-auto translate-x-20 pl-12 h-full animate-float -mb-16 pointer-events-none z-20 "
         />
         <img
           src={Puxxle1}

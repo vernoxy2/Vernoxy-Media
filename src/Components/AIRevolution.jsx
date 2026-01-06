@@ -66,7 +66,7 @@ const AIRevolution = () => {
         </div>
       </div>
       {/* Orbit */}
-      <div className="relative container z-10">
+      <div className="relative container z-10 pointer-events-none">
         {/* Earth Image */}
         <img src={Earth} alt="Earth" className="mx-auto pointer-events-none" />
 
@@ -76,7 +76,7 @@ const AIRevolution = () => {
           <img
             src={Left}
             alt="Left Orbit"
-            className="absolute top-0 animate-Efloat "
+            className="absolute top-0 animate-Efloat pointer-events-none"
           />
         </div>
 
@@ -86,12 +86,12 @@ const AIRevolution = () => {
         {/* Trusted Globally (centered in background) */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full pointer-events-none -z-10 container px-0 overflow-hidden  ">
           <div className="flex gap-x-24 animate-marquee justify-center">
-            <img src={Ttusted_Globally} alt="Trusted Globally" />
-            <img src={Ttusted_Globally} alt="Trusted Globally" />
-            <img src={Ttusted_Globally} alt="Trusted Globally" />
-            <img src={Ttusted_Globally} alt="Trusted Globally" />
-            <img src={Ttusted_Globally} alt="Trusted Globally" />
-            <img src={Ttusted_Globally} alt="Trusted Globally" />
+            <img src={Ttusted_Globally} alt="Trusted Globally pointer-events-none" />
+            <img src={Ttusted_Globally} alt="Trusted Globally pointer-events-none" />
+            <img src={Ttusted_Globally} alt="Trusted Globally pointer-events-none" />
+            <img src={Ttusted_Globally} alt="Trusted Globally pointer-events-none" />
+            <img src={Ttusted_Globally} alt="Trusted Globally pointer-events-none" />
+            <img src={Ttusted_Globally} alt="Trusted Globally pointer-events-none" />
           </div>
         </div>
       </div>
