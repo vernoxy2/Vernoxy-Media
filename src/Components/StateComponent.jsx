@@ -1,7 +1,7 @@
 import React from "react";
 import PrimaryHero from "./PrimaryHead";
 import Heading from "./Heading";
-import Gujarat from "../assets/StateComponent/India/Gujarat.png";
+import Gujarat from "../assets/StateComponent/India/Gujarat.webp";
 import { useNavigate } from "react-router-dom";
 import LeftTop from "../assets/ContactPageImg/LeftTop.svg";
 
