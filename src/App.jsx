@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import ScrollToTop from "./Components/ScrollToTop";
+// import StateComponent from "./Components/StateComponent";
 
 // Pages
 import Home from "./Pages/Home/Home";
@@ -10,7 +11,7 @@ import AboutUs from "./Pages/AboutUs/AboutUs";
 import Services from "./Pages/Services/Services";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import Projects from "./Pages/Projects/Projects";
-
+import GlobalPresence from "./Pages/GlobalPresence/GlobalPresence";
 // Services inner pages
 import WebDevelopment from "./Pages/Services/WebDevelopment/WebDevelopment";
 // import GraphicsDesign from "./Pages/Services/GraphicsDesign/GraphicsDesign";
@@ -68,6 +69,8 @@ const App = () => {
 
           <Route path="/products" element={<Projects />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/global-presence" element={<GlobalPresence/>} />
+          {/* <Route path="/state-component" element={<StateComponent />} /> */}
 
           <Route path="/erp-capture" element={<ERPCapture />} />
 
