@@ -24,6 +24,8 @@ import ERPCapture from "./Pages/ERPCapture/ERPCapture";
 import AdminLogin from "./Pages/Admin/AdminLogin";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import UserPageLogin from "./Pages/Admin/UserPageLogin";
+import AdminPageLogin from "./Pages/Admin/AdminPageLogin";
 import ERP_Requirement from "./Components/ERP_Requirement";
 
 // Layout wrapper to conditionally show Navbar/Footer
@@ -70,8 +72,6 @@ const App = () => {
           <Route path="/products" element={<Projects />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/global-presence" element={<GlobalPresence/>} />
-          {/* <Route path="/state-component" element={<StateComponent />} /> */}
-
           <Route path="/erp-capture" element={<ERPCapture />} />
 
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -83,6 +83,8 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route path="/admin-page/login" element={<AdminPageLogin />} />
+          <Route path="/user-page/login" element={<UserPageLogin />} />
           {/* 404 fallback */}
           <Route path="*" element={<NotFound />} />
         </Routes>
