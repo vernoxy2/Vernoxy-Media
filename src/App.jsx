@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import ScrollToTop from "./Components/ScrollToTop";
@@ -31,9 +36,11 @@ import ERP_Requirement from "./Components/ERP_Requirement";
 // Layout wrapper to conditionally show Navbar/Footer
 const Layout = ({ children }) => {
   const location = useLocation();
-
-  // List of paths where Navbar/Footer should NOT appear
-  const hideNavbarFooterPaths = ["/admin/dashboard"];
+  const hideNavbarFooterPaths = [
+    "/admin/dashboard",
+    "/admin-page",
+    "/user-page",
+  ];
 
   const hideLayout = hideNavbarFooterPaths.includes(location.pathname);
 
@@ -71,7 +78,7 @@ const App = () => {
 
           <Route path="/products" element={<Projects />} />
           <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/global-presence" element={<GlobalPresence/>} />
+          <Route path="/global-presence" element={<GlobalPresence />} />
           <Route path="/erp-capture" element={<ERPCapture />} />
 
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -83,8 +90,8 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route path="/admin-page/login" element={<AdminPageLogin />} />
-          <Route path="/user-page/login" element={<UserPageLogin />} />
+          <Route path="/admin-page" element={<AdminPageLogin />} />
+          <Route path="/user-page" element={<UserPageLogin />} />
           {/* 404 fallback */}
           <Route path="*" element={<NotFound />} />
         </Routes>

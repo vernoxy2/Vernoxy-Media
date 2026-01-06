@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Clock,
   Briefcase,
@@ -9,10 +9,28 @@ import {
   Coffee,
   AlertCircle,
   MessageSquare,
-  Paperclip,
   Users,
   TrendingUp,
 } from "lucide-react";
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { getAuth, signInAnonymously } from "firebase/auth";
+
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDUJY3MJuYmDwriz_VtF4fkjcGhBQcX78M",
+  authDomain: "vernoxy-media.firebaseapp.com",
+  projectId: "vernoxy-media",
+  storageBucket: "vernoxy-media.firebasestorage.app",
+  messagingSenderId: "29003109920",
+  appId: "1:29003109920:web:f3115a221f201a04434e45",
+  measurementId: "G-8PKSEKJVM5"
+};
+
+// Initialize Firebase - CORRECT ORDER
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 
 const UserPageLogin = () => {
   const [currentEmployee] = useState({
@@ -37,28 +55,13 @@ const UserPageLogin = () => {
     { id: 6, name: "Divya Patel" },
   ]);
 
-  const [workLogs, setWorkLogs] = useState([
-    {
-      id: 1,
-      employeeId: 1,
-      projectId: 1,
-      date: new Date().toISOString().split("T")[0],
-      task: "Created Instagram posts",
-      hoursSpent: 3,
-      breakTime: 0.5,
-      status: "Completed",
-      priority: "High",
-      notes: "Used new brand guidelines",
-      blockers: "",
-      collaborators: [],
-      mood: "productive",
-    },
-  ]);
-
+  const [workLogs, setWorkLogs] = useState([]);
   const [activeView, setActiveView] = useState("today");
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split("T")[0]
   );
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const [newWorkLog, setNewWorkLog] = useState({
     projectId: "",
@@ -75,37 +78,127 @@ const UserPageLogin = () => {
     mood: "neutral",
   });
 
-  const addWorkLog = () => {
-    if (newWorkLog.projectId && newWorkLog.task && newWorkLog.hoursSpent) {
-      const log = {
-        ...newWorkLog,
-        id: Date.now(),
-        employeeId: currentEmployee.id,
-        date: selectedDate,
-        hoursSpent: parseFloat(newWorkLog.hoursSpent),
-        breakTime: parseFloat(newWorkLog.breakTime) || 0,
-      };
-      setWorkLogs([...workLogs, log]);
-      setNewWorkLog({
-        projectId: "",
-        task: "",
-        hoursSpent: "",
-        breakTime: "",
-        status: "In Progress",
-        priority: "Medium",
-        startTime: "",
-        endTime: "",
-        notes: "",
-        blockers: "",
-        collaborators: [],
-        mood: "neutral",
+  const [showAllCollaborators, setShowAllCollaborators] = useState(false);
+
+  // Sign in anonymously when component mounts
+  useEffect(() => {
+    signInAnonymously(auth)
+      .then(() => console.log("✅ Signed in anonymously"))
+      .catch((error) => console.error("❌ Auth error:", error));
+  }, []);
+
+  // Load work logs from Firebase on component mount
+  useEffect(() => {
+    loadWorkLogs();
+  }, [selectedDate]);
+
+  const loadWorkLogs = async () => {
+    try {
+      const q = query(
+        collection(db, "workLogs"),
+        where("employeeId", "==", currentEmployee.id),
+        where("date", "==", selectedDate)
+      );
+      
+      const querySnapshot = await getDocs(q);
+      const logs = [];
+      querySnapshot.forEach((doc) => {
+        logs.push({ id: doc.id, ...doc.data() });
       });
-      setActiveView("today");
+      setWorkLogs(logs);
+    } catch (error) {
+      console.error("Error loading work logs:", error);
     }
   };
 
-  const deleteWorkLog = (id) => {
-    setWorkLogs(workLogs.filter((log) => log.id !== id));
+  const addWorkLog = async () => {
+    if (newWorkLog.projectId && newWorkLog.task && newWorkLog.hoursSpent) {
+      setIsSubmitting(true);
+      setSubmitStatus(null);
+
+      try {
+        const workLogData = {
+          employeeId: currentEmployee.id,
+          employeeName: currentEmployee.name,
+          department: currentEmployee.department,
+          role: currentEmployee.role,
+          projectId: newWorkLog.projectId,
+          projectName: newWorkLog.projectId,
+          task: newWorkLog.task,
+          date: selectedDate,
+          hoursSpent: parseFloat(newWorkLog.hoursSpent),
+          breakTime: parseFloat(newWorkLog.breakTime) || 0,
+          status: newWorkLog.status,
+          priority: newWorkLog.priority,
+          startTime: newWorkLog.startTime,
+          endTime: newWorkLog.endTime,
+          notes: newWorkLog.notes,
+          blockers: newWorkLog.blockers,
+          collaborators: newWorkLog.collaborators,
+          collaboratorNames: newWorkLog.collaborators.map(id => getMemberName(id)),
+          mood: newWorkLog.mood,
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp(),
+        };
+
+        const docRef = await addDoc(collection(db, "workLogs"), workLogData);
+        console.log("✅ Work log saved to Firebase with ID:", docRef.id);
+
+        setSubmitStatus({
+          type: "success",
+          message: "✅ Work entry saved successfully!",
+        });
+
+        // Reset form
+        setNewWorkLog({
+          projectId: "",
+          task: "",
+          hoursSpent: "",
+          breakTime: "",
+          status: "In Progress",
+          priority: "Medium",
+          startTime: "",
+          endTime: "",
+          notes: "",
+          blockers: "",
+          collaborators: [],
+          mood: "neutral",
+        });
+
+        // Reload work logs
+        await loadWorkLogs();
+        
+        // Switch to today view
+        setTimeout(() => {
+          setActiveView("today");
+          setSubmitStatus(null);
+        }, 2000);
+
+      } catch (error) {
+        console.error("❌ Error saving work log:", error);
+        setSubmitStatus({
+          type: "error",
+          message: `❌ Error saving work entry: ${error.message}`,
+        });
+      } finally {
+        setIsSubmitting(false);
+      }
+    } else {
+      setSubmitStatus({
+        type: "error",
+        message: "⚠️ Please fill in all required fields (Project, Task, Hours)",
+      });
+    }
+  };
+
+  const deleteWorkLog = async (id) => {
+    try {
+      await deleteDoc(doc(db, "workLogs", id));
+      console.log("✅ Work log deleted from Firebase");
+      await loadWorkLogs();
+    } catch (error) {
+      console.error("❌ Error deleting work log:", error);
+    }
   };
 
   const toggleCollaborator = (memberId) => {
@@ -157,7 +250,7 @@ const UserPageLogin = () => {
 
   const getProjectName = (id) => {
     const proj = projects.find((p) => p.id === parseInt(id));
-    return proj ? proj.name : "Unknown";
+    return proj ? proj.name : id;
   };
 
   const getMemberName = (id) => {
@@ -166,464 +259,494 @@ const UserPageLogin = () => {
   };
 
   return (
-    <section>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="bg-white shadow-md border-b">
-          <div className="max-w-7xl mx-auto px-6 py-4">
-            <div className="flex justify-between items-center">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="bg-white shadow-md border-b">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-800">
+                Employee Work Portal
+              </h1>
+              <p className="text-sm text-gray-600">
+                Welcome, {currentEmployee.name}
+              </p>
+            </div>
+            <div className="text-right">
+              <p className="text-xs text-gray-500">Department</p>
+              <span className="px-3 py-1 bg-blue-600 text-white rounded-full text-sm font-medium">
+                {currentEmployee.department}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto p-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex items-center gap-3">
+              <Clock className="w-8 h-8 text-blue-600" />
               <div>
-                <h1 className="text-2xl font-bold text-gray-800">
-                  Employee Work Portal
-                </h1>
-                <p className="text-sm text-gray-600">
-                  Welcome, {currentEmployee.name}
+                <p className="text-xs text-gray-600">Work Hours</p>
+                <p className="text-2xl font-bold text-gray-800">
+                  {getTotalHours().toFixed(1)}
                 </p>
               </div>
-              <div className="text-right">
-                <p className="text-xs text-gray-500">Department</p>
-                <span className="px-3 py-1 bg-blue-600 text-white rounded-full text-sm font-medium">
-                  {currentEmployee.department}
-                </span>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex items-center gap-3">
+              <Coffee className="w-8 h-8 text-orange-600" />
+              <div>
+                <p className="text-xs text-gray-600">Break Time</p>
+                <p className="text-2xl font-bold text-gray-800">
+                  {getTotalBreaks().toFixed(1)}h
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex items-center gap-3">
+              <CheckCircle className="w-8 h-8 text-green-600" />
+              <div>
+                <p className="text-xs text-gray-600">Completed</p>
+                <p className="text-2xl font-bold text-gray-800">
+                  {getCompleted()}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex items-center gap-3">
+              <TrendingUp className="w-8 h-8 text-purple-600" />
+              <div>
+                <p className="text-xs text-gray-600">Productivity</p>
+                <p className="text-2xl font-bold text-gray-800">
+                  {getProductivity()}%
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto p-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <div className="flex items-center gap-3">
-                <Clock className="w-8 h-8 text-blue-600" />
-                <div>
-                  <p className="text-xs text-gray-600">Work Hours</p>
-                  <p className="text-2xl font-bold text-gray-800">
-                    {getTotalHours().toFixed(1)}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <div className="flex items-center gap-3">
-                <Coffee className="w-8 h-8 text-orange-600" />
-                <div>
-                  <p className="text-xs text-gray-600">Break Time</p>
-                  <p className="text-2xl font-bold text-gray-800">
-                    {getTotalBreaks().toFixed(1)}h
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <div className="flex items-center gap-3">
-                <CheckCircle className="w-8 h-8 text-green-600" />
-                <div>
-                  <p className="text-xs text-gray-600">Completed</p>
-                  <p className="text-2xl font-bold text-gray-800">
-                    {getCompleted()}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <div className="flex items-center gap-3">
-                <TrendingUp className="w-8 h-8 text-purple-600" />
-                <div>
-                  <p className="text-xs text-gray-600">Productivity</p>
-                  <p className="text-2xl font-bold text-gray-800">
-                    {getProductivity()}%
-                  </p>
-                </div>
-              </div>
-            </div>
+        <div className="bg-white rounded-xl shadow-lg mb-6 p-2">
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              onClick={() => setActiveView("today")}
+              className={`px-6 py-3 rounded-lg font-medium transition ${
+                activeView === "today"
+                  ? "bg-blue-600 text-white"
+                  : "text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              Today's Work
+            </button>
+            <button
+              onClick={() => setActiveView("add")}
+              className={`px-6 py-3 rounded-lg font-medium transition ${
+                activeView === "add"
+                  ? "bg-blue-600 text-white"
+                  : "text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              Add Entry
+            </button>
           </div>
+        </div>
 
-          <div className="bg-white rounded-xl shadow-lg mb-6 p-2">
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                onClick={() => setActiveView("today")}
-                className={`px-6 py-3 rounded-lg font-medium transition ${
-                  activeView === "today"
-                    ? "bg-blue-600 text-white"
-                    : "text-gray-600 hover:bg-gray-100"
-                }`}
-              >
-                Today's Work
-              </button>
-              <button
-                onClick={() => setActiveView("add")}
-                className={`px-6 py-3 rounded-lg font-medium transition ${
-                  activeView === "add"
-                    ? "bg-blue-600 text-white"
-                    : "text-gray-600 hover:bg-gray-100"
-                }`}
-              >
-                Add Entry
-              </button>
-            </div>
+        {submitStatus && (
+          <div className={`mb-6 p-4 rounded-lg ${
+            submitStatus.type === "success" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+          }`}>
+            {submitStatus.message}
           </div>
+        )}
 
-          {activeView === "add" && (
-            <div className=" rounded-xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                <PlusCircle className="w-7 h-7 text-blue-600" />
-                Log Your Work
-              </h2>
+        {activeView === "add" && (
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+              <PlusCircle className="w-7 h-7 text-blue-600" />
+              Log Your Work
+            </h2>
 
-              <div className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Date
-                    </label>
-                    <input
-                      type="date"
-                      value={selectedDate}
-                      onChange={(e) => setSelectedDate(e.target.value)}
-                      className="w-full px-4 py-3 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 text-gray-900"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-2">
-                      Mood
-                    </label>
-                    <select
-                      value={newWorkLog.mood}
-                      onChange={(e) =>
-                        setNewWorkLog({ ...newWorkLog, mood: e.target.value })
-                      }
-                      className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
-                    >
-                      <option value="productive">🚀 Productive</option>
-                      <option value="focused">🎯 Focused</option>
-                      <option value="creative">💡 Creative</option>
-                      <option value="neutral">😐 Neutral</option>
-                      <option value="tired">😴 Tired</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Project *
-                    </label>
-                    <input
-                      type="text"
-                      value={newWorkLog.projectId}
-                      onChange={(e) =>
-                        setNewWorkLog({
-                          ...newWorkLog,
-                          projectId: e.target.value,
-                        })
-                      }
-                      placeholder="Enter project name..."
-                      className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Priority *
-                    </label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {["High", "Medium", "Low"].map((priority) => (
-                        <button
-                          key={priority}
-                          onClick={() =>
-                            setNewWorkLog({ ...newWorkLog, priority })
-                          }
-                          className={`px-4 py-3 rounded-lg font-medium ${
-                            newWorkLog.priority === priority
-                              ? priority === "High"
-                                ? "bg-red-500 text-white"
-                                : priority === "Medium"
-                                ? "bg-yellow-500 text-white"
-                                : "bg-green-500 text-white"
-                              : "bg-gray-100 text-gray-700"
-                          }`}
-                        >
-                          {priority}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
+            <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Task Description *
+                    Date
                   </label>
-                  <textarea
-                    value={newWorkLog.task}
-                    onChange={(e) =>
-                      setNewWorkLog({ ...newWorkLog, task: e.target.value })
-                    }
-                    placeholder="What did you work on today?"
-                    className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 h-24"
+                  <input
+                    type="date"
+                    value={selectedDate}
+                    onChange={(e) => setSelectedDate(e.target.value)}
+                    className="w-full px-4 py-3 border rounded-lg bg-white focus:ring-2 focus:ring-blue-500 text-gray-900"
                   />
                 </div>
-
-                <div className="grid grid-cols-4 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Start
-                    </label>
-                    <input
-                      type="time"
-                      value={newWorkLog.startTime}
-                      onChange={(e) =>
-                        setNewWorkLog({
-                          ...newWorkLog,
-                          startTime: e.target.value,
-                        })
-                      }
-                      className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      End
-                    </label>
-                    <input
-                      type="time"
-                      value={newWorkLog.endTime}
-                      onChange={(e) =>
-                        setNewWorkLog({
-                          ...newWorkLog,
-                          endTime: e.target.value,
-                        })
-                      }
-                      className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Break
-                    </label>
-                    <input
-                      type="number"
-                      value={newWorkLog.breakTime}
-                      onChange={(e) =>
-                        setNewWorkLog({
-                          ...newWorkLog,
-                          breakTime: e.target.value,
-                        })
-                      }
-                      placeholder="0.5"
-                      step="0.25"
-                      className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Hours *
-                    </label>
-                    <input
-                      type="number"
-                      value={newWorkLog.hoursSpent}
-                      onChange={(e) =>
-                        setNewWorkLog({
-                          ...newWorkLog,
-                          hoursSpent: e.target.value,
-                        })
-                      }
-                      placeholder="8"
-                      step="0.5"
-                      className="w-full px-4 py-3 border rounded-lg  bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                </div>
-
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                    <Users className="w-4 h-4" />
-                    Collaborators
+                  <label className="block text-sm font-semibold text-gray-800 mb-2">
+                    Mood
                   </label>
-                  <div className="flex flex-wrap gap-2">
-                    {teamMembers.map((member) => (
-                      <button
-                        key={member.id}
-                        onClick={() => toggleCollaborator(member.id)}
-                        className={`px-4 py-2 rounded-lg border-2 transition  ${
-                          newWorkLog.collaborators?.includes(member.id)
-                            ? "border-blue-500 bg-blue-50 text-blue-700"
-                            : "border-black/10 hover:border-gray-300 text-black"
-                        }`}
-                      >
-                        {member.name}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                    <MessageSquare className="w-4 h-4" />
-                    Notes
-                  </label>
-                  <textarea
-                    value={newWorkLog.notes}
+                  <select
+                    value={newWorkLog.mood}
                     onChange={(e) =>
-                      setNewWorkLog({ ...newWorkLog, notes: e.target.value })
+                      setNewWorkLog({ ...newWorkLog, mood: e.target.value })
                     }
-                    placeholder="Additional details, achievements..."
-                    className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 h-20"
-                  />
+                    className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="productive">🚀 Productive</option>
+                    <option value="focused">🎯 Focused</option>
+                    <option value="creative">💡 Creative</option>
+                    <option value="neutral">😐 Neutral</option>
+                    <option value="tired">😴 Tired</option>
+                  </select>
                 </div>
+              </div>
 
+              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                    <AlertCircle className="w-4 h-4 text-red-500" />
-                    Blockers
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Project *
                   </label>
-                  <textarea
-                    value={newWorkLog.blockers}
+                  <input
+                    type="text"
+                    value={newWorkLog.projectId}
                     onChange={(e) =>
-                      setNewWorkLog({ ...newWorkLog, blockers: e.target.value })
+                      setNewWorkLog({
+                        ...newWorkLog,
+                        projectId: e.target.value,
+                      })
                     }
-                    placeholder="Any issues or challenges..."
-                    className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 h-20"
+                    placeholder="Enter project name..."
+                    className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Status
+                    Priority *
                   </label>
-                  <div className="grid grid-cols-3 gap-3">
-                    {["In Progress", "Completed", "Blocked"].map((status) => (
+                  <div className="grid grid-cols-3 gap-2">
+                    {["High", "Medium", "Low"].map((priority) => (
                       <button
-                        key={status}
-                        onClick={() => setNewWorkLog({ ...newWorkLog, status })}
+                        key={priority}
+                        onClick={() =>
+                          setNewWorkLog({ ...newWorkLog, priority })
+                        }
                         className={`px-4 py-3 rounded-lg font-medium ${
-                          newWorkLog.status === status
-                            ? status === "Completed"
-                              ? "bg-green-500 text-white"
-                              : status === "In Progress"
+                          newWorkLog.priority === priority
+                            ? priority === "High"
+                              ? "bg-red-500 text-white"
+                              : priority === "Medium"
                               ? "bg-yellow-500 text-white"
-                              : "bg-red-500 text-white"
+                              : "bg-green-500 text-white"
                             : "bg-gray-100 text-gray-700"
                         }`}
                       >
-                        {status}
+                        {priority}
                       </button>
                     ))}
                   </div>
                 </div>
-
-                <button
-                  onClick={addWorkLog}
-                  disabled={
-                    !newWorkLog.projectId ||
-                    !newWorkLog.task ||
-                    !newWorkLog.hoursSpent
-                  }
-                  className="w-full bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition font-semibold text-lg flex items-center justify-center gap-3 disabled:bg-gray-300"
-                >
-                  <Save className="w-6 h-6" />
-                  Save Work Entry
-                </button>
               </div>
-            </div>
-          )}
 
-          {activeView === "today" && (
-            <div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                Today's Activities
-              </h2>
-              {getTodayWorkLogs().length > 0 ? (
-                <div className="space-y-4">
-                  {getTodayWorkLogs().map((log) => (
-                    <div
-                      key={log.id}
-                      className="bg-white rounded-xl shadow-lg p-6"
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Task Description *
+                </label>
+                <textarea
+                  value={newWorkLog.task}
+                  onChange={(e) =>
+                    setNewWorkLog({ ...newWorkLog, task: e.target.value })
+                  }
+                  placeholder="What did you work on today?"
+                  className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 h-24"
+                />
+              </div>
+
+              <div className="grid grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Start Time
+                  </label>
+                  <input
+                    type="time"
+                    value={newWorkLog.startTime}
+                    onChange={(e) =>
+                      setNewWorkLog({
+                        ...newWorkLog,
+                        startTime: e.target.value,
+                      })
+                    }
+                    className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    End Time
+                  </label>
+                  <input
+                    type="time"
+                    value={newWorkLog.endTime}
+                    onChange={(e) =>
+                      setNewWorkLog({
+                        ...newWorkLog,
+                        endTime: e.target.value,
+                      })
+                    }
+                    className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Total Time
+                  </label>
+                  <input
+                    type="Total Time"
+                    value={newWorkLog.endTime}
+                    onChange={(e) =>
+                      setNewWorkLog({
+                        ...newWorkLog,
+                        endTime: e.target.value,
+                      })
+                    }
+                    className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Break (hours)
+                  </label>
+                  <input
+                    type="number"
+                    value={newWorkLog.breakTime}
+                    onChange={(e) =>
+                      setNewWorkLog({
+                        ...newWorkLog,
+                        breakTime: e.target.value,
+                      })
+                    }
+                    placeholder="0.5"
+                    step="0.25"
+                    className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Hours Spent *
+                  </label>
+                  <input
+                    type="number"
+                    value={newWorkLog.hoursSpent}
+                    onChange={(e) =>
+                      setNewWorkLog({
+                        ...newWorkLog,
+                        hoursSpent: e.target.value,
+                      })
+                    }
+                    placeholder="8"
+                    step="0.5"
+                    className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                  <Users className="w-4 h-4" />
+                  Collaborators
+                </label>
+                <div className="flex flex-wrap gap-2 items-center">
+                  {(showAllCollaborators ? teamMembers : teamMembers.slice(0, 3)).map((member) => (
+                    <button
+                      key={member.id}
+                      onClick={() => toggleCollaborator(member.id)}
+                      className={`px-4 py-2 rounded-lg border-2 transition ${
+                        newWorkLog.collaborators?.includes(member.id)
+                          ? "border-blue-500 bg-blue-50 text-blue-700"
+                          : "border-gray-200 hover:border-gray-300 text-gray-700"
+                      }`}
                     >
-                      <div className="flex justify-between items-start mb-3">
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <Briefcase className="w-5 h-5 text-blue-600" />
-                            <h3 className="text-lg font-bold">
-                              {getProjectName(log.projectId)}
-                            </h3>
-                            <span
-                              className={`px-2 py-1 rounded text-xs font-bold ${
-                                log.priority === "High"
-                                  ? "bg-red-100 text-red-700"
-                                  : log.priority === "Medium"
-                                  ? "bg-yellow-100 text-yellow-700"
-                                  : "bg-green-100 text-green-700"
-                              }`}
-                            >
-                              {log.priority}
-                            </span>
-                          </div>
-                          <p className="text-gray-700 mt-2">{log.task}</p>
-                        </div>
-                        <button
-                          onClick={() => deleteWorkLog(log.id)}
-                          className="text-red-500"
-                        >
-                          <XCircle className="w-5 h-5" />
-                        </button>
-                      </div>
-                      <div className="flex gap-4 text-sm text-gray-600 mb-3">
-                        <span>⏱️ {log.hoursSpent}h work</span>
-                        {log.breakTime > 0 && (
-                          <span>☕ {log.breakTime}h break</span>
-                        )}
-                        <span
-                          className={`px-2 py-1 rounded ${
-                            log.status === "Completed"
-                              ? "bg-green-100 text-green-700"
-                              : log.status === "In Progress"
-                              ? "bg-yellow-100 text-yellow-700"
-                              : "bg-red-100 text-red-700"
-                          }`}
-                        >
-                          {log.status}
-                        </span>
-                      </div>
-                      {log.collaborators?.length > 0 && (
-                        <div className="text-sm text-gray-600 mb-2">
-                          👥 With:{" "}
-                          {log.collaborators
-                            .map((id) => getMemberName(id))
-                            .join(", ")}
-                        </div>
-                      )}
-                      {log.notes && (
-                        <div className="bg-blue-50 p-3 rounded mt-3 text-sm">
-                          <strong>Notes:</strong> {log.notes}
-                        </div>
-                      )}
-                      {log.blockers && (
-                        <div className="bg-red-50 p-3 rounded mt-3 text-sm">
-                          <strong>⚠️ Blockers:</strong> {log.blockers}
-                        </div>
-                      )}
-                    </div>
+                      {member.name}
+                    </button>
+                  ))}
+                  {teamMembers.length > 3 && (
+                    <button
+                      onClick={() => setShowAllCollaborators(!showAllCollaborators)}
+                      className="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition font-medium"
+                    >
+                      {showAllCollaborators ? "View Less" : `+${teamMembers.length - 3} More`}
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                  <MessageSquare className="w-4 h-4" />
+                  Notes
+                </label>
+                <textarea
+                  value={newWorkLog.notes}
+                  onChange={(e) =>
+                    setNewWorkLog({ ...newWorkLog, notes: e.target.value })
+                  }
+                  placeholder="Additional details, achievements..."
+                  className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 h-20"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-red-500" />
+                  Blockers
+                </label>
+                <textarea
+                  value={newWorkLog.blockers}
+                  onChange={(e) =>
+                    setNewWorkLog({ ...newWorkLog, blockers: e.target.value })
+                  }
+                  placeholder="Any issues or challenges..."
+                  className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 h-20"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Status
+                </label>
+                <div className="grid grid-cols-3 gap-3">
+                  {["In Progress", "Completed", "Blocked"].map((status) => (
+                    <button
+                      key={status}
+                      onClick={() => setNewWorkLog({ ...newWorkLog, status })}
+                      className={`px-4 py-3 rounded-lg font-medium ${
+                        newWorkLog.status === status
+                          ? status === "Completed"
+                            ? "bg-green-500 text-white"
+                            : status === "In Progress"
+                            ? "bg-yellow-500 text-white"
+                            : "bg-red-500 text-white"
+                          : "bg-gray-100 text-gray-700"
+                      }`}
+                    >
+                      {status}
+                    </button>
                   ))}
                 </div>
-              ) : (
-                <div className="bg-white rounded-xl shadow-lg p-12 text-center">
-                  <p className="text-gray-500 mb-4">No work logged yet today</p>
-                  <button
-                    onClick={() => setActiveView("add")}
-                    className="bg-blue-600 text-white px-6 py-3 rounded-lg"
-                  >
-                    Add Work Entry
-                  </button>
-                </div>
-              )}
+              </div>
+
+              <button
+                onClick={addWorkLog}
+                disabled={
+                  !newWorkLog.projectId ||
+                  !newWorkLog.task ||
+                  !newWorkLog.hoursSpent ||
+                  isSubmitting
+                }
+                className="w-full bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition font-semibold text-lg flex items-center justify-center gap-3 disabled:bg-gray-300 disabled:cursor-not-allowed"
+              >
+                <Save className="w-6 h-6" />
+                {isSubmitting ? "Saving..." : "Save Work Entry"}
+              </button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
+
+        {activeView === "today" && (
+          <div>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              Today's Activities
+            </h2>
+            {getTodayWorkLogs().length > 0 ? (
+              <div className="space-y-4">
+                {getTodayWorkLogs().map((log) => (
+                  <div
+                    key={log.id}
+                    className="bg-white rounded-xl shadow-lg p-6"
+                  >
+                    <div className="flex justify-between items-start mb-3">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <Briefcase className="w-5 h-5 text-blue-600" />
+                          <h3 className="text-lg font-bold">
+                            {log.projectName || getProjectName(log.projectId)}
+                          </h3>
+                          <span
+                            className={`px-2 py-1 rounded text-xs font-bold ${
+                              log.priority === "High"
+                                ? "bg-red-100 text-red-700"
+                                : log.priority === "Medium"
+                                ? "bg-yellow-100 text-yellow-700"
+                                : "bg-green-100 text-green-700"
+                            }`}
+                          >
+                            {log.priority}
+                          </span>
+                        </div>
+                        <p className="text-gray-700 mt-2">{log.task}</p>
+                      </div>
+                      <button
+                        onClick={() => deleteWorkLog(log.id)}
+                        className="text-red-500 hover:text-red-700"
+                      >
+                        <XCircle className="w-5 h-5" />
+                      </button>
+                    </div>
+                    <div className="flex gap-4 text-sm text-gray-600 mb-3">
+                      <span>⏱️ {log.hoursSpent}h work</span>
+                      {log.breakTime > 0 && (
+                        <span>☕ {log.breakTime}h break</span>
+                      )}
+                      <span
+                        className={`px-2 py-1 rounded ${
+                          log.status === "Completed"
+                            ? "bg-green-100 text-green-700"
+                            : log.status === "In Progress"
+                            ? "bg-yellow-100 text-yellow-700"
+                            : "bg-red-100 text-red-700"
+                        }`}
+                      >
+                        {log.status}
+                      </span>
+                    </div>
+                    {log.collaborators?.length > 0 && (
+                      <div className="text-sm text-gray-600 mb-2">
+                        👥 With:{" "}
+                        {log.collaboratorNames?.join(", ") || 
+                         log.collaborators.map((id) => getMemberName(id)).join(", ")}
+                      </div>
+                    )}
+                    {log.notes && (
+                      <div className="bg-blue-50 p-3 rounded mt-3 text-sm">
+                        <strong>Notes:</strong> {log.notes}
+                      </div>
+                    )}
+                    {log.blockers && (
+                      <div className="bg-red-50 p-3 rounded mt-3 text-sm">
+                        <strong>⚠️ Blockers:</strong> {log.blockers}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="bg-white rounded-xl shadow-lg p-12 text-center">
+                <p className="text-gray-500 mb-4">No work logged yet today</p>
+                <button
+                  onClick={() => setActiveView("add")}
+                  className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+                >
+                  Add Work Entry
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
-    </section>
+    </div>
   );
 };
 
