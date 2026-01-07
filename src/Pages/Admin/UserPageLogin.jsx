@@ -13,7 +13,17 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs, deleteDoc, doc } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp,
+  query,
+  where,
+  getDocs,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { getAuth, signInAnonymously } from "firebase/auth";
 
 // Firebase configuration
@@ -24,7 +34,7 @@ const firebaseConfig = {
   storageBucket: "vernoxy-media.firebasestorage.app",
   messagingSenderId: "29003109920",
   appId: "1:29003109920:web:f3115a221f201a04434e45",
-  measurementId: "G-8PKSEKJVM5"
+  measurementId: "G-8PKSEKJVM5",
 };
 
 // Initialize Firebase - CORRECT ORDER
@@ -47,7 +57,7 @@ const UserPageLogin = () => {
   ]);
 
   const [teamMembers] = useState([
-    { id: 1, name: "Dhruv mistry" },
+    { id: 1, name: "Dhruv mistry", role: "Front-End Developer" },
     { id: 2, name: "Nikhil Lad" },
     { id: 3, name: "Tilak tiwari" },
     { id: 4, name: "Bhumika Patel" },
@@ -99,7 +109,7 @@ const UserPageLogin = () => {
         where("employeeId", "==", currentEmployee.id),
         where("date", "==", selectedDate)
       );
-      
+
       const querySnapshot = await getDocs(q);
       const logs = [];
       querySnapshot.forEach((doc) => {
@@ -135,7 +145,9 @@ const UserPageLogin = () => {
           notes: newWorkLog.notes,
           blockers: newWorkLog.blockers,
           collaborators: newWorkLog.collaborators,
-          collaboratorNames: newWorkLog.collaborators.map(id => getMemberName(id)),
+          collaboratorNames: newWorkLog.collaborators.map((id) =>
+            getMemberName(id)
+          ),
           mood: newWorkLog.mood,
           createdAt: serverTimestamp(),
           updatedAt: serverTimestamp(),
@@ -167,13 +179,12 @@ const UserPageLogin = () => {
 
         // Reload work logs
         await loadWorkLogs();
-        
+
         // Switch to today view
         setTimeout(() => {
           setActiveView("today");
           setSubmitStatus(null);
         }, 2000);
-
       } catch (error) {
         console.error("❌ Error saving work log:", error);
         setSubmitStatus({
@@ -358,9 +369,13 @@ const UserPageLogin = () => {
         </div>
 
         {submitStatus && (
-          <div className={`mb-6 p-4 rounded-lg ${
-            submitStatus.type === "success" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-          }`}>
+          <div
+            className={`mb-6 p-4 rounded-lg ${
+              submitStatus.type === "success"
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800"
+            }`}
+          >
             {submitStatus.message}
           </div>
         )}
@@ -373,7 +388,7 @@ const UserPageLogin = () => {
             </h2>
 
             <div className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Date
@@ -405,7 +420,7 @@ const UserPageLogin = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Project *
@@ -425,10 +440,10 @@ const UserPageLogin = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-xs md:text-sm font-semibold text-gray-700 mb-2">
                     Priority *
                   </label>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-3 gap-3">
                     {["High", "Medium", "Low"].map((priority) => (
                       <button
                         key={priority}
@@ -466,7 +481,7 @@ const UserPageLogin = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Start Time
@@ -500,19 +515,23 @@ const UserPageLogin = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Total Time
+                  <label className="block text-sm font-semibold text-gray-700  mb-2">
+                   Total Hours
                   </label>
                   <input
-                    type="Total Time"
-                    value={newWorkLog.endTime}
+                    type="number"
+                    placeholder="0.0"
+                    value={newWorkLog.hoursSpent}
                     onChange={(e) =>
                       setNewWorkLog({
                         ...newWorkLog,
-                        endTime: e.target.value,
+                        hoursSpent: e.target.value,
                       })
                     }
-                    className="w-full px-4 py-3 border rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500"
+                    step="0.5"
+                    min="0"
+                    max="24"
+                    className="w-full px-4 py-3 border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div>
@@ -559,7 +578,10 @@ const UserPageLogin = () => {
                   Collaborators
                 </label>
                 <div className="flex flex-wrap gap-2 items-center">
-                  {(showAllCollaborators ? teamMembers : teamMembers.slice(0, 3)).map((member) => (
+                  {(showAllCollaborators
+                    ? teamMembers
+                    : teamMembers.slice(0, 3)
+                  ).map((member) => (
                     <button
                       key={member.id}
                       onClick={() => toggleCollaborator(member.id)}
@@ -574,10 +596,14 @@ const UserPageLogin = () => {
                   ))}
                   {teamMembers.length > 3 && (
                     <button
-                      onClick={() => setShowAllCollaborators(!showAllCollaborators)}
+                      onClick={() =>
+                        setShowAllCollaborators(!showAllCollaborators)
+                      }
                       className="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition font-medium"
                     >
-                      {showAllCollaborators ? "View Less" : `+${teamMembers.length - 3} More`}
+                      {showAllCollaborators
+                        ? "View Less"
+                        : `+${teamMembers.length - 3} More`}
                     </button>
                   )}
                 </div>
@@ -617,12 +643,12 @@ const UserPageLogin = () => {
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Status
                 </label>
-                <div className="grid grid-cols-3 gap-3">
-                  {["In Progress", "Completed", "Blocked"].map((status) => (
+                <div className="grid grid-cols-3 gap-4 text-xs md:text-sm">
+                  {["In Progress","Completed", "Pending"].map((status) => (
                     <button
                       key={status}
                       onClick={() => setNewWorkLog({ ...newWorkLog, status })}
-                      className={`px-4 py-3 rounded-lg font-medium ${
+                      className={`px-4 py-3 rounded-lg font-medium  ${
                         newWorkLog.status === status
                           ? status === "Completed"
                             ? "bg-green-500 text-white"
@@ -715,8 +741,10 @@ const UserPageLogin = () => {
                     {log.collaborators?.length > 0 && (
                       <div className="text-sm text-gray-600 mb-2">
                         👥 With:{" "}
-                        {log.collaboratorNames?.join(", ") || 
-                         log.collaborators.map((id) => getMemberName(id)).join(", ")}
+                        {log.collaboratorNames?.join(", ") ||
+                          log.collaborators
+                            .map((id) => getMemberName(id))
+                            .join(", ")}
                       </div>
                     )}
                     {log.notes && (

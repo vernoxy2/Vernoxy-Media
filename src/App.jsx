@@ -8,7 +8,6 @@ import {
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import ScrollToTop from "./Components/ScrollToTop";
-// import StateComponent from "./Components/StateComponent";
 
 // Pages
 import Home from "./Pages/Home/Home";
@@ -31,18 +30,23 @@ import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import UserPageLogin from "./Pages/Admin/UserPageLogin";
 import AdminPageLogin from "./Pages/Admin/AdminPageLogin";
-import ERP_Requirement from "./Components/ERP_Requirement";
+import AdminLayout from "./Components/Layout/AdminLayout";
+import Welcome from "./Pages/Admin/Welcome";
 
 // Layout wrapper to conditionally show Navbar/Footer
 const Layout = ({ children }) => {
   const location = useLocation();
   const hideNavbarFooterPaths = [
     "/admin/dashboard",
-    "/admin-page",
-    "/user-page",
+    "/admin/welcome",
+    "/admin/admin-page",
+    "/admin/user-page",
+    "/admin",
   ];
 
-  const hideLayout = hideNavbarFooterPaths.includes(location.pathname);
+  const hideLayout = hideNavbarFooterPaths.some((path) =>
+    location.pathname.startsWith(path)
+  );
 
   return (
     <div className="bg-vernoxy text-white min-h-screen text-center">
@@ -73,7 +77,7 @@ const App = () => {
             element={<WebDevelopment />}
           />
           <Route path="/services/app_development" element={<CustomizedApp />} />
-          {/* <Route path="/services/graphics_design" element={<GraphicsDesign />} /> */}
+          
           <Route path="/services/video_editing" element={<VideoEditing />} />
 
           <Route path="/products" element={<Projects />} />
@@ -82,21 +86,28 @@ const App = () => {
           <Route path="/erp-capture" element={<ERPCapture />} />
 
           <Route path="/admin/login" element={<AdminLogin />} />
+
+          {/* Admin routes with nested layout */}
           <Route
-            path="/admin/dashboard"
+            path="/admin"
             element={
               <ProtectedRoute>
-                <AdminDashboard />
+                <AdminLayout />
               </ProtectedRoute>
             }
-          />
-          <Route path="/admin-page" element={<AdminPageLogin />} />
-          <Route path="/user-page" element={<UserPageLogin />} />
+          >
+            {/* Default route - redirect to welcome */}
+            {/* <Route index element={<Welcome />} /> */}
+            <Route path="welcome" element={<Welcome />} />
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="admin-page" element={<AdminPageLogin />} />
+            <Route path="user-page" element={<UserPageLogin />} />
+          </Route>
+
           {/* 404 fallback */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
-      {/* <ERP_Requirement/> */}
     </Router>
   );
 };
