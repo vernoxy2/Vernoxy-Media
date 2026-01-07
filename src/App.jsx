@@ -32,6 +32,9 @@ import UserPageLogin from "./Pages/Admin/UserPageLogin";
 import AdminPageLogin from "./Pages/Admin/AdminPageLogin";
 import AdminLayout from "./Components/Layout/AdminLayout";
 import Welcome from "./Pages/Admin/Welcome";
+import ERP_Requirement from "./Components/ERP_Requirement";
+import CityDisplay from "./Components/CityDisplay";
+import CityPage from "./Pages/GlobalPresence/Sections/CityPage";
 
 // Layout wrapper to conditionally show Navbar/Footer
 const Layout = ({ children }) => {
@@ -83,6 +86,7 @@ const App = () => {
           <Route path="/products" element={<Projects />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/global-presence" element={<GlobalPresence />} />
+          <Route path="/:citySlug" element={<CityPage/>} />
           <Route path="/erp-capture" element={<ERPCapture />} />
 
           <Route path="/admin/login" element={<AdminLogin />} />

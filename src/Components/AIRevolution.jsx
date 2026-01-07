@@ -47,6 +47,7 @@ const AIRevolution = () => {
           <div className="flex md:justify-end -space-x-6">
             {avatars.map((avatar) => (
               <img
+              loading="lazy"
                 key={avatar.id}
                 className="w-14 h-14 rounded-full border-2 border-black pointer-events-none"
                 src={avatar.src}
