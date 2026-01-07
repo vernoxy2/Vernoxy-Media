@@ -9,8 +9,8 @@ import svg5 from ".././assets/GlobalPresence/svg5.svg";
 import svg6 from ".././assets/GlobalPresence/svg6.svg";
 import { useNavigate } from "react-router-dom";
 import { GoArrowRight } from "react-icons/go";
-import Gujarat from "../assets/StateComponent/India/Gujarat.webp";
-import Maharashtra from "../assets/StateComponent/India/Maharashtra.webp";
+import Gujarat from "../assets/StateImg/Gujrat.jpg";
+import Maharashtra from "../assets/StateImg/Maharashtra.jpg";
 import LeftTop from "../assets/ContactPageImg/LeftTop.svg";
 
 const PrimaryPresence = ({ boldText, normalText, description }) => {
@@ -18,7 +18,7 @@ const PrimaryPresence = ({ boldText, normalText, description }) => {
   const CountryData = [
     { id: 1, image: svg1, contry: "India" },
     { id: 2, image: svg2, contry: "Canada" },
-    { id: 3, image: svg3, contry: "New Zealand" },
+    { id: 3, image: svg3, contry: (<>New <br /> Zealand</>) },
     { id: 4, image: svg4, contry: "USA" },
     { id: 5, image: svg5, contry: "UAE" },
     { id: 6, image: svg6, contry: "Vietnam" },
@@ -111,6 +111,7 @@ const PrimaryPresence = ({ boldText, normalText, description }) => {
     const citySlug = city.toLowerCase().replace(/\s+/g, "-");
     navigate(`/${citySlug}`);
   };
+
   const handleCountryClick = (countryName) => {
     setActiveCountry(countryName);
     if (window.innerWidth < 768) {
@@ -125,7 +126,7 @@ const PrimaryPresence = ({ boldText, normalText, description }) => {
 
   return (
     <section
-      className="relative pb-0 bg-no-repeat bg-center bg-cover z-10"
+      className="relative z-10 bg-no-repeat bg-top"
       style={{ backgroundImage: `url(${BgImg})` }}
     >
       <div className="container space-y-7 md:space-y-10">
@@ -154,7 +155,7 @@ const PrimaryPresence = ({ boldText, normalText, description }) => {
                 {/* COUNTRY CARD */}
                 <div
                   onClick={() => handleCountryClick(countryName)}
-                  className={`flex flex-col group relative items-center justify-center text-center gap-2 rounded-xl bg-[#464646]/60 py-12 transition-all duration-300 border-2 cursor-pointer ${
+                  className={`flex h-full flex-col group relative items-center justify-start text-center gap-2 rounded-xl bg-[#464646]/60 pt-12 pb-6 transition-all duration-300 border-2 cursor-pointer ${
                     isActive
                       ? "border-primary"
                       : "border-transparent hover:border-primary"
@@ -220,7 +221,7 @@ const PrimaryPresence = ({ boldText, normalText, description }) => {
 
         {/* DESKTOP STATE SECTION (UNCHANGED) */}
         {shouldShowStateSection && (
-          <div className="hidden md:block space-y-20">
+          <div className="hidden md:block space-y-20 pt-16">
             <Heading
               boldText="Our Presence"
               normalText={`In ${activeCountry}`}
@@ -235,10 +236,10 @@ const PrimaryPresence = ({ boldText, normalText, description }) => {
                   className="absolute md:left-[-24px] md:top-[-24px] -z-10"
                 />
 
-                <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-24 bg-[#464646]/50">
+                <div className="grid grid-cols-1 xl:grid-cols-2 bg-[#464646]/50">
                   {/* TEXT SECTION */}
                   <div
-                    className={`m-10 ${
+                    className={`m-16 ${
                       index % 2 === 0
                         ? "order-2 xl:order-1"
                         : "order-2 xl:order-2"
@@ -270,7 +271,7 @@ const PrimaryPresence = ({ boldText, normalText, description }) => {
 
                   {/* IMAGE SECTION */}
                   <div
-                    className={`${
+                    className={`h-full ${
                       index % 2 === 0
                         ? "order-1 xl:order-2"
                         : "order-1 xl:order-1"
@@ -279,7 +280,7 @@ const PrimaryPresence = ({ boldText, normalText, description }) => {
                     <img
                       src={state.image}
                       alt={state.name}
-                      className="w-full h-full object-cover"
+                      className="h-full object-cover"
                     />
                   </div>
                 </div>
