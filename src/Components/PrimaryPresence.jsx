@@ -155,7 +155,7 @@ const PrimaryPresence = ({ boldText, normalText, description }) => {
                 {/* COUNTRY CARD */}
                 <div
                   onClick={() => handleCountryClick(countryName)}
-                  className={`flex h-full flex-col group relative items-center justify-start text-center gap-2 rounded-xl bg-[#464646]/60 pt-12 pb-6 transition-all duration-300 border-2 cursor-pointer ${
+                  className={`flex md:h-full flex-col group relative items-center justify-start text-center gap-2 rounded-xl bg-[#464646]/60 md:pt-12 p-10 md:p-5 transition-all duration-300 border-2 cursor-pointer ${
                     isActive
                       ? "border-primary"
                       : "border-transparent hover:border-primary"
