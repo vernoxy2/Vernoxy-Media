@@ -52,7 +52,7 @@ const LeftSec = ({ planning, description, boldText, normalText }) => {
                 <img
                   src={item.icon}
                   alt={`Image ${index + 1}`}
-                  className="object-contain w-full rounded-xl"
+                  className="object-cover h-full rounded-xl"
                 />
               )}
             </div>

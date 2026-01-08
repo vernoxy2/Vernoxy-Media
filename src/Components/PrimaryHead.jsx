@@ -12,7 +12,7 @@ const PrimaryHero = ({ title, subtitle }) => {
         <h1 className="text-[10vw] sm:text-[8vw] md:text-[5vw] font-light text-stroke text-start w-full font-Bai_Jamjuree m-0">
           {title}
         </h1>
-        <h2 className="font-Bai_Jamjuree text-xl md:text-5xl uppercase font-semibold text-start w-full md:w-2/3 mt-0">
+        <h2 className="font-Bai_Jamjuree text-xl md:text-5xl uppercase font-semibold text-start w-full md:w-2/3 -mt-3">
           {subtitle}
         </h2>
       </div>

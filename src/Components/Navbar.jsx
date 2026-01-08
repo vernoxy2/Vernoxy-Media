@@ -37,7 +37,7 @@ const Navbar = () => {
     navitems.map((item, i) => (
       <li
         key={i}
-        className="relative group h-full flex items-center"
+        className="relative group "
         onMouseEnter={() => {
           if (!isMobile) {
             clearTimeout(hoverTimeout.current);
@@ -48,7 +48,7 @@ const Navbar = () => {
           if (!isMobile) {
             hoverTimeout.current = setTimeout(() => {
               setHoverDropdown(null);
-            }, 200); // delay fixes quick-close flicker
+            }, 300); // delay fixes quick-close flicker
           }
         }}
       >
@@ -56,12 +56,11 @@ const Navbar = () => {
           <NavLink
             to={item.path}
             className={({ isActive }) =>
-              `font-bold flex items-center h-full px-2
-     transition-all duration-300 ${
-       isActive
-         ? "text-primary"
-         : "text-white hover:text-primary hover:scale-105"
-     }`
+              `font-bold transition duration-300  ${
+                isActive
+                  ? "text-primary"
+                  : "text-white hover:text-primary transform hover:scale-105"
+              }`
             }
             onClick={onClickHandler}
           >
@@ -71,11 +70,13 @@ const Navbar = () => {
           <>
             {/* Parent link */}
             <div
-              className={`flex items-center gap-1 font-bold cursor-pointer ${
+              className={`flex items-center gap-1 font-bold cursor-pointer  ${
                 isMobile ? "text-white" : "text-white group-hover:text-primary"
               }`}
               onClick={() =>
-                isMobile ? setOpenDropdown(openDropdown === i ? null : i) : null
+                isMobile
+                  ? setOpenDropdown(openDropdown === i ? null : i)
+                  : null
               }
             >
               {item.name} <HiChevronDown className="text-lg" />
@@ -86,9 +87,9 @@ const Navbar = () => {
               className={`${
                 isMobile
                   ? openDropdown === i
-                    ? "block pl-4 mt-2 "
+                    ? "block pl-4 mt-2"
                     : "hidden"
-                  : `absolute left-0 mt-1 w-48  bg-white/20 border border-primary top-full  
+                  : `absolute left-0 mt-3 w-48 bg-white/20 border border-primary  
                     backdrop-blur-md rounded-md shadow-lg transition-all duration-300 
                     ${hoverDropdown === i ? "block" : "hidden"}`
               }`}
@@ -98,7 +99,7 @@ const Navbar = () => {
                   <NavLink
                     to={drop.path}
                     className={({ isActive }) =>
-                      `block px-4 py-2 h-full text-sm transition duration-300 ${
+                      `block px-4 py-2 text-sm transition duration-300 ${
                         isActive
                           ? "text-primary"
                           : "text-white hover:text-primary"
@@ -117,23 +118,24 @@ const Navbar = () => {
     ));
 
   return (
-    <div className="absolute top-0 left-0 w-full z-50 bg-transparent font-alumni mt-8">
+    <div className="absolute top-6 md:top-8 left-0 w-full z-50 bg-transparent font-alumni">
       <nav className="container mx-auto flex justify-between items-center h-10 relative">
+        
         {/* Logo */}
         <Link to="/">
           <img src={Logo} alt="Logo" className="h-10 w-auto" />
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden xl:flex border border-primary h-full px-3 lg:px-5 rounded-md bg-white/20 backdrop-blur-md items-center">
+        <div className="hidden xl:block border border-primary h-full px-5 rounded-md bg-white/20 backdrop-blur-md">
           <ul className="flex gap-5 lg:gap-10 uppercase items-center h-full">
             {renderNavItems()}
           </ul>
         </div>
 
         {/* Desktop Button */}
-        <Link to="/erp-capture" className="hidden xl:block">
-          <PrimaryBtn>ERP Requirement</PrimaryBtn>
+        <Link to="/contact-us" className="hidden xl:block">
+          <PrimaryBtn>Get in Touch</PrimaryBtn>
         </Link>
 
         {/* Mobile Menu Button */}
@@ -164,6 +166,7 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
+
       </nav>
     </div>
   );
