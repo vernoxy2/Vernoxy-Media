@@ -134,8 +134,8 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Button */}
-        <Link to="/contact-us" className="hidden xl:block">
-          <PrimaryBtn>Get in Touch</PrimaryBtn>
+        <Link to="/erp-capture" className="hidden xl:block">
+          <PrimaryBtn>ERP Solutions</PrimaryBtn>
         </Link>
 
         {/* Mobile Menu Button */}
