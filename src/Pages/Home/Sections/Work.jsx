@@ -31,21 +31,21 @@ const WorkData = [
     img: [Post1, Post2, Post3, Post4],
     title: "Lead-Generating Digital Ad Campaign",
     text: "Discover our creative social media projects designed for innovation, growth, and success.",
-    Link: "services/web_development",
+    Link: "services/digital_marketing",
   },
   {
     id: 3,
     img: [APro1, APro1],
     title: "Mobile App for Retail Automation",
     text: "Discover our creative application projects designed for innovation, growth, and success.",
-    Link: "services/web_development",
+    Link: "services/app_development",
   },
   {
     id: 4,
     img: [Vid2, Vid3],
     title: "Custom CRM for Streamlined Sales Flow",
     text: "Discover our creative video projects designed for innovation, growth, and success.",
-    Link: "services/video_editing",
+    Link: "services/customized_crm",
   },
 ];
 

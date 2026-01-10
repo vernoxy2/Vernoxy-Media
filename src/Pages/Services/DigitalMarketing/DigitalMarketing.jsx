@@ -15,6 +15,7 @@ import Img from "../../../assets/ServicePageImg/Process/Digital/Plan1.jpg";
 import Img2 from "../../../assets/ServicePageImg/Process/Digital/Plan2.png";
 import Img3 from "../../../assets/ServicePageImg/Process/Digital/Plan3.webp";
 import Img4 from "../../../assets/ServicePageImg/Process/Digital/Plan4.webp";
+import { useMetaTags } from "../../../hooks/useMetaTags"; 
 
 const KeyItems = [
   "Content Marketing That Tells Your Brand's Story",
@@ -57,8 +58,21 @@ const Planning = stepData.map((item) => {
 });
 
 const DigitalMarketing = () => {
+  useMetaTags({
+    title: "Digital Marketing & Branding - Vernoxy Media",
+    description: "Discover Vernoxy Media's comprehensive services: AI-powered digital marketing, web development, SEO, social media management, branding, and custom ERP solutions.",
+    keywords: "digital marketing services, AI marketing, web development, SEO services, social media marketing, branding, ERP solutions, Vernoxy services",
+    image: "../../../public/favicon.svg",
+    url: "https://vernoxy.com/services/digital_marketing", 
+    type: "website",
+  });
   return (
     <div className="overflow-hidden">
+       {/* SEO Meta Tags */}
+      <title>Our Services - Digital Marketing & AI Solutions | Vernoxy Media</title>
+      <meta name="description" content="Explore Vernoxy Media's comprehensive services: AI-powered digital marketing, web development, SEO, social media management, branding, and custom ERP solutions." />
+      <meta name="keywords" content="digital marketing services, AI marketing, web development, SEO services, social media marketing, branding, ERP solutions, Vernoxy services" />
+      
       <PrimaryHead
         title={"Digital marketing & Branding"}
         subtitle={"Building brands that resonate and endure"}
