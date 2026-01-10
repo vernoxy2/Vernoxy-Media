@@ -76,7 +76,7 @@ const App = () => {
           />
           <Route path="/services/app_development" element={<CustomizedApp />} />
           {/* <Route path="/services/graphics_design" element={<GraphicsDesign />} /> */}
-          <Route path="/services/video_editing" element={<VideoEditing />} />
+          <Route path="/services/customized_crm" element={<VideoEditing />} />
 
           <Route path="/products" element={<Projects />} />
           <Route path="/contact-us" element={<ContactUs />} />

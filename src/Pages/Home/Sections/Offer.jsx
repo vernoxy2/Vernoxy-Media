@@ -7,6 +7,7 @@ import Application from "../../../assets/ServicePageImg/FatureKey/AppDKey.webp";
 import WebDevlope from "../../../assets/ServicePageImg/FatureKey/CRM.webp";
 import CRM from "../../../assets/ServicePageImg/FatureKey/WebDKey.webp";
 import PrimaryBtn from "../../../Components/PrimartyBtn";
+import { Link } from "react-router-dom";
 
 const data = [
   {
@@ -14,24 +15,28 @@ const data = [
     title: "Application Development",
     sub: "Tailored, high-performance apps built around your business needs.",
     img: Application,
+    Link: "services/app_development",
   },
   {
     id: 2,
     title: "Website Design & Development",
     sub: "Modern, responsive websites designed to engage and convert.",
     img: WebDevlope,
+    Link: "services/web_development",
   },
   {
     id: 3,
     title: "Digital Marketing",
     sub: "Data-driven strategies to boost visibility, traffic, and sales.",
     img: DigitalMarketing,
+    Link: "services/digital_marketing",
   },
   {
     id: 4,
     title: "Customized CRM Solutions",
     sub: "Streamlined, automated CRM systems tailored to your workflows.",
     img: CRM,
+    Link: "services/customized_crm",
   },
 ];
 
@@ -55,7 +60,9 @@ const Offer = () => {
             <div className="space-y-4 p-4 flex flex-col justify-center md:col-span-2 xl:col-span-1">
               <h2 className="text-2xl font-semibold">{item.title}</h2>
               <p className="text-lg">{item.sub}</p>
+              <Link to={item.Link}>
               <PrimaryBtn className="w-fit">Learn More</PrimaryBtn>
+              </Link>
             </div>
           </div>
         ))}

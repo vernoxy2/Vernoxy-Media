@@ -22,7 +22,7 @@ const SerLinkd = [
   { id: 1, name: "Application Development", Link: "/services/app_development" },
   { id: 2, name: "Web Development", Link: "/services/web_development" },
   { id: 3, name: "Digital Marketing", Link: "/services/digital_marketing" },
-  { id: 4, name: "Customized CRM", Link: "/services/video_editing" },
+  { id: 4, name: "Customized CRM", Link: "/services/customized_crm" },
 ];
 
 const Soical = [

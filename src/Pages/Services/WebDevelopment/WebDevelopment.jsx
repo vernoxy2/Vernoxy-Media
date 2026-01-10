@@ -15,6 +15,7 @@ import Img from "../../../assets/ServicePageImg/Process/Web/Plan1.webp";
 import Img2 from "../../../assets/ServicePageImg/Process/Web/Plan2.webp";
 import Img3 from "../../../assets/ServicePageImg/Process/Web/Plan3.webp";
 import Img4 from "../../../assets/ServicePageImg/Process/Web/Plan4.webp";
+import { useMetaTags } from "../../../hooks/useMetaTags";
 
 // 
 const KeyItems = [
@@ -56,6 +57,15 @@ const Planning = stepData.map((item) => {
 });
 
 const WebDevelopment = () => {
+  useMetaTags({
+    title: "Web Design & Development",
+    description:
+      "We understand your goals, design a user-friendly interface, develop a responsive and functional website, and provide testing, launch, and ongoing support for lasting excellence.",
+    keywords: "vernoxymedia, social media management, digital marketing, web development, Valsad, ERP solutions ",
+    image: "../../../public/favicon.svg",
+    url: "https://vernoxy.com/services/web_development",
+    type: "website",
+  });
   return (
     <div className="overflow-hidden">
       <PrimaryHero title={"Web Design & Development"} subtitle={"Crafted to captivate your audience and drive results"} />
