@@ -6,10 +6,23 @@ import Future from "./Sections/Future";
 import People from "./Sections/People";
 import WithVernoxy from "./Sections/WithVernoxy";
 import PrimaryHero from "../../Components/PrimaryHead";
+import { useMetaTags } from "../../hooks/useMetaTags";
 
 const AboutUs = () => {
+  useMetaTags({
+    title: "About Us - Vernoxy Media",
+    description: "Learn about Vernoxy Media's mission and how we help businesses grow online.",
+    keywords: "vernoxymedia, social media management, digital marketing, web development, Valsad, ERP solutions ",
+    image: "../../../public/favicon.svg",
+    url: "https://vernoxymedia.com/about",
+    type: "website",
+  });
   return (
     <div className="overflow-hidden">
+      
+      <title>About Us - Vernoxy Media</title>
+      <meta name="description" content="Learn about Vernoxy Media's mission..." />
+      <link rel="canonical" href="https://vernoxymedia.com/about" />
       <div className="pb-0">
       <PrimaryHero title={"About"} subtitle={"Our Journey & purpose"} />
       </div>

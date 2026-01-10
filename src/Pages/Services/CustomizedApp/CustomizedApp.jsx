@@ -15,6 +15,7 @@ import Img from "../../../assets/ServicePageImg/Process/App/Plan1.webp";
 import Img2 from "../../../assets/ServicePageImg/Process/App/Plan2.webp";
 import Img3 from "../../../assets/ServicePageImg/Process/App/Plan3.webp";
 import Img4 from "../../../assets/ServicePageImg/Process/App/Plan4.webp";
+import { useMetaTags } from "../../../hooks/useMetaTags";
 
 const KeyItems = [
   "User-Friendly Interface",
@@ -57,6 +58,14 @@ const Planning = stepData.map((item) => {
 });
 
 const CustomizedApp = () => {
+  useMetaTags({
+    title: "Customized App",
+    description: "Customize your app to meet your specific needs, and let us handle the rest.",
+    keywords: "vernoxymedia, social media management, digital marketing, web development, Valsad, ERP solutions ",
+    image: "../../../public/favicon.svg",
+    url: "https://vernoxy.com/services/app_development",
+    type: "website",
+  })
   return (
     <div className="overflow-hidden">
       <PrimaryHead

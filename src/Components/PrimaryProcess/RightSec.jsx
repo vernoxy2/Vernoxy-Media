@@ -27,7 +27,7 @@ const Category = [
   {
     id: 4,
     name: "Customized CRM System",
-    link: "/services/video_editing",
+    link: "/services/customized_crm",
   },
 ];
 

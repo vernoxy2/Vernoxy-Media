@@ -15,6 +15,7 @@ import Img from "../../../assets/ServicePageImg/Process/CRM/Plan1.webp";
 import Img2 from "../../../assets/ServicePageImg/Process/CRM/Plan2.png";
 import Img3 from "../../../assets/ServicePageImg/Process/CRM/Plan3.webp";
 import Img4 from "../../../assets/ServicePageImg/Process/CRM/Plan4.webp";
+import { useMetaTags } from "../../../hooks/useMetaTags";
 
 const KeyItems = [
   "Customize features as per business needs.",
@@ -55,6 +56,13 @@ const Planning = stepData.map((item) => {
 });
 
 const VideoEditing = () => {
+  useMetaTags({
+    title: "Customized CRM | Vernoxy Media",
+    description: "Customize CRM solutions for businesses of all sizes. Empower your team with a CRM that works the way you do, ensuring efficiency, scalability, and stronger customer relationships.",
+    keywords: "vernoxymedia, social media management, digital marketing, web development, Valsad, CRM solutions ",
+    image: "../../../public/favicon.svg",
+    url: "https://vernoxy.com/services/customized_crm",
+  })
   return (
     <div className='overflow-hidden'>
       <PrimaryHero title={"Customized CRM"} subtitle={"Transform chaos into coordinated, efficient workflows"} />
