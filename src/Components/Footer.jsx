@@ -50,7 +50,7 @@ const Soical = [
 
 const Footer = () => {
   return (
-    <section className="overflow-hidden">
+    <section className="overflow-hidden pb-10">
       {/* Main Container */}
       <div className="container  mx-auto grid grid-cols-1 lg:grid-cols-6 gap-y-8 gap-x-6">
         {/* First column */}
@@ -163,6 +163,10 @@ const Footer = () => {
             </Link>
           ))}
         </div>
+        
+        <p className="text-center pt-8 sm:pt-8 md:pt-10 text-white  mt-auto text-sm md:text-base">
+            © {new Date().getFullYear()} Developed by @Vernoxy
+          </p>
 
         {/* Background image centered at bottom */}
         <div className="absolute -bottom-[460px] left-1/2 -translate-x-1/2 z-0">
