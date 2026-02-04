@@ -164,7 +164,7 @@ const Footer = () => {
           ))}
         </div>
         
-        <p className="text-center pt-8 sm:pt-8 md:pt-10 text-primary  mt-auto text-sm md:text-base">
+        <p className="text-center pt-8 sm:pt-8 md:pt-10 text-white  mt-auto text-sm md:text-base">
             © {new Date().getFullYear()} Developed by @Vernoxy
           </p>
 
