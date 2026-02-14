@@ -7,6 +7,7 @@ import BottomLine from "../../../Components/BottomLine";
 import PrimaryObject from "../../../Components/PrimaryObject";
 import src from "../../../assets/Obj2.svg";
 import PrimaryBg from "../../../Components/PrimaryBg";
+import LazyImage from "../../../Components/LazyImage";
 
 const InnovatingData = [
     {
@@ -48,7 +49,7 @@ const Future = () => {
             ))}
         </div>
         <div className="flex items-center justify-center">
-            <img src={Img1} alt=""  className="mx-auto my-auto"/>
+            <LazyImage src={Img1} alt=""  className="mx-auto my-auto"/>
         </div>
         <PrimaryObject src={src} className="right-0 -bottom-40 md:-bottom-52 -z-[9999] " />
         <PrimaryBg className="-top-20"/>

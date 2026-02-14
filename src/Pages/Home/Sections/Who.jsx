@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import img1 from "../../../assets/HomePageImgs/WhoImg.webp";
 import img2 from "../../../assets/HomePageImgs/WhoImg2.webp";
 import img3 from "../../../assets/HomePageImgs/WhoImg3.webp";
+import LazyImage from "../../../Components/LazyImage";
 
 const images = [img1, img2, img3]; // add more if needed
 
@@ -27,7 +28,7 @@ const Who = () => {
         {/* Image Slider */}
         <div className="w-full h-[500px] relative">
           {images.map((src, index) => (
-            <img
+            <LazyImage
               key={index}
               src={src}
               alt="Who We Are"

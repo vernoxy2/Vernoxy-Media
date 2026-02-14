@@ -5,17 +5,18 @@ import Puxxle1 from "../../../assets/AboutPageImg/Puzzle1.svg";
 import Puxxle2 from "../../../assets/AboutPageImg/Puzzle2.svg";
 import Communicate from "../../../assets/AboutPageImg/Communicate.png"
 import { Link } from "react-router-dom";
+import LazyImage from "../../../Components/LazyImage";
 
 const WithVernoxy = () => {
   return (
     <div>
       <div className="container pb-12">
-        <img
+        <LazyImage
           src={Puxxle2}
           alt=""
           className="mx-auto translate-x-20 pl-12 h-full animate-float -mb-16 pointer-events-none z-20 "
         />
-        <img
+        <LazyImage
           src={Puxxle1}
           alt=""
           className="mx-auto -mb-20 h-full pointer-events-none"
@@ -34,7 +35,7 @@ const WithVernoxy = () => {
             <Link to="/contact-us">
               <PrimaryBtn className="flex-none">Speak to Expert</PrimaryBtn>
             </Link>
-          <div className=""><img src={Communicate} alt="" className="absolute top-2.5 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none container" /></div>
+          <div className=""><LazyImage src={Communicate} alt="" className="absolute top-2.5 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none container" /></div>
           </div>
         </div>
       </div>

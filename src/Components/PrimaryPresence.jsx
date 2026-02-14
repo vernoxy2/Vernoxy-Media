@@ -12,6 +12,7 @@ import { GoArrowRight } from "react-icons/go";
 import Gujarat from "../assets/StateImg/Gujrat.jpg";
 import Maharashtra from "../assets/StateImg/Maharashtra.jpg";
 import LeftTop from "../assets/ContactPageImg/LeftTop.svg";
+import LazyImage from "./LazyImage";
 
 const PrimaryPresence = ({ boldText, normalText, description }) => {
   const navigate = useNavigate();
@@ -161,7 +162,7 @@ const PrimaryPresence = ({ boldText, normalText, description }) => {
                       : "border-transparent hover:border-primary"
                   }`}
                 >
-                  <img src={country.image} alt="" className="w-16 h-16" />
+                  <LazyImage src={country.image} alt="" className="w-16 h-16" />
                   <p className="xl:text-3xl font-BaiJamjuree font-bold">
                     {country.contry}
                   </p>
@@ -183,7 +184,7 @@ const PrimaryPresence = ({ boldText, normalText, description }) => {
                         className="bg-[#464646]/50 rounded-xl p-5 space-y-6 flex flex-col"
                       >
                         {/* IMAGE — order 1 on mobile */}
-                        <img
+                        <LazyImage
                           src={state.image}
                           alt={state.name}
                           className="w-full rounded-lg object-cover order-1"
@@ -230,7 +231,7 @@ const PrimaryPresence = ({ boldText, normalText, description }) => {
 
             {currentStateData.map((state, index) => (
               <div key={state.id} className="relative z-10">
-                <img
+                <LazyImage
                   src={LeftTop}
                   alt=""
                   className="absolute md:left-[-24px] md:top-[-24px] -z-10"
@@ -277,7 +278,7 @@ const PrimaryPresence = ({ boldText, normalText, description }) => {
                         : "order-1 xl:order-1"
                     }`}
                   >
-                    <img
+                    <LazyImage
                       src={state.image}
                       alt={state.name}
                       className="h-full object-cover"
