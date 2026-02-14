@@ -12,6 +12,7 @@ import Left from "../assets/HomePageImgs/Left.svg";
 import PrimaryBg from "./PrimaryBg";
 import Ttusted_Globally from "../assets/HomePageImgs/Ttusted_Globally.png";
 import { Link } from "react-router-dom";
+import LazyImage from "./LazyImage";
 
 const avatars = [
   { id: 1, src: AvatarsImg1, alt: "Customer 1" },
@@ -46,7 +47,7 @@ const AIRevolution = () => {
           {/* Avatars */}
           <div className="flex md:justify-end -space-x-6">
             {avatars.map((avatar) => (
-              <img
+              <LazyImage
               loading="lazy"
                 key={avatar.id}
                 className="w-14 h-14 rounded-full border-2 border-black pointer-events-none"
@@ -69,12 +70,12 @@ const AIRevolution = () => {
       {/* Orbit */}
       <div className="relative container z-10 pointer-events-none">
         {/* Earth Image */}
-        <img src={Earth} alt="Earth" className="mx-auto pointer-events-none" />
+        <LazyImage src={Earth} alt="Earth" className="mx-auto pointer-events-none" />
 
         {/* Orbit Images */}
         <div className="mx-auto absolute top-20 md:top-16 right-1/2 translate-x-1/2 pointer-events-none w-[85%] md:w-[70%] lg:w-auto">
-          <img src={Right} alt="Right Orbit" className="animate-Efloat" />
-          <img
+          <LazyImage src={Right} alt="Right Orbit" className="animate-Efloat" />
+          <LazyImage
             src={Left}
             alt="Left Orbit"
             className="absolute top-0 animate-Efloat pointer-events-none"

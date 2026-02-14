@@ -8,6 +8,7 @@ import WebDevlope from "../../../assets/ServicePageImg/FatureKey/CRM.webp";
 import CRM from "../../../assets/ServicePageImg/FatureKey/WebDKey.webp";
 import PrimaryBtn from "../../../Components/PrimartyBtn";
 import { Link } from "react-router-dom";
+import LazyImage from "../../../Components/LazyImage";
 
 const data = [
   {
@@ -55,7 +56,7 @@ const Offer = () => {
             className="text-left space-y-4 bg-gradient-to-t md:bg-gradient-to-l from-primary/40 hover:from-primary/40  to-vernoxy rounded-xl relative grid md:grid-cols-3  xl:grid-cols-2"
           >
             <div className="flex justify-center items-center">
-              <img src={item.img} alt="" className="pointer-events-none" />
+              <LazyImage src={item.img} alt="" className="pointer-events-none" />
             </div>
             <div className="space-y-4 p-4 flex flex-col justify-center md:col-span-2 xl:col-span-1">
               <h2 className="text-2xl font-semibold">{item.title}</h2>

@@ -6,6 +6,7 @@ import Globally_Preferred from "../../../assets/AboutPageImg/Globally_Preferred.
 import PrimaryObject from "../../../Components/PrimaryObject";
 import src from "../../../assets/Obj2.svg";
 import src1 from "../../../assets/Obj1.svg";
+import LazyImage from "../../../Components/LazyImage";
 
 const data = [
   { id: 1, Count: 20, suffix: "+", text: "Industries Served Globally" },
@@ -75,13 +76,13 @@ const Expertise = () => {
         />
         <div className="w-full px-20  pointer-events-none pt-9 absolute">
           <div className="flex gap-x-24 w-full animate-marquee">
-            <img src={Globally_Preferred} alt="Globally Preferred" />
-            <img src={Globally_Preferred} alt="Globally Preferred" />
-            <img src={Globally_Preferred} alt="Globally Preferred" />
+            <LazyImage src={Globally_Preferred} alt="Globally Preferred" />
+            <LazyImage src={Globally_Preferred} alt="Globally Preferred" />
+            <LazyImage src={Globally_Preferred} alt="Globally Preferred" />
           </div>
         </div>
 
-        <img
+        <LazyImage
           src={VR_Man}
           alt="VR Man"
           className="mx-auto h-full -mb-20 z-10 relative animate-float pointer-events-none"

@@ -3,6 +3,7 @@ import Heading from "./Heading";
 import BottomLine from "./BottomLine";
 import icon from "../assets/ServicePageImg/KeyListIcon.svg";
 import PrimaryBg from "./PrimaryBg";
+import LazyImage from "./LazyImage";
 
 const FatureKey = ({ boldText, normalText, KeyList, Keybanner }) => {
   return (
@@ -25,7 +26,7 @@ const FatureKey = ({ boldText, normalText, KeyList, Keybanner }) => {
                   className="flex items-center justify-start gap-3"
                   key={index}
                 >
-                  <img src={icon} alt="list-icon" className="" />
+                  <LazyImage src={icon} alt="list-icon" className="" />
                   <p className="text-base md:text-2xl">{item}</p>
                 </li>
               ))}

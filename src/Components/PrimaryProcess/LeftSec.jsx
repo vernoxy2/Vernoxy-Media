@@ -3,6 +3,7 @@ import Heading from "../Heading";
 import BottomLine from "../BottomLine";
 import PrimaryObject from "../PrimaryObject";
 import src from "../../assets/Obj2.svg";
+import LazyImage from "../LazyImage";
 
 const LeftSec = ({ planning, description, boldText, normalText }) => {
   return (
@@ -32,7 +33,7 @@ const LeftSec = ({ planning, description, boldText, normalText }) => {
               {isStep ? (
                 <div className=" p-3 md:p-7 h-full flex flex-col justify-between text-start">
                   <div className="flex justify-between">
-                    <img
+                    <LazyImage
                       src={item.icon}
                       alt={item.title || `Step ${index + 1}`}
                       className="md:max-h-16 max-h-10 object-contain"
