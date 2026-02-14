@@ -7,24 +7,30 @@ import { auth, db } from "../firebase";
 
 export default function ProtectedRoute({ children }) {
   const [loading, setLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
           const userDoc = await getDoc(doc(db, "users", user.uid));
-          if (userDoc.exists() && userDoc.data().role === "admin") {
-            setIsAdmin(true);
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            // Allow both admin and user roles (matching AdminLogin logic)
+            if (userData.role === "admin" || userData.role === "user") {
+              setIsAuthenticated(true);
+            } else {
+              setIsAuthenticated(false);
+            }
           } else {
-            setIsAdmin(false);
+            setIsAuthenticated(false);
           }
         } catch (error) {
-          console.error("Error checking admin status:", error);
-          setIsAdmin(false);
+          console.error("Error checking user status:", error);
+          setIsAuthenticated(false);
         }
       } else {
-        setIsAdmin(false);
+        setIsAuthenticated(false);
       }
       setLoading(false);
     });
@@ -43,5 +49,5 @@ export default function ProtectedRoute({ children }) {
     );
   }
 
-  return isAdmin ? children : <Navigate to="/admin/login" replace />;
+  return isAuthenticated ? children : <Navigate to="/admin/login" replace />;
 }

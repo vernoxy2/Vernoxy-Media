@@ -58,11 +58,15 @@ const Layout = ({ children }) => {
 
   const hideNavbarFooterPaths = [
     "/admin/dashboard",
-    "/admin-page",
-    "/user-page",
+    "/admin/welcome",
+    "/admin/admin-page",
+    "/admin/user-page",
+    "/admin",
   ];
 
-  const hideLayout = hideNavbarFooterPaths.includes(location.pathname);
+  const hideLayout = hideNavbarFooterPaths.some((path) =>
+    location.pathname.startsWith(path)
+  );
 
   return (
     <div className="bg-vernoxy text-white min-h-screen text-center">

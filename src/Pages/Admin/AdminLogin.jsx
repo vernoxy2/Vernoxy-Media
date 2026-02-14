@@ -1,8 +1,19 @@
 // src/Pages/Admin/AdminLogin.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
-import { doc, getDoc, collection, query, where, getDocs, limit } from "firebase/firestore";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
+import {
+  doc,
+  getDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  limit,
+} from "firebase/firestore";
 import { auth, db } from "../../firebase";
 import { LogIn, Eye, EyeOff, ArrowLeft } from "lucide-react";
 
@@ -19,13 +30,15 @@ export default function AdminLogin() {
   const navigate = useNavigate();
 
   // Check if already logged in
+  // Check if already logged in
   useEffect(() => {
     const checkAuth = async () => {
       const user = auth.currentUser;
       if (user) {
         const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists() && userDoc.data().role === "admin") {
-          navigate("/admin/dashboard", { replace: true });
+        if (userDoc.exists()) {
+          // Both admin and user go to /admin
+          navigate("/admin", { replace: true });
         }
       }
     };
@@ -39,12 +52,16 @@ export default function AdminLogin() {
 
     try {
       // Sign in user
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
 
-      // Check if user is admin
+      // Get user data from Firestore
       const userDoc = await getDoc(doc(db, "users", user.uid));
-      
+
       if (!userDoc.exists()) {
         setError("User profile not found");
         await auth.signOut();
@@ -53,20 +70,18 @@ export default function AdminLogin() {
       }
 
       const userData = userDoc.data();
-      
-      if (userData.role !== "admin") {
+
+      // Both admin and user go to /admin
+      if (userData.role === "admin" || userData.role === "user") {
+        navigate("/admin", { replace: true });
+      } else {
         setError("Access denied. Admin privileges required.");
         await auth.signOut();
         setLoading(false);
-        return;
       }
-
-      // Success - navigate to dashboard
-      navigate("/admin/dashboard", { replace: true });
-      
     } catch (err) {
       console.error("Login error:", err);
-      
+
       if (err.code === "auth/user-not-found") {
         setError("No account found with this email");
       } else if (err.code === "auth/wrong-password") {
@@ -80,14 +95,14 @@ export default function AdminLogin() {
       } else {
         setError("Login failed. Please try again.");
       }
-      
+
       setLoading(false);
     }
   };
 
   const handleForgotPassword = async (e) => {
     e.preventDefault();
-    
+
     if (!resetEmail) {
       setResetError("Please enter your email address");
       return;
@@ -111,27 +126,21 @@ export default function AdminLogin() {
       const querySnapshot = await getDocs(q);
 
       if (querySnapshot.empty) {
-        setResetError("This email is not registered in our system. Please check your email or contact admin.");
+        setResetError(
+          "This email is not registered in our system. Please check your email or contact admin."
+        );
         setLoading(false);
         return;
       }
 
-      // Check if user has admin role
-      const userDoc = querySnapshot.docs[0];
-      const userData = userDoc.data();
-      
-      if (userData.role !== "admin") {
-        setResetError("This email does not have admin privileges. Only admin users can reset password here.");
-        setLoading(false);
-        return;
-      }
-
-      // Email exists and is admin, now send password reset email
+      // Email exists, send password reset email
       await sendPasswordResetEmail(auth, emailToCheck);
-      
-      setResetMessage("Password reset email sent successfully! Check your inbox and spam folder.");
+
+      setResetMessage(
+        "Password reset email sent successfully! Check your inbox and spam folder."
+      );
       setResetEmail("");
-      
+
       // Auto close after 3 seconds
       setTimeout(() => {
         setShowForgotPassword(false);
@@ -139,19 +148,30 @@ export default function AdminLogin() {
       }, 3000);
     } catch (error) {
       console.error("Password Reset Error:", error);
-      
+
       if (error.code === "auth/user-not-found") {
-        setResetError("Email found in database but not in authentication system. Please contact admin.");
+        setResetError(
+          "Email found in database but not in authentication system. Please contact admin."
+        );
       } else if (error.code === "auth/invalid-email") {
         setResetError("Invalid email address format");
       } else if (error.code === "auth/too-many-requests") {
-        setResetError("Too many reset attempts. Please try again after some time.");
+        setResetError(
+          "Too many reset attempts. Please try again after some time."
+        );
       } else if (error.code === "auth/missing-email") {
         setResetError("Please enter an email address");
-      } else if (error.code === "permission-denied" || error.message?.includes("permission")) {
-        setResetError("Database access error. Please contact admin to update security rules.");
+      } else if (
+        error.code === "permission-denied" ||
+        error.message?.includes("permission")
+      ) {
+        setResetError(
+          "Database access error. Please contact admin to update security rules."
+        );
       } else {
-        setResetError("Failed to send reset email. Please try again or contact admin.");
+        setResetError(
+          "Failed to send reset email. Please try again or contact admin."
+        );
       }
     } finally {
       setLoading(false);
@@ -173,10 +193,11 @@ export default function AdminLogin() {
               Reset Password
             </h2>
             <p className="mt-2 text-center text-sm text-gray-400">
-              Enter your email address and we'll send you a link to reset your password
+              Enter your email address and we'll send you a link to reset your
+              password
             </p>
           </div>
-          
+
           <form className="mt-8 space-y-6" onSubmit={handleForgotPassword}>
             <div>
               <label htmlFor="reset-email" className="sr-only">
@@ -198,7 +219,9 @@ export default function AdminLogin() {
 
             {resetError && (
               <div className="rounded-md bg-red-500/20 border border-red-500 p-4">
-                <p className="text-sm text-red-400 whitespace-pre-wrap">{resetError}</p>
+                <p className="text-sm text-red-400 whitespace-pre-wrap">
+                  {resetError}
+                </p>
               </div>
             )}
 
@@ -225,7 +248,7 @@ export default function AdminLogin() {
                   "Send Reset Link"
                 )}
               </button>
-              
+
               <button
                 type="button"
                 onClick={() => {
@@ -276,7 +299,7 @@ export default function AdminLogin() {
             Access the ERP submissions dashboard
           </p>
         </div>
-        
+
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <div className="rounded-md shadow-sm space-y-4">
             <div>
@@ -296,30 +319,24 @@ export default function AdminLogin() {
               />
             </div>
             <div className="relative">
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
               <input
-                id="password"
-                name="password"
+                key={showPassword ? "text" : "password"}
                 type={showPassword ? "text" : "password"}
-                autoComplete="current-password"
-                required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="appearance-none rounded-lg relative block w-full px-4 py-3 border border-gray-700 placeholder-gray-500 text-white bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm transition-all duration-300"
                 placeholder="Password"
+                required
+                className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800/50 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
               />
+
               <button
                 type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                tabIndex={-1}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
               >
-                {showPassword ? (
-                  <EyeOff className="w-5 h-5" />
-                ) : (
-                  <Eye className="w-5 h-5" />
-                )}
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
           </div>

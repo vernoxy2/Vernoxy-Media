@@ -408,9 +408,9 @@ const AdmerPageLogin = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700  mb-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Hours Spent *
-                  </label>
+                  </label>  
                   <input
                     type="number"
                     placeholder="0.0"
@@ -434,8 +434,8 @@ const AdmerPageLogin = () => {
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Status
                 </label>
-                <div className="grid grid-cols-3 gap-3">
-                  {["In Progress", "Completed", "Blocked"].map((status) => (
+                <div className="grid grid-cols-3 gap-4 text-xs md:text-sm">
+                  {["In Progress", "Completed", "Pending"].map((status) => (
                     <button
                       key={status}
                       onClick={() => setNewWorkLog({ ...newWorkLog, status })}
